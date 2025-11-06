@@ -1,25 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import PortfolioGrid from "@/components/PortfolioGrid";
 
 const UXUIDesign = () => {
-  const caseStudies = [
-    {
-      id: 1,
-      title: "E-Commerce Redesign",
-      description: "A complete redesign of an e-commerce platform focusing on user experience and conversion optimization.",
-      category: "UX/UI Design",
-      image: "/placeholder.svg",
-    },
-    {
-      id: 2,
-      title: "Mobile Banking App",
-      description: "Intuitive mobile banking application design with focus on security and ease of use.",
-      category: "UX/UI Design",
-      image: "/placeholder.svg",
-    },
-  ];
-
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -34,30 +17,7 @@ const UXUIDesign = () => {
               Case studies showcasing user-centered design solutions
             </p>
 
-            <div className="space-y-8">
-              {caseStudies.map((study) => (
-                <Card key={study.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="md:flex">
-                    <div className="md:w-1/3">
-                      <img 
-                        src={study.image} 
-                        alt={study.title}
-                        className="w-full h-64 md:h-full object-cover"
-                      />
-                    </div>
-                    <div className="md:w-2/3">
-                      <CardHeader>
-                        <CardTitle className="text-2xl">{study.title}</CardTitle>
-                        <CardDescription className="text-base">{study.category}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-muted-foreground">{study.description}</p>
-                      </CardContent>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <PortfolioGrid filter="uxui" />
           </div>
         </section>
       </main>
