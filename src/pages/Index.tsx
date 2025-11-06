@@ -1,28 +1,12 @@
-import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState("all");
-
-  const handleNavigate = (section: string) => {
-    setActiveSection(section);
-    
-    if (section === "contact") {
-      const contactElement = document.getElementById("contact");
-      if (contactElement) {
-        contactElement.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
   return (
     <div className="min-h-screen">
-      <Navigation activeSection={activeSection} onNavigate={handleNavigate} />
+      <Navigation />
       
       <main className="pt-20 md:pt-24 pb-20 md:pb-8">
         {/* Hero Section */}
@@ -40,7 +24,7 @@ const Index = () => {
         {/* Portfolio Grid */}
         <section className="py-8 md:py-12">
           <div className="container mx-auto px-6">
-            <PortfolioGrid filter={activeSection} />
+            <PortfolioGrid filter="all" />
           </div>
         </section>
 
