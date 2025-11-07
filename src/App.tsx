@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import UXUIDesign from "./pages/UXUIDesign";
 import Photography from "./pages/Photography";
 import Contact from "./pages/Contact";
+import ToolSwap from "./pages/ToolSwap";
+import DanaoTopo from "./pages/DanaoTopo";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,8 @@ const App = () => (
           <Route path="/uxui-design" element={<UXUIDesign />} />
           <Route path="/photography" element={<Photography />} />
           <Route path="/photography/:subcategory" element={<Photography />} />
+          <Route path="/projects/toolswap" element={<ToolSwap />} />
+          <Route path="/projects/danao-topo" element={<DanaoTopo />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

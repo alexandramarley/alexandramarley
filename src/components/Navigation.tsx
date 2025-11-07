@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const Navigation = () => {
   const [photographyMenuOpen, setPhotographyMenuOpen] = useState(false);
-  const [mobilePhotographyOpen, setMobilePhotographyOpen] = useState(false);
+  // mobilePhotographyOpen removed: mobile should link directly to photography landing
   const location = useLocation();
 
   const navItems = [
@@ -96,50 +96,22 @@ const Navigation = () => {
 
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border">
-        <div className="flex items-center justify-around py-4 px-2">
-          {navItems.map((item) => (
-            <div key={item.id} className="relative">
-              {item.subItems ? (
-                <>
-                  <button
-                    onClick={() => setMobilePhotographyOpen(!mobilePhotographyOpen)}
-                    className={cn(
-                      "text-xs font-medium transition-colors px-3 py-2 flex items-center gap-1",
-                      location.pathname.startsWith(item.path) ? "text-foreground" : "text-muted-foreground"
-                    )}
-                  >
-                    {item.label}
-                    <ChevronDown className={cn("h-3 w-3 transition-transform", mobilePhotographyOpen && "rotate-180")} />
-                  </button>
-                  {mobilePhotographyOpen && (
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-background border border-border rounded-md shadow-lg py-2 min-w-[120px]">
-                      {item.subItems.map((subItem) => (
-                        <Link
-                          key={subItem.id}
-                          to={subItem.path}
-                          onClick={() => setMobilePhotographyOpen(false)}
-                          className="block px-4 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                        >
-                          {subItem.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
+          <div className="flex items-center justify-around py-4 px-2">
+            {navItems.map((item) => (
+              <div key={item.id}>
+                {/* On mobile we don't show expandable submenus — link directly to photography landing */}
                 <Link
                   to={item.path}
                   className={cn(
                     "text-xs font-medium transition-colors px-3 py-2",
-                    location.pathname === item.path ? "text-foreground" : "text-muted-foreground"
+                    location.pathname === item.path || location.pathname.startsWith(item.path) ? "text-foreground" : "text-muted-foreground"
                   )}
                 >
                   {item.label}
                 </Link>
-              )}
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
       </nav>
     </>
   );

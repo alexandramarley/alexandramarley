@@ -24,7 +24,7 @@ const Index = () => {
         {/* Portfolio Grid */}
         <section className="py-8 md:py-12">
           <div className="container mx-auto px-6">
-            <PortfolioGrid filter="all" />
+            <PortfolioGrid filter="photography" />
           </div>
         </section>
 

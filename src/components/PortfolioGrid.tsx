@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
@@ -12,6 +13,7 @@ interface PortfolioItem {
   category: "uxui" | "photography";
   title: string;
   description: string;
+  link?: string;
 }
 
 interface PortfolioGridProps {
@@ -23,8 +25,9 @@ const portfolioItems: PortfolioItem[] = [
     id: 1,
     image: portfolio1,
     category: "uxui",
-    title: "Mobile App Design",
-    description: "Clean and intuitive mobile interface",
+    title: "ToolSwap",
+    description: "A community marketplace app for borrowing and lending tools — making DIY easier, cheaper, and more sustainable (Mobile UX- and UI)",
+    link: "/projects/toolswap",
   },
   {
     id: 2,
@@ -37,8 +40,9 @@ const portfolioItems: PortfolioItem[] = [
     id: 3,
     image: portfolio3,
     category: "uxui",
-    title: "E-commerce Platform",
-    description: "Modern shopping experience",
+    title: "Danao Topo",
+    description: "A graphical representation of the climbing routes in Danao, Philippines (Mobile Product Design)",
+    link: "/projects/danao-topo",
   },
   {
     id: 4,
@@ -46,13 +50,6 @@ const portfolioItems: PortfolioItem[] = [
     category: "photography",
     title: "Natural Landscapes",
     description: "Capturing serene moments",
-  },
-  {
-    id: 5,
-    image: portfolio5,
-    category: "uxui",
-    title: "Dashboard Design",
-    description: "Data visualization interface",
   },
   {
     id: 6,
@@ -73,32 +70,46 @@ const PortfolioGrid = ({ filter }: PortfolioGridProps) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      {filteredItems.map((item) => (
-        <div
-          key={item.id}
-          className="group relative overflow-hidden bg-card rounded-sm cursor-pointer"
-          onMouseEnter={() => setHoveredId(item.id)}
-          onMouseLeave={() => setHoveredId(null)}
-        >
-          <div className="aspect-[4/3] overflow-hidden">
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-          
-          {/* Overlay on hover */}
+      {filteredItems.map((item) => {
+        const content = (
+          <>
+            <div className="aspect-[4/3] overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+
+            {/* Overlay on hover */}
+            <div
+              className={`absolute inset-0 bg-background/90 flex flex-col items-center justify-center transition-opacity duration-300 ${
+                hoveredId === item.id ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <h3 className="text-lg font-semibold mb-2 text-center px-4">{item.title}</h3>
+              <p className="text-sm text-muted-foreground text-center px-4">{item.description}</p>
+            </div>
+          </>
+        );
+
+        return (
           <div
-            className={`absolute inset-0 bg-background/90 flex flex-col items-center justify-center transition-opacity duration-300 ${
-              hoveredId === item.id ? "opacity-100" : "opacity-0"
-            }`}
+            key={item.id}
+            className="group relative overflow-hidden bg-card rounded-sm cursor-pointer"
+            onMouseEnter={() => setHoveredId(item.id)}
+            onMouseLeave={() => setHoveredId(null)}
           >
-            <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-            <p className="text-sm text-muted-foreground">{item.description}</p>
+            {item.link ? (
+              <Link to={item.link} className="block">
+                {content}
+              </Link>
+            ) : (
+              content
+            )}
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
