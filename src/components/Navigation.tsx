@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 
 const Navigation = () => {
   const [photographyMenuOpen, setPhotographyMenuOpen] = useState(false);
-  // mobilePhotographyOpen removed: mobile should link directly to photography landing
   const location = useLocation();
 
   const navItems = [
@@ -96,22 +95,36 @@ const Navigation = () => {
 
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border">
-          <div className="flex items-center justify-around py-4 px-2">
-            {navItems.map((item) => (
-              <div key={item.id}>
-                {/* On mobile we don't show expandable submenus — link directly to photography landing */}
+        <div className="flex items-center justify-around py-4 px-2">
+          {navItems.map((item) => (
+            <div key={item.id} className="relative">
+              {item.subItems ? (
+                // On mobile we don't show expandable submenus. Link to the starting page
+                // (e.g. /photography) so users land on the photography page and can
+                // navigate to subcategories there.
                 <Link
                   to={item.path}
                   className={cn(
                     "text-xs font-medium transition-colors px-3 py-2",
-                    location.pathname === item.path || location.pathname.startsWith(item.path) ? "text-foreground" : "text-muted-foreground"
+                    location.pathname.startsWith(item.path) ? "text-foreground" : "text-muted-foreground"
                   )}
                 >
                   {item.label}
                 </Link>
-              </div>
-            ))}
-          </div>
+              ) : (
+                <Link
+                  to={item.path}
+                  className={cn(
+                    "text-xs font-medium transition-colors px-3 py-2",
+                    location.pathname === item.path ? "text-foreground" : "text-muted-foreground"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
       </nav>
     </>
   );

@@ -27,7 +27,7 @@ const portfolioItems: PortfolioItem[] = [
     category: "uxui",
     title: "ToolSwap",
     description: "A community marketplace app for borrowing and lending tools — making DIY easier, cheaper, and more sustainable (Mobile UX- and UI)",
-    link: "/projects/toolswap",
+    link: "/projects/toolswap"
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const portfolioItems: PortfolioItem[] = [
     category: "uxui",
     title: "Danao Topo",
     description: "A graphical representation of the climbing routes in Danao, Philippines (Mobile Product Design)",
-    link: "/projects/danao-topo",
+    link: "/projects/danao-topo"
   },
   {
     id: 4,
@@ -70,46 +70,56 @@ const PortfolioGrid = ({ filter }: PortfolioGridProps) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      {filteredItems.map((item) => {
-        const content = (
-          <>
-            <div className="aspect-[4/3] overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Overlay on hover */}
-            <div
-              className={`absolute inset-0 bg-background/90 flex flex-col items-center justify-center transition-opacity duration-300 ${
-                hoveredId === item.id ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <h3 className="text-lg font-semibold mb-2 text-center px-4">{item.title}</h3>
-              <p className="text-sm text-muted-foreground text-center px-4">{item.description}</p>
-            </div>
-          </>
-        );
-
-        return (
-          <div
-            key={item.id}
-            className="group relative overflow-hidden bg-card rounded-sm cursor-pointer"
-            onMouseEnter={() => setHoveredId(item.id)}
-            onMouseLeave={() => setHoveredId(null)}
-          >
-            {item.link ? (
-              <Link to={item.link} className="block">
-                {content}
-              </Link>
-            ) : (
-              content
-            )}
-          </div>
-        );
-      })}
+      {filteredItems.map((item) => (
+        <div
+          key={item.id}
+          className="group relative overflow-hidden bg-card rounded-sm cursor-pointer"
+          onMouseEnter={() => setHoveredId(item.id)}
+          onMouseLeave={() => setHoveredId(null)}
+        >
+          {item.link ? (
+            <Link to={item.link} className="block">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              
+              {/* Overlay on hover */}
+              <div
+                className={`absolute inset-0 bg-background/90 flex flex-col items-center justify-center transition-opacity duration-300 ${
+                  hoveredId === item.id ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <h3 className="text-lg font-semibold mb-2 text-center px-4">{item.title}</h3>
+                <p className="text-sm text-muted-foreground text-center px-4">{item.description}</p>
+              </div>
+            </Link>
+          ) : (
+            <>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              
+              {/* Overlay on hover */}
+              <div
+                className={`absolute inset-0 bg-background/90 flex flex-col items-center justify-center transition-opacity duration-300 ${
+                  hoveredId === item.id ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <h3 className="text-lg font-semibold mb-2 text-center px-4">{item.title}</h3>
+                <p className="text-sm text-muted-foreground text-center px-4">{item.description}</p>
+              </div>
+            </>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
