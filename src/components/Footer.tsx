@@ -9,7 +9,7 @@ const Footer = () => {
 
           {/* Subtle contact links */}
           <div className="mt-3 md:mt-0">
-            <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex flex-row items-center gap-4 text-sm text-muted-foreground">
               <a
                 href="mailto:info@alexandramarley.com"
                 className="hover:text-primary transition-colors text-muted-foreground"

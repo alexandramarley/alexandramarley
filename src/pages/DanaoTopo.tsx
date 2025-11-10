@@ -21,13 +21,10 @@ const DanaoTopo = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mb-12">
               Interactive topographical visualization of Danao's natural landscape
             </p>
-            {/* Hero Image */}
-            <div className="aspect-[16/9] overflow-hidden rounded-lg mb-16">
-              <img
-                src={danaoHero}
-                alt="Danao Topo visualization overview"
-                className="w-full h-full object-cover"
-              />
+            <div className="flex flex-wrap gap-3 mb-12">
+              <div className="rounded-full bg-muted px-4 py-2 text-sm">UI/UX Design</div>
+              <div className="rounded-full bg-muted px-4 py-2 text-sm">Climbing Guide</div>
+              <div className="rounded-full bg-muted px-4 py-2 text-sm">Mobile App</div>
             </div>
           </div>
         </section>

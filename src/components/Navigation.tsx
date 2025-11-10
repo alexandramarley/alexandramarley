@@ -38,6 +38,7 @@ const Navigation = () => {
               <div key={item.id} className="relative">
                 {item.subItems ? (
                   <div
+                    className="relative"
                     onMouseEnter={() => setPhotographyMenuOpen(true)}
                     onMouseLeave={() => setPhotographyMenuOpen(false)}
                   >
@@ -52,16 +53,20 @@ const Navigation = () => {
                       <ChevronDown className="h-4 w-4" />
                     </Link>
                     {photographyMenuOpen && (
-                      <div className="absolute top-full left-0 mt-2 bg-background border border-border rounded-md shadow-lg py-2 min-w-[150px]">
-                        {item.subItems.map((subItem) => (
-                          <Link
-                            key={subItem.id}
-                            to={subItem.path}
-                            className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                          >
-                            {subItem.label}
-                          </Link>
-                        ))}
+                      <div 
+                        className="absolute top-full left-0 pt-2 -mt-2"
+                      >
+                        <div className="bg-background border border-border rounded-md shadow-lg py-2 min-w-[150px]">
+                          {item.subItems.map((subItem) => (
+                            <Link
+                              key={subItem.id}
+                              to={subItem.path}
+                              className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+                            >
+                              {subItem.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
