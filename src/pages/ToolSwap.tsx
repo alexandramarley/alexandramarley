@@ -186,10 +186,10 @@ const ToolSwap = () => {
                 <div className="max-w-3xl px-12">
                   <h4 className="text-lg font-semibold mb-2">Navigation / Search</h4>
                   <p className="text-muted-foreground mb-4">
-                    When experimenting with different navigation types (Hamburger Menu, Floating Buttons, Bottom Navigation) I realised that using a hamburger menu with a floating search bar would be the best solution. The search bar is one of the main CTA’s in the whole app, therefore I wanted it to be as accessible as possible. I did some benchmarking with other map-prioritised applications, and even though there is a clear design pattern, I decided to have the search bar at the bottom, as it is much easier to reach with your thumb (compared to the top).
+                    When experimenting with different navigation types (Hamburger Menu, Floating Buttons, Bottom Navigation) I realised that using a hamburger menu with a floating search bar would be the best solution. <span className="text-red-500 font-semibold">The search bar</span> is one of the main CTA’s in the whole app, therefore I wanted it to be as accessible as possible. I did some benchmarking with other map-prioritised applications, and even though there is a clear design pattern, I decided to have the search bar at the bottom, as it is much easier to reach with your thumb (compared to the top).
                   </p>
                   <p className="text-muted-foreground mb-4">
-                    This decision meant that I had to change a lot of other design patterns, which might look a bit strange in the beginning (e.g. category suggestions on top of the search bar, instead underneath).
+                    This decision meant that I had to change a lot of other design patterns, which might look a bit strange in the beginning (e.g. <span className="text-blue-500 font-semibold">category suggestions</span> on top of the search bar, instead underneath).
                   </p>
                   <p className="text-muted-foreground mb-4">
                     The menu otherwise can be accessed through a traditional hamburger menu. The only time it’s not used, is when a critical user flow could be interrupted (e.g. creating a listing).
@@ -228,7 +228,7 @@ const ToolSwap = () => {
                     The terminology for the main menu was quite tricky. In the beginning I used the categories Reserve Tool - Create Listing - My Account - Settings. The first two categories are quite clear, My Account would have been responsible for your own bookings, but also the bookings you receive for the items you lend.
                   </p>
                   <p className="text-muted-foreground mb-4">
-                    I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked some users what makes more sense to them, and everyone voted for option 2 vs option 1.
+                    I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked some users what makes more sense to them, and everyone voted for <span className="text-green-500 font-semibold">option 2</span> vs <span className="text-red-500 font-semibold">option 1</span>.
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
@@ -243,13 +243,13 @@ const ToolSwap = () => {
                 <div className="max-w-3xl px-12">
                   <h4 className="text-lg font-semibold mb-2">List Item</h4>
                   <p className="text-muted-foreground mb-4">
-                    The list item screen went through various changes as I struggled to combine all the important information on one screen nicely. In the end I chose to use a bottom sheet to have the map in the background, which helps the user to identify where the tool is located. In the screenshot on the right you can see how the user can find the most important information, highlighted in Red.
+                    The list item screen went through various changes as I struggled to combine all the important information on one screen nicely. In the end I chose to use a bottom sheet to have the map in the background, which helps the user to identify where the tool is located. In the screenshot on the right you can see how the user can find the most important information, highlighted in <span className="text-red-500 font-semibold">Red</span>.
                   </p>
                   <p className="text-muted-foreground mb-4">
-                    The Red and Blue highlighted section is scrollable, after the description underneath you can find the reviews for this specific items from other users, plus what else the lender borrows.
+                    The <span className="text-red-500 font-semibold">Red</span> and <span className="text-blue-500 font-semibold">Blue</span> highlighted section is scrollable, after the description underneath you can find the reviews for this specific items from other users, plus what else the lender borrows.
                   </p>
                   <p className="text-muted-foreground mb-4">
-                    Highlighted in Green is the CTA to book the item + the overall price you’d pay. These items are fixed, as they should be all-time accessible.
+                    Highlighted in <span className="text-green-500 font-semibold">Green</span>  is the CTA to book the item + the overall price you’d pay. These items are fixed, as they should be all-time accessible.
                   </p>
                   <p className="text-muted-foreground mb-4">
                     Below you can see the previous versions that lend to the end version.
