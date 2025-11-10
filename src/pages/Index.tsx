@@ -1,6 +1,12 @@
 import Navigation from "@/components/Navigation";
 import PortfolioGrid from "@/components/PortfolioGrid";
-import ContactSection from "@/components/ContactSection";
+import useEmblaCarousel from "embla-carousel-react";
+import portfolio1 from "@/assets/portfolio-1.jpg";
+import portfolio2 from "@/assets/portfolio-2.jpg";
+import portfolio3 from "@/assets/portfolio-3.jpg";
+import portfolio4 from "@/assets/portfolio-4.jpg";
+import portfolio5 from "@/assets/portfolio-5.jpg";
+import portfolio6 from "@/assets/portfolio-6.jpg";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -28,8 +34,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <ContactSection />
+        {/* Contact moved to footer */}
       </main>
 
       <Footer />
