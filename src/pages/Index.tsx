@@ -1,12 +1,12 @@
 import Navigation from "@/components/Navigation";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-import portfolio4 from "@/assets/portfolio-4.jpg";
-import portfolio5 from "@/assets/portfolio-5.jpg";
-import portfolio6 from "@/assets/portfolio-6.jpg";
+import portfolio1 from "@/assets/alexandramarley-home-01.webp";
+import portfolio2 from "@/assets/alexandramarley-home-02.webp";
+import portfolio3 from "@/assets/alexandramarley-home-03.webp";
+import portfolio4 from "@/assets/alexandramarley-home-04.webp";
+import portfolio5 from "@/assets/alexandramarley-home-05.webp";
+import portfolio6 from "@/assets/alexandramarley-home-06.webp";
 import Footer from "@/components/Footer";
 
 const Index = () => {
