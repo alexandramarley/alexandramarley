@@ -33,8 +33,9 @@ const portfolioItems: PortfolioItem[] = [
     id: 2,
     image: portfolio2,
     category: "photography",
-    title: "Architectural Study",
-    description: "Minimalist architectural photography",
+    title: "Business",
+    description: "Headshots, architecture, team portraits, and branding visuals",
+    link: "/photography/business",
   },
   {
     id: 3,
@@ -48,15 +49,17 @@ const portfolioItems: PortfolioItem[] = [
     id: 4,
     image: portfolio4,
     category: "photography",
-    title: "Natural Landscapes",
+    title: "Portraits",
     description: "Capturing serene moments",
+    link: "/photography/portrait",
   },
   {
     id: 6,
     image: portfolio6,
     category: "photography",
-    title: "Portrait Series",
-    description: "Contemporary portrait photography",
+    title: "Dance",
+    description: "Motion, emotions, and the artistry of movement",
+    link: "/photography/dance",
   },
 ];
 

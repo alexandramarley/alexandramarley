@@ -1,9 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-// TODO: Replace with actual images
-import danaoHero from "@/assets/portfolio-4.jpg";
-import danaoDetail1 from "@/assets/portfolio-5.jpg";
-import danaoDetail2 from "@/assets/portfolio-6.jpg";
+// Image imports for Danao design choices and placeholders
+import danaoHero from "@/assets/alexandramarley-ux-danao-research-01.png";
+import design01a from "@/assets/alexandramarley-ux-danao-designchoice-01-1.png";
+import design01b from "@/assets/alexandramarley-ux-danao-designchoice-01-2.png";
+import design02a from "@/assets/alexandramarley-ux-danao-designchoice-02-1.png";
+import design02b from "@/assets/alexandramarley-ux-danao-designchoice-02-2.png";
+import design03 from "@/assets/alexandramarley-ux-danao-designchoice-03.png";
+import design04 from "@/assets/alexandramarley-ux-danao-designchoice-04.png";
+import userJourney from "@/assets/alexandramarley-ux-danao-userjourney.png";
+import danaoDetail2 from "@/assets/alexandramarley-ux-danao-userjourney.png";
 import { Link } from "react-router-dom";
 
 const DanaoTopo = () => {
@@ -50,9 +56,9 @@ const DanaoTopo = () => {
                   <li>• Environmental impact analysis</li>
                 </ul>
               </div>
-              <div className="aspect-[4/3] overflow-hidden rounded-lg">
+                <div className="aspect-[4/3] overflow-hidden rounded-lg">
                 <img
-                  src={danaoDetail1}
+                  src={design04}
                   alt="Danao Topo interface showcase"
                   className="w-full h-full object-cover"
                 />
@@ -77,14 +83,16 @@ const DanaoTopo = () => {
                 Based on the results of my survey, 90% want information on how to access the climbing area, what's the grade + length of the routes. Second priority went to a map overview, what's the best time to climb there (is the wall north- or south facing), and safety features (is there loose rock).
               </p>
             </div>
-            {/* Full-width Process Image */}
-            <div className="mt-8 -mx-6 md:-mx-12 lg:-mx-24">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
-                  src={danaoHero}
-                  alt="Process step visualization"
-                  className="w-full h-full object-cover"
-                />
+            {/* Process Image aligned with text width (no hero full-bleed) */}
+            <div className="mt-8">
+              <div className="max-w-3xl mx-auto">
+                <div className="aspect-[16/9] overflow-hidden rounded-lg">
+                  <img
+                    src={danaoHero}
+                    alt="Process step visualization"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
             <div className="max-w-3xl mt-12">
@@ -166,14 +174,16 @@ const DanaoTopo = () => {
               </p>
             </div>
 
-            {/* Flowchart image */}
-            <div className="mt-8 -mx-6 md:-mx-12 lg:-mx-24">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
-                  src={danaoDetail2}
-                  alt="User journey flowchart"
-                  className="w-full h-full object-cover"
-                />
+            {/* Flowchart image (constrained to text width) */}
+            <div className="mt-8">
+              <div className="max-w-3xl mx-auto">
+                <div className="aspect-[16/9] overflow-hidden rounded-lg">
+                  <img
+                    src={danaoDetail2}
+                    alt="User journey flowchart"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
 
@@ -183,14 +193,16 @@ const DanaoTopo = () => {
               <p className="text-muted-foreground mb-6">After coming up with some sketches to get a rough idea of what I want to do, I started with the wireframes on Figma.</p>
             </div>
 
-            {/* Another picture */}
-            <div className="mt-4 -mx-6 md:-mx-12 lg:-mx-24">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
-                  src={danaoDetail1}
-                  alt="Illustration or screenshot"
-                  className="w-full h-full object-cover"
-                />
+            {/* Another picture (constrained to text width) */}
+            <div className="mt-4">
+              <div className="max-w-3xl mx-auto">
+                <div className="overflow-hidden rounded-lg">
+                  <img
+                    src={userJourney}
+                    alt="User journey"
+                    className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]"
+                  />
+                </div>
               </div>
             </div>
 
@@ -226,8 +238,13 @@ const DanaoTopo = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden rounded-lg">
-                    <img src={danaoDetail1} alt="Detail 1" className="w-full h-full object-cover" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={design01a} alt="Design choice 01 - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={design01b} alt="Design choice 01 - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -247,8 +264,13 @@ const DanaoTopo = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden rounded-lg">
-                    <img src={danaoDetail2} alt="Detail 2" className="w-full h-full object-cover" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={design02a} alt="Design choice 02 - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={design02b} alt="Design choice 02 - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -268,8 +290,10 @@ const DanaoTopo = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden rounded-lg">
-                    <img src={danaoHero} alt="Detail 3" className="w-full h-full object-cover" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={design03} alt="Design choice 03" className="w-full h-auto object-contain md:max-h-[560px] lg:max-h-[680px]" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -289,8 +313,11 @@ const DanaoTopo = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden rounded-lg">
-                    <img src={danaoDetail1} alt="Detail 4" className="w-full h-full object-cover" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={design04} alt="Design choice 04" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
+                    {/* Optional second image can be added here as a sibling div with the same classes */}
                   </div>
                 </div>
               </div>
@@ -373,9 +400,9 @@ const DanaoTopo = () => {
               </p>
             </div>
 
-            <div className="max-w-3xl mt-6">
+                <div className="max-w-3xl mt-6">
               <div className="aspect-[16/9] overflow-hidden rounded-lg">
-                <img src={danaoDetail1} alt="Deliverables overview" className="w-full h-full object-cover" />
+                <img src={design04} alt="Deliverables overview" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -404,7 +431,7 @@ const DanaoTopo = () => {
                   <div className="md:col-span-1">
                     <div className="aspect-[4/3] overflow-hidden rounded-lg">
                       <img
-                        src={danaoDetail1}
+                        src={design04}
                         alt="ToolSwap preview"
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />

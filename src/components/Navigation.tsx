@@ -110,7 +110,7 @@ const Navigation = () => {
                 <Link
                   to={item.path}
                   className={cn(
-                    "text-xs font-medium transition-colors px-3 py-2",
+                    "text-sm font-semibold transition-colors px-3 py-2",
                     location.pathname.startsWith(item.path) ? "text-foreground" : "text-muted-foreground"
                   )}
                 >
@@ -120,7 +120,7 @@ const Navigation = () => {
                 <Link
                   to={item.path}
                   className={cn(
-                    "text-xs font-medium transition-colors px-3 py-2",
+                    "text-sm font-semibold transition-colors px-3 py-2",
                     location.pathname === item.path ? "text-foreground" : "text-muted-foreground"
                   )}
                 >

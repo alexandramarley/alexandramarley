@@ -1,13 +1,19 @@
 import Navigation from "@/components/Navigation";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Footer from "@/components/Footer";
 import portfolio1 from "@/assets/alexandramarley-home-01.webp";
 import portfolio2 from "@/assets/alexandramarley-home-02.webp";
 import portfolio3 from "@/assets/alexandramarley-home-03.webp";
 import portfolio4 from "@/assets/alexandramarley-home-04.webp";
 import portfolio5 from "@/assets/alexandramarley-home-05.webp";
 import portfolio6 from "@/assets/alexandramarley-home-06.webp";
-import Footer from "@/components/Footer";
+import portfolio7 from "@/assets/alexandramarley-home-07.webp";
+import portfolio8 from "@/assets/alexandramarley-home-08.webp";
+import portfolio9 from "@/assets/alexandramarley-home-09.webp";
+import portfolio10 from "@/assets/alexandramarley-home-10.webp";
+import portfolio11 from "@/assets/alexandramarley-home-11.webp";
+import portfolio12 from "@/assets/alexandramarley-home-12.webp";
 
 const Index = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
@@ -16,20 +22,20 @@ const Index = () => {
     skipSnaps: false,
   });
 
-  // 12 images: positions 3, 6, 7, 8, 9, 10 are landscape
+  // 12 images: mark some slides as landscape to keep visual variety
   const slides = [
     { src: portfolio1, isLandscape: false },
     { src: portfolio2, isLandscape: false },
-    { src: portfolio3, isLandscape: true },  // 3rd
-    { src: portfolio4, isLandscape: false },
-    { src: portfolio5, isLandscape: false },
-    { src: portfolio6, isLandscape: true },  // 6th
-    { src: portfolio1, isLandscape: true },  // 7th
-    { src: portfolio2, isLandscape: true },  // 8th
-    { src: portfolio3, isLandscape: true },  // 9th
-    { src: portfolio4, isLandscape: true },  // 10th
-    { src: portfolio5, isLandscape: false },
-    { src: portfolio6, isLandscape: false },
+    { src: portfolio3, isLandscape: true },
+  { src: portfolio4, isLandscape: true },
+  { src: portfolio5, isLandscape: true },
+    { src: portfolio6, isLandscape: true },
+    { src: portfolio7, isLandscape: true },
+    { src: portfolio8, isLandscape: true },
+    { src: portfolio9, isLandscape: true },
+    { src: portfolio10, isLandscape: true },
+  { src: portfolio11, isLandscape: true },
+    { src: portfolio12, isLandscape: false },
   ];
   return (
     <div className="min-h-screen">
@@ -53,17 +59,17 @@ const Index = () => {
           {/* Mobile (vertical) */}
           <div className="md:hidden flex flex-col items-center space-y-0">
             {slides.map((slide, index) => (
-              <div key={index} className="mx-auto" style={{ height: 541 }}>
+              <div key={index} className="mx-auto">
+                {/* For landscape images on mobile keep the width and let height scale naturally.
+                    For portrait images keep fixed height to maintain consistent stack sizing. */}
                 <div
-                  className="relative overflow-hidden h-[541px] w-[361px]"
+                  className={slide.isLandscape ? 'relative overflow-hidden w-[376px]' : 'relative overflow-hidden h-[541px] w-[376px]'}
+                  style={slide.isLandscape ? undefined : { height: 541 }}
                 >
                   <img
                     src={slide.src}
                     alt={`Portfolio image ${index + 1}`}
-                    className={`h-full object-cover ${
-                      slide.isLandscape ? 'w-auto max-w-full' : 'w-[361px]'
-                    }`}
-                    style={{ height: 541 }}
+                    className={slide.isLandscape ? 'w-[376px] h-auto object-contain' : 'h-full object-cover w-[376px]'}
                   />
                 </div>
               </div>

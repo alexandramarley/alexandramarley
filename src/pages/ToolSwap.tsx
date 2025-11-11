@@ -5,6 +5,18 @@ import { Link } from "react-router-dom";
 import toolswapHero from "@/assets/portfolio-1.jpg";
 import toolswapDetail1 from "@/assets/portfolio-2.jpg";
 import toolswapDetail2 from "@/assets/portfolio-3.jpg";
+import toolswapDetail3 from "@/assets/alexandramarley-ux-toolswap-design-04-1.png";
+import tsDesign01a from "@/assets/alexandramarley-ux-toolswap-design-01-1.png";
+import tsDesign01b from "@/assets/alexandramarley-ux-toolswap-design-01-2.png";
+import tsDesign02 from "@/assets/alexandramarley-ux-toolswap-design-02.png";
+import tsDesign03a from "@/assets/alexandramarley-ux-toolswap-design-03-1.png";
+import tsDesign03b from "@/assets/alexandramarley-ux-toolswap-design-03-2.png";
+import tsDesign04a from "@/assets/alexandramarley-ux-toolswap-design-04-1.png";
+import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.png";
+import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.png";
+import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
+import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.png";
+import tsWireframes from "@/assets/alexandramarley-ux-toolswap-wireframes.png";
 
 const ToolSwap = () => {
   return (
@@ -81,7 +93,7 @@ const ToolSwap = () => {
             <div className="mt-8">
               <div className="aspect-[16/9] overflow-hidden">
                 <img
-                  src={toolswapHero}
+                  src={tsResearch01}
                   alt="Process step visualization"
                   className="w-full h-full object-cover"
                 />
@@ -146,7 +158,7 @@ const ToolSwap = () => {
             <div className="mt-8">
               <div className="aspect-[16/9] overflow-hidden">
                 <img
-                  src={toolswapDetail2}
+                  src={tsUserJourney}
                   alt="User journey flowchart"
                   className="w-full h-full object-cover"
                 />
@@ -163,7 +175,7 @@ const ToolSwap = () => {
             <div className="mt-4">
               <div className="aspect-[16/9] overflow-hidden">
                 <img
-                  src={toolswapDetail1}
+                  src={tsWireframes}
                   alt="Illustration or screenshot"
                   className="w-full h-full object-cover"
                 />
@@ -196,26 +208,31 @@ const ToolSwap = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img src={toolswapDetail1} alt="Detail 1" className="w-full h-full object-cover" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={tsDesign01a} alt="Navigation design - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={tsDesign01b} alt="Navigation design - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Block 2 */}
               <div>
-                <div className="max-w-3xl px-12">
-                  <h4 className="text-lg font-semibold mb-2">Map</h4>
-                  <p className="text-muted-foreground mb-4">
-                    When looking at other marketplaces or selling applications, most are based on list-view designs, and the map-view is only of secondary importance. As my research showed users find the map very useful, therefore I decided to make the design map-oriented, but still offer the option of showing the items in a list view.
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    The map can be seen throughout the application in the background as a visual theme.
-                  </p>
-                </div>
-                <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img src={toolswapDetail2} alt="Detail 2" className="w-full h-full object-cover" />
+                <div className="max-w-3xl px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-2">Map</h4>
+                    <p className="text-muted-foreground mb-4">
+                      When looking at other marketplaces or selling applications, most are based on list-view designs, and the map-view is only of secondary importance. As my research showed users find the map very useful, therefore I decided to make the design map-oriented, but still offer the option of showing the items in a list view.
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      The map can be seen throughout the application in the background as a visual theme.
+                    </p>
+                  </div>
+                  <div className="w-full overflow-hidden rounded-lg">
+                    <img src={tsDesign02} alt="Map design" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
                   </div>
                 </div>
               </div>
@@ -232,8 +249,13 @@ const ToolSwap = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img src={toolswapHero} alt="Detail 3" className="w-full h-full object-cover" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={tsDesign03a} alt="Terminology design - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={tsDesign03b} alt="Terminology design - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -256,8 +278,13 @@ const ToolSwap = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img src={toolswapDetail1} alt="Detail 4" className="w-full h-full object-cover" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={tsDesign04a} alt="List item design - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
+                    <div className="w-full overflow-hidden rounded-lg">
+                      <img src={tsDesign04b} alt="List item design - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -274,8 +301,8 @@ const ToolSwap = () => {
                   </p>
                 </div>
                 <div className="max-w-3xl px-12 mt-6">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img src={toolswapDetail1} alt="Detail 4" className="w-full h-full object-cover" />
+                  <div className="w-full overflow-hidden rounded-lg">
+                    <img src={tsDesign05} alt="Filter & Sort design" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
                   </div>
                 </div>
               </div>
