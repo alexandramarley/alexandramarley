@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
 import tsDesign01_3 from "@/assets/alexandramarley-ux-toolswap-design-01-3.png";
@@ -36,6 +36,15 @@ const ToolSwap = () => {
   const [singleLightboxOpen, setSingleLightboxOpen] = useState(false);
   const [singleLightboxSrc, setSingleLightboxSrc] = useState<string | null>(null);
   const [singleLightboxAlt, setSingleLightboxAlt] = useState<string | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // If navigated here with state.scrollTop, ensure the page starts at the top.
+    const navState = location.state as { scrollTop?: boolean } | null;
+    if (navState?.scrollTop) {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
   const deliverablesImages = [
     deliverables1,
     deliverables2,
@@ -244,7 +253,7 @@ const ToolSwap = () => {
               <h4 className="text-xl font-semibold mb-4">Benchmark</h4>
 
               <p className="text-muted-foreground mb-6">
-                Comparative analysis of existing sharing platforms highlighted gaps in discoverability and trust mechanisms which we addressed in the design.
+                Example one shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen. In contrast, example two offers a clean and intuitive interface, prioritizing essential features like search and categories, which enhances the user experience.
               </p>
               {/* Benchmark image */}
               <div className="flex justify-center mt-6">
@@ -624,6 +633,8 @@ const ToolSwap = () => {
               <h2 className="text-2xl font-semibold">Next Case Study</h2>
               <Link
                 to="/projects/danao-topo"
+                state={{ scrollTop: true }}
+                onClick={() => window.scrollTo(0, 0)}
                 className="group relative overflow-hidden rounded-lg"
               >
                 <div className="aspect-w-16 aspect-h-9 w-full max-w-2xl overflow-hidden">
