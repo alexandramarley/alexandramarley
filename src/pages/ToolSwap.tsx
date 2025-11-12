@@ -2,19 +2,13 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-// TODO: Replace with actual images
-import toolswapHero from "@/assets/portfolio-1.jpg";
-import toolswapDetail1 from "@/assets/portfolio-2.jpg";
-import toolswapDetail2 from "@/assets/portfolio-3.jpg";
-import toolswapDetail3 from "@/assets/alexandramarley-ux-toolswap-design-04-1.png";
-import tsDesign01a from "@/assets/alexandramarley-ux-toolswap-design-01-1.png";
-import tsDesign01b from "@/assets/alexandramarley-ux-toolswap-design-01-2.png";
+import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
+import tsDesign01_3 from "@/assets/alexandramarley-ux-toolswap-design-01-3.png";
 import tsDesign02 from "@/assets/alexandramarley-ux-toolswap-design-02.png";
-import tsDesign03a from "@/assets/alexandramarley-ux-toolswap-design-03-1.png";
-import tsDesign03b from "@/assets/alexandramarley-ux-toolswap-design-03-2.png";
-import tsDesign04a from "@/assets/alexandramarley-ux-toolswap-design-04-1.png";
+import tsDesignChoices3 from "@/assets/alexandramarley-ux-toolswap-designchoices_3.png";
+import tsDesign04a from "@/assets/alexandramarley-ux-toolswap-design-04-1.webp";
 import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.png";
-import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.png";
+import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.png";
 import tsSketchesWireframes from "@/assets/alexandramarley-ux-toolswap-sketches-wirefreames.webp";
@@ -30,6 +24,7 @@ import deliverables12 from "@/assets/ToolSwap-Messages-Chat.png";
 import deliverables9 from "@/assets/ToolSwap-Review-Listing.png";
 import deliverables10 from "@/assets/ToolSwap-Reviews.png";
 import deliverables2 from "@/assets/ToolSwap-Search.png";
+import benchmark from "@/assets/alexandramarley-ux-toolswap-benchmark-01.png";
 
 const ToolSwap = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -37,6 +32,10 @@ const ToolSwap = () => {
   const [researchLightboxOpen, setResearchLightboxOpen] = useState(false);
   const [journeyLightboxOpen, setJourneyLightboxOpen] = useState(false);
   const [sketchLightboxOpen, setSketchLightboxOpen] = useState(false);
+  // Generic single-image lightbox used by a few design images
+  const [singleLightboxOpen, setSingleLightboxOpen] = useState(false);
+  const [singleLightboxSrc, setSingleLightboxSrc] = useState<string | null>(null);
+  const [singleLightboxAlt, setSingleLightboxAlt] = useState<string | null>(null);
   const deliverablesImages = [
     deliverables1,
     deliverables2,
@@ -112,6 +111,16 @@ const ToolSwap = () => {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [sketchLightboxOpen]);
+
+  // Key handling for the generic single-image lightbox
+  useEffect(() => {
+    if (!singleLightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSingleLightboxOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [singleLightboxOpen]);
 
   return (
     <div className="min-h-screen">
@@ -237,6 +246,12 @@ const ToolSwap = () => {
               <p className="text-muted-foreground mb-6">
                 Comparative analysis of existing sharing platforms highlighted gaps in discoverability and trust mechanisms which we addressed in the design.
               </p>
+              {/* Benchmark image */}
+              <div className="flex justify-center mt-6">
+                <div className="w-full overflow-hidden rounded-lg">
+                  <img src={benchmark} alt="Benchmark - comparative analysis" className="w-full h-auto object-contain" />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -306,9 +321,10 @@ const ToolSwap = () => {
             <div className="space-y-16">
               {/* Block 1 */}
               <div>
-                <div className="max-w-3xl px-12">
-                  <h4 className="text-lg font-semibold mb-2">Navigation / Search</h4>
-                  <p className="text-muted-foreground mb-4">
+                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div className="max-w-3xl">
+                    <h4 className="text-lg font-semibold mb-2">Navigation & Search</h4>
+                     <p className="text-muted-foreground mb-4">
                     When experimenting with different navigation types (Hamburger Menu, Floating Buttons, Bottom Navigation) I realised that using a hamburger menu with a floating search bar would be the best solution. <span className="text-red-500 font-semibold">The search bar</span> is one of the main CTA’s in the whole app, therefore I wanted it to be as accessible as possible. I did some benchmarking with other map-prioritised applications, and even though there is a clear design pattern, I decided to have the search bar at the bottom, as it is much easier to reach with your thumb (compared to the top).
                   </p>
                   <p className="text-muted-foreground mb-4">
@@ -317,23 +333,26 @@ const ToolSwap = () => {
                   <p className="text-muted-foreground mb-4">
                     The menu otherwise can be accessed through a traditional hamburger menu. The only time it’s not used, is when a critical user flow could be interrupted (e.g. creating a listing).
                   </p>
-                </div>
-                <div className="max-w-3xl px-12 mt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                    <div className="w-full overflow-hidden rounded-lg">
-                      <img src={tsDesign01a} alt="Navigation design - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
-                    </div>
-                    <div className="w-full overflow-hidden rounded-lg">
-                      <img src={tsDesign01b} alt="Navigation design - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
-                    </div>
+                  </div>
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                    <img
+                      src={tsDesign01_3}
+                      alt="Navigation & Search - full"
+                      className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
+                      onClick={() => {
+                        setSingleLightboxSrc(tsDesign01_3);
+                        setSingleLightboxAlt("Navigation & Search - full");
+                        setSingleLightboxOpen(true);
+                      }}
+                    />
                   </div>
                 </div>
               </div>
-
+              
               {/* Block 2 */}
               <div>
-                <div className="max-w-3xl px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div>
+                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">Map</h4>
                     <p className="text-muted-foreground mb-4">
                       When looking at other marketplaces or selling applications, most are based on list-view designs, and the map-view is only of secondary importance. As my research showed users find the map very useful, therefore I decided to make the design map-oriented, but still offer the option of showing the items in a list view.
@@ -342,60 +361,91 @@ const ToolSwap = () => {
                       The map can be seen throughout the application in the background as a visual theme.
                     </p>
                   </div>
-                  <div className="w-full overflow-hidden rounded-lg">
-                    <img src={tsDesign02} alt="Map design" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                    <img
+                      src={tsDesign02}
+                      alt="Map design - full"
+                      className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
+                      onClick={() => {
+                        setSingleLightboxSrc(tsDesign02);
+                        setSingleLightboxAlt("Map design - full");
+                        setSingleLightboxOpen(true);
+                      }}
+                    />
                   </div>
                 </div>
               </div>
 
               {/* Block 3 */}
               <div>
-                <div className="max-w-3xl px-12">
-                  <h4 className="text-lg font-semibold mb-2">Terminology Main Menu</h4>
-                  <p className="text-muted-foreground mb-4">
+                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div className="max-w-3xl">
+                    <h4 className="text-lg font-semibold mb-2">Terminology Main Menu</h4>
+                      <p className="text-muted-foreground mb-4">
                     The terminology for the main menu was quite tricky. In the beginning I used the categories Reserve Tool - Create Listing - My Account - Settings. The first two categories are quite clear, My Account would have been responsible for your own bookings, but also the bookings you receive for the items you lend.
                   </p>
                   <p className="text-muted-foreground mb-4">
                     I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked some users what makes more sense to them, and everyone voted for <span className="text-green-500 font-semibold">option 2</span> vs <span className="text-red-500 font-semibold">option 1</span>.
                   </p>
-                </div>
-                <div className="max-w-3xl px-12 mt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                    <div className="w-full overflow-hidden rounded-lg">
-                      <img src={tsDesign03a} alt="Terminology design - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
-                    </div>
-                    <div className="w-full overflow-hidden rounded-lg">
-                      <img src={tsDesign03b} alt="Terminology design - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
-                    </div>
+                  </div>
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                    <img
+                      src={tsDesignChoices3}
+                      alt="Terminology / Menu choices - full"
+                      className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
+                      onClick={() => {
+                        setSingleLightboxSrc(tsDesignChoices3);
+                        setSingleLightboxAlt("Terminology / Menu choices - full");
+                        setSingleLightboxOpen(true);
+                      }}
+                    />
                   </div>
                 </div>
               </div>
 
               {/* Block 4 */}
               <div>
-                <div className="max-w-3xl px-12">
-                  <h4 className="text-lg font-semibold mb-2">List Item</h4>
-                  <p className="text-muted-foreground mb-4">
-                    The list item screen went through various changes as I struggled to combine all the important information on one screen nicely. In the end I chose to use a bottom sheet to have the map in the background, which helps the user to identify where the tool is located. In the screenshot on the right you can see how the user can find the most important information, highlighted in <span className="text-red-500 font-semibold">Red</span>.
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    The <span className="text-red-500 font-semibold">Red</span> and <span className="text-blue-500 font-semibold">Blue</span> highlighted section is scrollable, after the description underneath you can find the reviews for this specific items from other users, plus what else the lender borrows.
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    Highlighted in <span className="text-green-500 font-semibold">Green</span>  is the CTA to book the item + the overall price you’d pay. These items are fixed, as they should be all-time accessible.
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    Below you can see the previous versions that lend to the end version.
-                  </p>
-                </div>
-                <div className="max-w-3xl px-12 mt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                    <div className="w-full overflow-hidden rounded-lg">
-                      <img src={tsDesign04a} alt="List item design - option A" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
+                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                  <div className="max-w-3xl">
+                    <h4 className="text-lg font-semibold mb-2">List Item</h4>
+                    <p className="text-muted-foreground mb-4">
+                      The list item screen went through various changes as I struggled to combine all the important information on one screen nicely. In the end I chose to use a bottom sheet to have the map in the background, which helps the user to identify where the tool is located. In the screenshot on the right you can see how the user can find the most important information, highlighted in <span className="text-red-500 font-semibold">Red</span>.
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      The <span className="text-red-500 font-semibold">Red</span> and <span className="text-blue-500 font-semibold">Blue</span> highlighted section is scrollable, after the description underneath you can find the reviews for this specific items from other users, plus what else the lender borrows.
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      Highlighted in <span className="text-green-500 font-semibold">Green</span>  is the CTA to book the item + the overall price you’d pay. These items are fixed, as they should be all-time accessible.
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      Below you can see the previous versions that lend to the end version.
+                    </p>
+
+                    <div className="w-full overflow-hidden rounded-lg mt-6">
+                      <img
+                        src={tsDesign04a}
+                        alt="List item design - option A - full"
+                        className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                        onClick={() => {
+                          setSingleLightboxSrc(tsDesign04a);
+                          setSingleLightboxAlt("List item design - option A - full");
+                          setSingleLightboxOpen(true);
+                        }}
+                      />
                     </div>
-                    <div className="w-full overflow-hidden rounded-lg">
-                      <img src={tsDesign04b} alt="List item design - option B" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
-                    </div>
+                  </div>
+
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                    <img
+                      src={tsDesign04b}
+                      alt="List item design - option B - full"
+                      className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                      onClick={() => {
+                        setSingleLightboxSrc(tsDesign04b);
+                        setSingleLightboxAlt("List item design - option B - full");
+                        setSingleLightboxOpen(true);
+                      }}
+                    />
                   </div>
                 </div>
               </div>
@@ -411,10 +461,19 @@ const ToolSwap = () => {
                     I first tried to combine it within the map view (when showing the results), but after further research I removed that and opted for a bottom sheet. This seemed more user friendly, better to reach with your thumb, and the function is clearer. After doing some bench marking with other marketplace apps I wanted to include a swiping banner at the top of the bottom sheet to highlight the most used features. However, overall this would have overcomplicated the design and made it less clear to navigate. Below you can see the different versions to the final result.
                   </p>
                 </div>
-                <div className="max-w-3xl px-12 mt-6">
-                  <div className="w-full overflow-hidden rounded-lg">
-                    <img src={tsDesign05} alt="Filter & Sort design" className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px]" />
-                  </div>
+                <div className="w-full px-12 mt-6">
+                    <div className="w-full overflow-hidden rounded-lg">
+                    <img
+                      src={tsDesign05}
+                      alt="Filter & Sort design - full"
+                      className="w-full h-auto object-cover cursor-pointer"
+                      onClick={() => {
+                        setSingleLightboxSrc(tsDesign05);
+                        setSingleLightboxAlt("Filter & Sort design - full");
+                        setSingleLightboxOpen(true);
+                      }}
+                    />
+                    </div>
                 </div>
               </div>
             </div>
@@ -558,39 +617,31 @@ const ToolSwap = () => {
           </div>
         </section>
 
-        {/* Next Case Study Teaser */}
+        {/* Next Case Study */}
         <section className="py-12">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl mx-auto">
-              <h3 className="text-base text-muted-foreground mb-4">Next Case Study</h3>
-              <Link to="/danao-topo" className="group block">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                  <div className="md:col-span-1">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={toolswapDetail1}
-                        alt="Danao Topo preview"
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </div>
-                  <div className="md:col-span-2">
-                    <h2 className="text-xl md:text-2xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                      Danao Topo
-                    </h2>
-                    <p className="text-muted-foreground">
-                      Explore the Danao Topo project showcasing topographical visualization and mobile-first topo tools.
-                    </p>
-                  </div>
+            <div className="flex flex-col items-center space-y-4">
+              <h2 className="text-2xl font-semibold">Next Case Study</h2>
+              <Link
+                to="/projects/danao-topo"
+                className="group relative overflow-hidden rounded-lg"
+              >
+                <div className="aspect-w-16 aspect-h-9 w-full max-w-2xl overflow-hidden">
+                  <img
+                    src={danaoteaser}
+                    alt="Danao Topo Project"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="text-2xl font-bold text-white">Danao Topo →</span>
                 </div>
               </Link>
             </div>
           </div>
         </section>
 
-      
-
-        {/* Impact Section */}
+         {/* Impact Section */}
         <section className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-semibold mb-8">Environmental Impact</h2>
@@ -612,30 +663,6 @@ const ToolSwap = () => {
                   <p className="text-muted-foreground">Community Partners</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Next Case Study */}
-        <section className="py-12">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col items-center space-y-4">
-              <h2 className="text-2xl font-semibold">Next Case Study</h2>
-              <Link
-                to="/projects/danao-topo"
-                className="group relative overflow-hidden rounded-lg"
-              >
-                <div className="aspect-w-16 aspect-h-9 w-full max-w-2xl overflow-hidden">
-                  <img
-                    src={toolswapHero}
-                    alt="Danao Topo Project"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="text-2xl font-bold text-white">Danao Topo →</span>
-                </div>
-              </Link>
             </div>
           </div>
         </section>
@@ -746,6 +773,30 @@ const ToolSwap = () => {
             <img
               src={tsSketchesWireframes}
               alt="Sketches and wireframes - full"
+              className="max-w-[90%] max-h-[90%] object-contain rounded"
+            />
+          </div>
+        )}
+
+        {/* Generic single-image lightbox used by multiple design images */}
+        {singleLightboxOpen && singleLightboxSrc && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setSingleLightboxOpen(false);
+            }}
+          >
+            <button
+              onClick={() => setSingleLightboxOpen(false)}
+              className="absolute top-6 right-6 text-white text-3xl leading-none"
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+            <img
+              src={singleLightboxSrc}
+              alt={singleLightboxAlt || "Design - full"}
               className="max-w-[90%] max-h-[90%] object-contain rounded"
             />
           </div>
