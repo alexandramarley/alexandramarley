@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 // TODO: Replace with actual images
 import toolswapHero from "@/assets/portfolio-1.jpg";
 import toolswapDetail1 from "@/assets/portfolio-2.jpg";
@@ -16,9 +17,102 @@ import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.png";
 import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.png";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.png";
-import tsWireframes from "@/assets/alexandramarley-ux-toolswap-wireframes.png";
+import tsSketchesWireframes from "@/assets/alexandramarley-ux-toolswap-sketches-wirefreames.webp";
+import deliverables6 from "@/assets/ToolSwap-Create-Account.png";
+import deliverables11 from "@/assets/ToolSwap-Create-Booking-Requests.png";
+import deliverables8 from "@/assets/ToolSwap-Create-Listing.png";
+import deliverables4 from "@/assets/ToolSwap-Detailed-View.png";
+import deliverables5 from "@/assets/ToolSwap-Filter.png";
+import deliverables1 from "@/assets/ToolSwap-Home.png";
+import deliverables3 from "@/assets/ToolSwap-ListView.png";
+import deliverables7 from "@/assets/ToolSwap-Menu.png";
+import deliverables12 from "@/assets/ToolSwap-Messages-Chat.png";
+import deliverables9 from "@/assets/ToolSwap-Review-Listing.png";
+import deliverables10 from "@/assets/ToolSwap-Reviews.png";
+import deliverables2 from "@/assets/ToolSwap-Search.png";
 
 const ToolSwap = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  const [researchLightboxOpen, setResearchLightboxOpen] = useState(false);
+  const [journeyLightboxOpen, setJourneyLightboxOpen] = useState(false);
+  const [sketchLightboxOpen, setSketchLightboxOpen] = useState(false);
+  const deliverablesImages = [
+    deliverables1,
+    deliverables2,
+    deliverables3,
+    deliverables4,
+    deliverables5,
+    deliverables6,
+    deliverables7,
+    deliverables8,
+    deliverables9,
+    deliverables10,
+    deliverables11,
+    deliverables12,
+  ];
+
+  const openLightbox = (i: number) => {
+    setCurrentIndex(i);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setCurrentIndex(null);
+  };
+
+  const nextImage = () => {
+    if (currentIndex === null) return;
+    setCurrentIndex((currentIndex + 1) % deliverablesImages.length);
+  };
+
+  const prevImage = () => {
+    if (currentIndex === null) return;
+    setCurrentIndex((currentIndex - 1 + deliverablesImages.length) % deliverablesImages.length);
+  };
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxOpen, currentIndex]);
+
+  // Key handling for research image lightbox (single image)
+  useEffect(() => {
+    if (!researchLightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setResearchLightboxOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [researchLightboxOpen]);
+
+  // Key handling for user journey lightbox (single image)
+  useEffect(() => {
+    if (!journeyLightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setJourneyLightboxOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [journeyLightboxOpen]);
+
+  // Key handling for sketches/wireframes combined image lightbox
+  useEffect(() => {
+    if (!sketchLightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSketchLightboxOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [sketchLightboxOpen]);
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -41,28 +135,37 @@ const ToolSwap = () => {
           </div>
         </section>
 
-        {/* Problem Statement */}
+        {/* Project Overview */}
         <section className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6">
-              Project Overview
-            </h2>
-            <div className="max-w-3xl space-y-4">
-              <p className="text-muted-foreground">
-                As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up & it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
-              </p>
-              <p className="text-muted-foreground">
-                I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goal:
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li>create a mobile app that is easy and quick to use</li>
-                <li>create a marketplace where tools can be lent/borrowed for a short amount of time</li>
-                <li>reduce people's spending</li>
-                <li>to be more eco-responsible</li>
-              </ul>
-              <p className="text-muted-foreground">
-                This project took place in September/October, I was responsible for the full project from research to the final design.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="max-w-3xl space-y-4">
+                <h2 className="text-2xl md:text-3xl font-semibold mb-6">
+                  Project Overview
+                </h2>
+                <p className="text-muted-foreground">
+                  As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up & it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
+                </p>
+                <p className="text-muted-foreground">
+                  I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goal:
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                  <li>create a mobile app that is easy and quick to use</li>
+                  <li>create a marketplace where tools can be lent/borrowed for a short amount of time</li>
+                  <li>reduce people's spending</li>
+                  <li>to be more eco-responsible</li>
+                </ul>
+                <p className="text-muted-foreground">
+                  This project took place in September/October, I was responsible for the full project from research to the final design.
+                </p>
+              </div>
+
+              {/* Centered image next to Project Overview */}
+              <div className="flex items-center justify-center">
+                <div className="w-full max-w-[220px] overflow-hidden rounded-lg">
+                  <img src={deliverables1} alt="ToolSwap Home" className="w-full h-auto object-contain" />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -91,12 +194,15 @@ const ToolSwap = () => {
 
             {/* Full-width Process Image */}
             <div className="mt-8">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
-                  src={tsResearch01}
-                  alt="Process step visualization"
-                  className="w-full h-full object-cover"
-                />
+              <div className="flex justify-center">
+                <div className="w-full max-w-3xl overflow-hidden rounded-lg">
+                  <img
+                    src={tsResearch01}
+                    alt="Process step visualization"
+                    className="w-full h-auto object-contain cursor-pointer"
+                    onClick={() => setResearchLightboxOpen(true)}
+                  />
+                </div>
               </div>
             </div>
 
@@ -156,29 +262,34 @@ const ToolSwap = () => {
 
             {/* Flowchart image */}
             <div className="mt-8">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
-                  src={tsUserJourney}
-                  alt="User journey flowchart"
-                  className="w-full h-full object-cover"
-                />
+              <div className="flex justify-center">
+                <div className="w-full max-w-3xl overflow-hidden rounded-lg">
+                  <img
+                    src={tsUserJourney}
+                    alt="User journey flowchart"
+                    className="w-full h-auto object-contain cursor-pointer"
+                    onClick={() => setJourneyLightboxOpen(true)}
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Sketches & Wireframes */}
+            {/* Sketches & Wireframes - single combined image under paragraph */}
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Sketches & Wireframes</h4>
               <p className="text-muted-foreground mb-6">After defining the user journey I drew some sketches & created medium fidelity wireframes before moving onto the actual design.</p>
-            </div>
 
-            {/* Another picture */}
-            <div className="mt-4">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
-                  src={tsWireframes}
-                  alt="Illustration or screenshot"
-                  className="w-full h-full object-cover"
-                />
+              <div className="mt-8">
+                <div className="flex justify-center">
+                  <div className="w-full max-w-3xl overflow-hidden rounded-lg">
+                    <img
+                      src={tsSketchesWireframes}
+                      alt="Sketches and wireframes combined"
+                      className="w-full h-auto object-contain cursor-pointer"
+                      onClick={() => setSketchLightboxOpen(true)}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -378,14 +489,49 @@ const ToolSwap = () => {
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Four</h3>
               <h2 className="text-2xl md:text-3xl font-semibold mb-4">DELIVERABLES</h2>
-              <p className="text-muted-foreground mb-6">
-                Deliverables included design components, a clickable prototype, and documentation for handoff to development.
-              </p>
             </div>
 
-            <div className="max-w-3xl mt-6">
-              <div className="aspect-[16/9] overflow-hidden">
-                <img src={toolswapDetail1} alt="Deliverables overview" className="w-full h-full object-cover" />
+            <div className="w-full mt-6">
+              <div className="px-6">
+                <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+                  <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(0)} src={deliverables1} alt="Create Account" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(1)} src={deliverables2} alt="Create Booking Requests" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(2)} src={deliverables3} alt="Create Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(3)} src={deliverables4} alt="Detailed View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(4)} src={deliverables5} alt="Filter" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(5)} src={deliverables6} alt="Home" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(6)} src={deliverables7} alt="List View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(7)} src={deliverables8} alt="Menu" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(8)} src={deliverables9} alt="Messages Chat" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(9)} src={deliverables10} alt="Review Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(10)} src={deliverables11} alt="Reviews" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(11)} src={deliverables12} alt="Search" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                </div>
               </div>
             </div>
           </div>
@@ -493,6 +639,118 @@ const ToolSwap = () => {
             </div>
           </div>
         </section>
+        {/* Lightbox Modal */}
+        {lightboxOpen && currentIndex !== null && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) closeLightbox();
+            }}
+          >
+            <button
+              onClick={closeLightbox}
+              className="absolute top-6 right-6 text-white text-3xl leading-none"
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+            <button
+              onClick={(e) => { e.stopPropagation(); prevImage(); }}
+              className="absolute left-6 text-white text-4xl"
+              aria-label="Previous"
+            >
+              ‹
+            </button>
+
+            <img
+              src={deliverablesImages[currentIndex]}
+              alt={`Deliverable ${currentIndex + 1}`}
+              className="max-w-[90%] max-h-[90%] object-contain rounded"
+            />
+
+            <button
+              onClick={(e) => { e.stopPropagation(); nextImage(); }}
+              className="absolute right-6 text-white text-4xl"
+              aria-label="Next"
+            >
+              ›
+            </button>
+          </div>
+        )}
+
+        {/* Research image lightbox (single image) */}
+        {researchLightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setResearchLightboxOpen(false);
+            }}
+          >
+            <button
+              onClick={() => setResearchLightboxOpen(false)}
+              className="absolute top-6 right-6 text-white text-3xl leading-none"
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+            <img
+              src={tsResearch01}
+              alt="Process visualization - full"
+              className="max-w-[90%] max-h-[90%] object-contain rounded"
+            />
+          </div>
+        )}
+
+        {/* User journey lightbox (single image) */}
+        {journeyLightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setJourneyLightboxOpen(false);
+            }}
+          >
+            <button
+              onClick={() => setJourneyLightboxOpen(false)}
+              className="absolute top-6 right-6 text-white text-3xl leading-none"
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+            <img
+              src={tsUserJourney}
+              alt="User journey - full"
+              className="max-w-[90%] max-h-[90%] object-contain rounded"
+            />
+          </div>
+        )}
+
+        {/* Sketches & Wireframes combined image lightbox (single image) */}
+        {sketchLightboxOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setSketchLightboxOpen(false);
+            }}
+          >
+            <button
+              onClick={() => setSketchLightboxOpen(false)}
+              className="absolute top-6 right-6 text-white text-3xl leading-none"
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+            <img
+              src={tsSketchesWireframes}
+              alt="Sketches and wireframes - full"
+              className="max-w-[90%] max-h-[90%] object-contain rounded"
+            />
+          </div>
+        )}
+
       </main>
 
       <Footer />
