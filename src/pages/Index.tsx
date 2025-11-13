@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Footer from "@/components/Footer";
 import portfolio1 from "@/assets/alexandramarley-home-01.webp";
@@ -21,6 +22,22 @@ const Index = () => {
     align: "start",
     skipSnaps: false,
   });
+
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Autoplay: advance every 4s, pause when user hovers
+  useEffect(() => {
+    if (!emblaApi) return;
+    let timer: ReturnType<typeof setInterval> | null = null;
+    if (!isPaused) {
+      timer = setInterval(() => {
+        emblaApi?.scrollNext();
+      }, 2500);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [emblaApi, isPaused]);
 
   // 12 images: mark some slides as landscape to keep visual variety
   const slides = [
@@ -77,7 +94,7 @@ const Index = () => {
           </div>
 
           {/* Desktop (carousel) */}
-          <div className="hidden md:block relative">
+          <div className="hidden md:block relative" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex gap-0">
                 {slides.map((slide, index) => (

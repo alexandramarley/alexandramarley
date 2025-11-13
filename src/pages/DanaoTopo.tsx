@@ -383,13 +383,13 @@ const DanaoTopo = () => {
             {/* Small title + text line underneath */}
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-6">Once I was happy with the wireframes, I continued with the design. Some details and highlights:</p>
+              <p className="text-muted-foreground mb-3">Once I was happy with the wireframes, I continued with the design. Some details and highlights:</p>
             </div>
           </div>
         </section>
 
-        {/* Four detail paragraphs with images (each paragraph has extra horizontal padding and 64px vertical spacing) */}
-        <section className="py-16">
+  {/* Four detail paragraphs with images (reduce top spacing above block 1) */}
+  <section className="pt-8 pb-16">
           <div className="container mx-auto px-6">
             <div className="space-y-16">
               {/* Block 1 */}
@@ -669,7 +669,10 @@ const DanaoTopo = () => {
                <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
                <h2 className="text-2xl md:text-3xl font-semibold mb-4">CONCLUSIONS</h2>
                <p className="text-muted-foreground mb-6">
-                 The Danao Topo project demonstrated that with focused prioritisation and simple, well-documented deliverables, even low-budget teams can produce an effective offline-capable topo app. Future work will focus on improving filter usability and conducting further user testing to validate longer-term adoption and environmental research applications.
+                 I’m pleased with the final design, especially the map page. Finding a suitable base map was challenging — Google’s satellite imagery lacked clarity — so I used OpenStreetMap and created a custom dark version through AI. The crag info section also presented challenges, but I’m happy with the outcome.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                Next, I plan to refine the All Routes and Filter sections and conduct more user testing to guide future improvements. I’m currently in contact with the route developer of Danao to potentially bring this project to life. I also recognise that some design elements may be complex to implement, and I aim to streamline them for easier development and a smoother user experience.
                </p>
              </div>
            </div>

@@ -319,13 +319,13 @@ const ToolSwap = () => {
 
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-6">Next step was converting the wireframes into actual designs. Some of my challenges & reasonings are highlighted below.</p>
+              <p className="text-muted-foreground mb-3">Next step was converting the wireframes into actual designs. Some of my challenges & reasonings are highlighted below.</p>
             </div>
           </div>
         </section>
 
-        {/* Detail blocks with images (mirroring DanaoTopo) */}
-        <section className="py-16">
+  {/* Detail blocks with images (mirroring DanaoTopo) */}
+  <section className="pt-8 pb-16">
           <div className="container mx-auto px-6">
             <div className="space-y-16">
               {/* Block 1 */}
@@ -651,6 +651,7 @@ const ToolSwap = () => {
             </div>
           </div>
         </section>
+
 
         {/* Lightbox Modal */}
         {lightboxOpen && currentIndex !== null && (

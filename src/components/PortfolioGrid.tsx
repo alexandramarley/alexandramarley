@@ -26,7 +26,7 @@ const portfolioItems: PortfolioItem[] = [
     image: toolswapteaser,
     category: "uxui",
     title: "ToolSwap",
-    description: "A community marketplace app for borrowing and lending tools — making DIY easier, cheaper, and more sustainable (Mobile UX- and UI)",
+    description: "A community marketplace app for borrowing and lending tools (Mobile UX- and UI)",
     link: "/projects/toolswap"
   },
   {
@@ -42,7 +42,7 @@ const portfolioItems: PortfolioItem[] = [
     image: danaoteaser,
     category: "uxui",
     title: "Danao Topo",
-    description: "A graphical representation of the climbing routes in Danao, Philippines (Mobile Product Design)",
+    description: "A graphical representation of the climbing routes in Danao, Philippines (Mobile UX- and UI)",
     link: "/projects/danao-topo"
   },
   {
