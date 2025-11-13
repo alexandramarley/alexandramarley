@@ -652,31 +652,6 @@ const ToolSwap = () => {
           </div>
         </section>
 
-         {/* Impact Section */}
-        <section className="py-12 bg-muted/30">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8">Environmental Impact</h2>
-            <div className="max-w-3xl">
-              <p className="text-muted-foreground mb-6">
-                ToolSwap aims to reduce unnecessary purchases by enabling short-term borrowing, contributing to a more circular, resource-efficient community.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div className="p-6 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-3xl font-bold mb-2">500+</h3>
-                  <p className="text-muted-foreground">Items Shared</p>
-                </div>
-                <div className="p-6 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-3xl font-bold mb-2">1000kg</h3>
-                  <p className="text-muted-foreground">Estimated Materials Saved</p>
-                </div>
-                <div className="p-6 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-3xl font-bold mb-2">20+</h3>
-                  <p className="text-muted-foreground">Community Partners</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         {/* Lightbox Modal */}
         {lightboxOpen && currentIndex !== null && (
           <div

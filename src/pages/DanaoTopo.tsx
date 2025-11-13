@@ -121,7 +121,7 @@ const DanaoTopo = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mb-12">
               Interactive topographical visualization of Danao's natural landscape
             </p>
-            <div className="flex flex-wrap gap-3 mb-12">
+            <div className="flex flex-wrap gap-3 mb-2">
               <div className="rounded-full bg-muted px-4 py-2 text-sm">UI/UX Design</div>
               <div className="rounded-full bg-muted px-4 py-2 text-sm">Climbing Guide</div>
               <div className="rounded-full bg-muted px-4 py-2 text-sm">Mobile App</div>
@@ -130,7 +130,7 @@ const DanaoTopo = () => {
         </section>
 
         {/* Overview Section */}
-        <section className="py-12 bg-muted/30">
+        <section className="py-6 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
@@ -156,6 +156,31 @@ const DanaoTopo = () => {
                   alt="Danao Topo interface showcase"
                   className="w-full h-full object-cover"
                 />
+              </div>
+            </div>
+          </div>
+        </section>
+
+               {/* Impact Section */}
+        <section className="py-12 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-8">Impact</h2>
+            <div className="max-w-3xl">
+              <p className="text-muted-foreground mb-6">
+                Danao Topo aims to not only enhance the climbing experience but also to support other community-led climbing areas who wish to use the same design.</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div className="p-6 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-3xl font-bold mb-2">100+</h3>
+                  <p className="text-muted-foreground">Routes on the app</p>
+                </div>
+                <div className="p-6 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-3xl font-bold mb-2">1000kg</h3>
+                  <p className="text-muted-foreground">Estimated Materials Saved</p>
+                </div>
+                <div className="p-6 bg-background rounded-lg shadow-sm">
+                  <h3 className="text-3xl font-bold mb-2">50+</h3>
+                  <p className="text-muted-foreground">Climbers</p>
+                </div>
               </div>
             </div>
           </div>

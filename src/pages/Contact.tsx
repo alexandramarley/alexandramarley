@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import contactImg from "@/assets/alexandramarley-contact-05.webp";
+import contactImg1 from "@/assets/alexandramarley-contact-07.webp";
 
 const Contact = () => {
   return (
@@ -66,7 +67,7 @@ const Contact = () => {
               <div className="mt-6 md:mt-0 flex justify-center items-start">
                 <div className="w-full md:max-w-[360px] lg:max-w-[420px] aspect-[3/4] overflow-hidden rounded-lg shadow-lg">
                   <img
-                    src={contactImg}
+                    src={contactImg1}
                     alt="Alexandra Marley"
                     className="w-full h-full object-cover"
                   />

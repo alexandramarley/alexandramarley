@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import toolswapteaser from "@/assets/alexandramarley-ux-toolswap-teaser.webp";
-import portfolio2 from "@/assets/portfolio-2.jpg";
+import portfolio2 from "@/assets/alexandramarley-photography-business.webp";
 import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
-import portfolio4 from "@/assets/portfolio-4.jpg";
+import portfolio4 from "@/assets/alexandramarley-photography-portrait.webp";
 import portfolio5 from "@/assets/portfolio-5.jpg";
-import portfolio6 from "@/assets/portfolio-6.jpg";
+import portfolio6 from "@/assets/alexandramarley-photography-dance.webp";
 
 interface PortfolioItem {
   id: number;
@@ -30,12 +30,12 @@ const portfolioItems: PortfolioItem[] = [
     link: "/projects/toolswap"
   },
   {
-    id: 2,
-    image: portfolio2,
+    id: 4,
+    image: portfolio4,
     category: "photography",
-    title: "Business",
-    description: "Headshots, architecture, team portraits, and branding visuals",
-    link: "/photography/business",
+    title: "PORTRAITS",
+    description: "Capturing serene moments",
+    link: "/photography/portrait",
   },
   {
     id: 3,
@@ -46,18 +46,18 @@ const portfolioItems: PortfolioItem[] = [
     link: "/projects/danao-topo"
   },
   {
-    id: 4,
-    image: portfolio4,
+    id: 2,
+    image: portfolio2,
     category: "photography",
-    title: "Portraits",
-    description: "Capturing serene moments",
-    link: "/photography/portrait",
+    title: "BUSINESS",
+    description: "Headshots, architecture, team portraits, and branding visuals",
+    link: "/photography/business",
   },
   {
     id: 6,
     image: portfolio6,
     category: "photography",
-    title: "Dance",
+    title: "DANCE",
     description: "Motion, emotions, and the artistry of movement",
     link: "/photography/dance",
   },
