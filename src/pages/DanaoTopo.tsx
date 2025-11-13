@@ -118,10 +118,10 @@ const DanaoTopo = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
               Danao Topo
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mb-12">
+            <p className="text-lg text-muted-foreground max-w-2xl mb-6">
               Interactive topographical visualization of Danao's natural landscape
             </p>
-            <div className="flex flex-wrap gap-3 mb-2">
+            <div className="flex flex-wrap gap-3 mb-0">
               <div className="rounded-full bg-muted px-4 py-2 text-sm">UI/UX Design</div>
               <div className="rounded-full bg-muted px-4 py-2 text-sm">Climbing Guide</div>
               <div className="rounded-full bg-muted px-4 py-2 text-sm">Mobile App</div>
@@ -130,7 +130,7 @@ const DanaoTopo = () => {
         </section>
 
         {/* Overview Section */}
-        <section className="py-6 bg-muted/30">
+        <section className="pt-6 pb-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
@@ -383,13 +383,13 @@ const DanaoTopo = () => {
             {/* Small title + text line underneath */}
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-3">Once I was happy with the wireframes, I continued with the design. Some details and highlights:</p>
+              <p className="text-muted-foreground mb-0">Once I was happy with the wireframes, I continued with the design. Some details and highlights:</p>
             </div>
           </div>
         </section>
 
   {/* Four detail paragraphs with images (reduce top spacing above block 1) */}
-  <section className="pt-8 pb-16">
+  <section className="pt-2 pb-16">
           <div className="container mx-auto px-6">
             <div className="space-y-16">
               {/* Block 1 */}
@@ -679,25 +679,32 @@ const DanaoTopo = () => {
          </section>
 
    {/* Next Case Study */}
-        <section className="py-12">
+        <section className="py-16">
           <div className="container mx-auto px-6">
-            <div className="flex flex-col items-center space-y-4">
-              <h2 className="text-2xl font-semibold">Next Case Study</h2>
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-sm uppercase tracking-wider text-muted-foreground mb-3 text-center">Next Case Study</h3>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+                ToolSwap
+              </h2>
+              
               <Link
                 to="/projects/toolswap"
                 state={{ scrollTop: true }}
                 onClick={() => window.scrollTo(0, 0)}
-                className="group relative overflow-hidden rounded-lg"
+                className="group relative block overflow-hidden rounded-xl shadow-lg"
               >
-                <div className="aspect-w-16 aspect-h-9 w-full max-w-2xl overflow-hidden">
+                <div className="aspect-[16/9] w-full overflow-hidden">
                   <img
                     src={toolswapteaser}
-                    alt="ToolSwap Project"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    alt="ToolSwap Project - Community-driven platform for sharing tools"
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="text-2xl font-bold text-white">ToolSwap →</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col items-center justify-center gap-4 px-6">
+                  <p className="text-lg md:text-xl text-white text-center max-w-2xl">
+                    A community-driven platform for sharing and borrowing tools
+                  </p>
+                  <span className="text-xl font-semibold text-white">View Case Study →</span>
                 </div>
               </Link>
             </div>

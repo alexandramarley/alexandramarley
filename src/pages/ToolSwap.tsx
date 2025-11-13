@@ -137,7 +137,7 @@ const ToolSwap = () => {
       
       <main className="pt-20 md:pt-24 pb-20 md:pb-8">
         {/* Hero Section */}
-        <section className="py-12 md:py-2">
+        <section className="py-12 md:py-20">
           <div className="container mx-auto px-6">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
               ToolSwap
@@ -145,7 +145,7 @@ const ToolSwap = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mb-6">
               A community-driven platform for sharing and borrowing tools
             </p>
-            <div className="flex flex-wrap gap-3 mb-12">
+            <div className="flex flex-wrap gap-3 mb-0">
               <div className="rounded-full bg-muted px-4 py-2 text-sm">UI/UX Design</div>
               <div className="rounded-full bg-muted px-4 py-2 text-sm">Community Platform</div>
               <div className="rounded-full bg-muted px-4 py-2 text-sm">Mobile App</div>
@@ -154,7 +154,7 @@ const ToolSwap = () => {
         </section>
 
         {/* Project Overview */}
-        <section className="py-12 bg-muted/30">
+        <section className="pt-6 pb-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="max-w-3xl space-y-4">
@@ -302,30 +302,34 @@ const ToolSwap = () => {
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Sketches & Wireframes</h4>
               <p className="text-muted-foreground mb-6">After defining the user journey I drew some sketches & created medium fidelity wireframes before moving onto the actual design.</p>
+            </div>
 
-              <div className="mt-8">
-                <div className="flex justify-center">
-                  <div className="w-full max-w-3xl overflow-hidden rounded-lg">
-                    <img
-                      src={tsSketchesWireframes}
-                      alt="Sketches and wireframes combined"
-                      className="w-full h-auto object-contain cursor-pointer"
-                      onClick={() => setSketchLightboxOpen(true)}
-                    />
-                  </div>
+            {/* Sketches & Wireframes (constrained to text width) */}
+            <div className="mt-4">
+              <div className="max-w-3xl mx-auto">
+                <div className="overflow-hidden rounded-lg">
+                  <img
+                    src={tsSketchesWireframes}
+                    alt="Sketches and wireframes combined"
+                    className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSketchLightboxOpen(true)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSketchLightboxOpen(true); }}
+                  />
                 </div>
               </div>
             </div>
 
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-3">Next step was converting the wireframes into actual designs. Some of my challenges & reasonings are highlighted below.</p>
+              <p className="text-muted-foreground mb-0">Next step was converting the wireframes into actual designs. Some of my challenges & reasonings are highlighted below.</p>
             </div>
           </div>
         </section>
 
   {/* Detail blocks with images (mirroring DanaoTopo) */}
-  <section className="pt-8 pb-16">
+  <section className="pt-2 pb-16">
           <div className="container mx-auto px-6">
             <div className="space-y-16">
               {/* Block 1 */}
@@ -343,11 +347,11 @@ const ToolSwap = () => {
                     The menu otherwise can be accessed through a traditional hamburger menu. The only time it’s not used, is when a critical user flow could be interrupted (e.g. creating a listing).
                   </p>
                   </div>
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
                     <img
                       src={tsDesign01_3}
                       alt="Navigation & Search - full"
-                      className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
+                      className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
                       onClick={() => {
                         setSingleLightboxSrc(tsDesign01_3);
                         setSingleLightboxAlt("Navigation & Search - full");
@@ -397,11 +401,11 @@ const ToolSwap = () => {
                     I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked some users what makes more sense to them, and everyone voted for <span className="text-green-500 font-semibold">option 2</span> vs <span className="text-red-500 font-semibold">option 1</span>.
                   </p>
                   </div>
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
                     <img
                       src={tsDesignChoices3}
                       alt="Terminology / Menu choices - full"
-                      className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
+                      className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
                       onClick={() => {
                         setSingleLightboxSrc(tsDesignChoices3);
                         setSingleLightboxAlt("Terminology / Menu choices - full");
@@ -537,10 +541,10 @@ const ToolSwap = () => {
               {/* Right: Embedded prototype (responsive) */}
               <div className="mt-6 md:mt-0">
                 {/* Match Danao iframe dimensions and constraints */}
-                <div className="aspect-[9/16] md:aspect-[9/16] overflow-hidden rounded-lg shadow-sm bg-white md:max-w-[420px] lg:max-w-[480px] mx-auto md:mx-0">
+                  <div className="aspect-[9/16] md:aspect-[9/16] overflow-hidden rounded-lg shadow-sm bg-white md:max-w-[420px] lg:max-w-[480px] mx-auto md:mx-0">
                   <iframe
                     title="ToolSwap Prototype"
-                    src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?page-id=5173%3A5102&node-id=5508-7349&p=f&viewport=222%2C42%2C0.05&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5508%3A7349&show-proto-sidebar=1&embed-host=share"
+                    src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?page-id=5173%3A5102&node-id=5508-7349&viewport=1279%2C352%2C0.08&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5508%3A7349&embed-host=share"
                     style={{ border: '1px solid rgba(0, 0, 0, 0.1)', transform: 'scale(1.03)', transformOrigin: 'center' }}
                     className="w-full h-full"
                     allowFullScreen
@@ -561,7 +565,7 @@ const ToolSwap = () => {
 
             <div className="w-full mt-6">
               <div className="px-6">
-                <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
                   <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
                       <img onClick={() => openLightbox(0)} src={deliverables1} alt="Create Account" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
@@ -627,25 +631,32 @@ const ToolSwap = () => {
         </section>
 
         {/* Next Case Study */}
-        <section className="py-12">
+        <section className="py-16">
           <div className="container mx-auto px-6">
-            <div className="flex flex-col items-center space-y-4">
-              <h2 className="text-2xl font-semibold">Next Case Study</h2>
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-sm uppercase tracking-wider text-muted-foreground mb-3 text-center">Next Case Study</h3>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+                Danao Topo
+              </h2>
+              
               <Link
                 to="/projects/danao-topo"
                 state={{ scrollTop: true }}
                 onClick={() => window.scrollTo(0, 0)}
-                className="group relative overflow-hidden rounded-lg"
+                className="group relative block overflow-hidden rounded-xl shadow-lg"
               >
-                <div className="aspect-w-16 aspect-h-9 w-full max-w-2xl overflow-hidden">
+                <div className="aspect-[16/9] w-full overflow-hidden">
                   <img
                     src={danaoteaser}
-                    alt="Danao Topo Project"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    alt="Danao Topo Project - Interactive topographical visualization"
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="text-2xl font-bold text-white">Danao Topo →</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col items-center justify-center gap-4 px-6">
+                  <p className="text-lg md:text-xl text-white text-center max-w-2xl">
+                    Interactive topographical visualization of Danao's natural landscape
+                  </p>
+                  <span className="text-xl font-semibold text-white">View Case Study →</span>
                 </div>
               </Link>
             </div>
