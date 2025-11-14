@@ -12,18 +12,18 @@ import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.png";
 import tsSketchesWireframes from "@/assets/alexandramarley-ux-toolswap-sketches-wirefreames.webp";
-import deliverables6 from "@/assets/ToolSwap-Create-Account.png";
-import deliverables11 from "@/assets/ToolSwap-Create-Booking-Requests.png";
-import deliverables8 from "@/assets/ToolSwap-Create-Listing.png";
-import deliverables4 from "@/assets/ToolSwap-Detailed-View.png";
-import deliverables5 from "@/assets/ToolSwap-Filter.png";
-import deliverables1 from "@/assets/ToolSwap-Home.png";
-import deliverables3 from "@/assets/ToolSwap-ListView.png";
-import deliverables7 from "@/assets/ToolSwap-Menu.png";
-import deliverables12 from "@/assets/ToolSwap-Messages-Chat.png";
-import deliverables9 from "@/assets/ToolSwap-Review-Listing.png";
-import deliverables10 from "@/assets/ToolSwap-Reviews.png";
-import deliverables2 from "@/assets/ToolSwap-Search.png";
+import deliverables6 from "@/assets/alexandramarley-ToolSwap-Create-Account.png";
+import deliverables11 from "@/assets/alexandramarley-ToolSwap-Create-Booking-Requests.png";
+import deliverables8 from "@/assets/alexandramarley-ToolSwap-Create-Listing.png";
+import deliverables4 from "@/assets/alexandramarley-ToolSwap-Detailed-View.png";
+import deliverables5 from "@/assets/alexandramarley-ToolSwap-Filter.png";
+import deliverables1 from "@/assets/alexandramarley-ToolSwap-Home.png";
+import deliverables3 from "@/assets/alexandramarley-ToolSwap-ListView.png";
+import deliverables7 from "@/assets/alexandramarley-toolswap-menu.png";
+import deliverables12 from "@/assets/alexandramarley-ToolSwap-Messages-Chat.png";
+import deliverables9 from "@/assets/alexandramarley-ToolSwap-Review-Listing.png";
+import deliverables10 from "@/assets/alexandramarley-ToolSwap-Reviews.png";
+import deliverables2 from "@/assets/alexandramarley-toolswap-Search.png";
 import benchmark from "@/assets/alexandramarley-ux-toolswap-benchmark-01.webp";
 
 const ToolSwap = () => {
@@ -237,13 +237,13 @@ const ToolSwap = () => {
                 Search by tool type / map view of nearby tools & availability calendar were the three most named features that the users would like to have, so I focused the next design iterations on these areas.
               </p>
 
-              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6">The main use cases for the app are:</h4>
+              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6">The <span className="font-semibold">main use cases</span> for the app are:</h4>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
                 <li>search & find tools to borrow near your location</li>
                 <li>a user rating system designed to enhance transparency, reliability, and trust.</li>
               </ul>
 
-              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6">Secondary</h4>
+              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6"><span className="font-semibold">Secondary</span></h4>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
                 <li>account overview with previous borrowed/listed items</li>
                 <li>to strengthen the community & supporting the environment</li>

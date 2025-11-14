@@ -2,18 +2,17 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 // Image imports for Danao design choices and placeholders
 import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
-import danaoHero from "@/assets/alexandramarley-ux-danao-research-01.png";
-import design01a from "@/assets/alexandramarley-ux-danao-design-01-1.webp";
-import design01b from "@/assets/alexandramarley-ux-danao-design-01-2.webp";
+import danaoHero from "@/assets/alexandramarley-ux-danao-research-01.webp";
+import design01a from "@/assets/alexandramarley-ux-danao-design-01-a.webp";
+import design01b from "@/assets/alexandramarley-ux-danao-design-01-b.webp";
 import design02a from "@/assets/alexandramarley-ux-danao-design-02-a.webp";
 import design02b from "@/assets/alexandramarley-ux-danao-design-02-b.webp";
 import design03 from "@/assets/alexandramarley-ux-danao-design-03.webp";
-import design04 from "@/assets/alexandramarley-ux-danao-design-04.png";
+import design04 from "@/assets/alexandramarley-ux-danao-design-04.webp";
 import userJourney from "@/assets/alexandramarley-ux-danao-userjourney.png";
-import danaoDetail2 from "@/assets/alexandramarley-ux-danao-userjourney.png";
-import danaoBenchmark1 from "@/assets/alexandramarley-ux-danao-benchmark-01.png";
-import danaoBenchmark2 from "@/assets/alexandramarley-ux-danao-benchmark-02.png";
-import danaoBenchmark3 from "@/assets/alexandramarley-ux-danao-benchmark-03.png";
+import danaoBenchmark1 from "@/assets/alexandramarley-ux-danao-benchmark-01.webp";
+import danaoBenchmark2 from "@/assets/alexandramarley-ux-danao-benchmark-02.webp";
+import danaoBenchmark3 from "@/assets/alexandramarley-ux-danao-benchmark-03.webp";
 import sketcheswireframes from "@/assets/alexandramarley-ux-danao-sketches-wireframes.png";
 import deliverable1 from '@/assets/alexandramarley-ux-danao-topo-home.webp';
 import deliverable2 from '@/assets/alexandramarley-ux-danao-topo-info.webp';
@@ -21,7 +20,7 @@ import deliverable3 from '@/assets/alexandramarley-ux-danao-topo-map.webp';
 import deliverable4 from '@/assets/alexandramarley-ux-danao-topo-map-detail.webp';
 import deliverable5 from '@/assets/alexandramarley-ux-danao-topo-map-detail-dm.webp';
 import deliverable6 from '@/assets/alexandramarley-ux-danao-topo-search.webp';
-import deliverable7 from '@/assets/alexandramarley-ux-danao-topo-help.webp';
+import deliverable7 from '@/assets/alexandramarley-ux-danao-topo-help.png';
 import deliverable8 from '@/assets/alexandramarley-ux-danao-topo-crag.webp';
 import deliverable9 from '@/assets/alexandramarley-ux-danao-topo-crag-detail.webp';
 import deliverable10 from '@/assets/alexandramarley-ux-danao-topo-crag-dm.webp';
@@ -147,8 +146,10 @@ const DanaoTopo = () => {
                   <li>• make the most important information for climbers easily accessible</li>
                   <li>• create a visually appealing design</li>
                   <li>• design should be appropriate for low budget development teams, simple and easy to implement</li>
-                  <li>• Environmental impact analysis</li>
                 </ul>
+                <p className="text-muted-foreground">
+                  This project took place in August/September 2025, I was responsible for the full project from research to the final design.
+                </p>
               </div>
                 <div className="aspect-[4/3] overflow-hidden rounded-lg">
                 <img
@@ -156,31 +157,6 @@ const DanaoTopo = () => {
                   alt="Danao Topo interface showcase"
                   className="w-full h-full object-cover"
                 />
-              </div>
-            </div>
-          </div>
-        </section>
-
-               {/* Impact Section */}
-        <section className="py-12 bg-muted/30">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-8">Impact</h2>
-            <div className="max-w-3xl">
-              <p className="text-muted-foreground mb-6">
-                Danao Topo aims to not only enhance the climbing experience but also to support other community-led climbing areas who wish to use the same design.</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div className="p-6 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-3xl font-bold mb-2">100+</h3>
-                  <p className="text-muted-foreground">Routes on the app</p>
-                </div>
-                <div className="p-6 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-3xl font-bold mb-2">1000kg</h3>
-                  <p className="text-muted-foreground">Estimated Materials Saved</p>
-                </div>
-                <div className="p-6 bg-background rounded-lg shadow-sm">
-                  <h3 className="text-3xl font-bold mb-2">50+</h3>
-                  <p className="text-muted-foreground">Climbers</p>
-                </div>
               </div>
             </div>
           </div>
@@ -214,13 +190,8 @@ const DanaoTopo = () => {
                 </div>
               </div>
             </div>
-            <div className="max-w-3xl mt-12">
-              <p className="text-muted-foreground mb-6">
-                Based on the results of my survey, 90% want information on how to access the climbing area, what's the grade + length of the routes. Second priority went to a map overview, what's the best time to climb there (is the wall north- or south facing), and safety features (is there loose rock).
-              </p>
-              
-              <p className="text-muted-foreground mb-6">
-                Some climbing areas won't have cell reception, and I personally find it too heavy to bring a book with me. Therefore it was clear it would be a mobile app where you can download the info, without service needed.
+            <div className="max-w-3xl mt-12"><p className="text-muted-foreground mb-6">
+                Some climbing areas won't have cell reception, and bringing a book adds additional weight. Therefore it was clear it would be a mobile app where you can download the info, without service needed.
               </p>
 
               <p className="text-muted-foreground mb-6">
@@ -326,7 +297,7 @@ const DanaoTopo = () => {
                 DESIGN
               </h2>
               <p className="text-muted-foreground mb-6">
-                I started to work on the app structure and document the user journeys, there are three ones:
+                I started to work on the app structure and document the user journeys, there are three:
 
 
               </p>
@@ -392,7 +363,7 @@ const DanaoTopo = () => {
   <section className="pt-2 pb-16">
           <div className="container mx-auto px-6">
             <div className="space-y-16">
-              {/* Block 1 */}
+              {/* Block 1 - Route Information */}
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   <div className="max-w-3xl">
@@ -625,7 +596,7 @@ const DanaoTopo = () => {
 
           <div className="w-full mt-6">
               <div className="px-6">
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <div className="grid grid-cols-3 md:grid-cols-5 gap-6">
                   <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
                     <img onClick={() => openLightbox(0)} src={deliverable1} alt="Home" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                   </div>
@@ -754,18 +725,24 @@ const DanaoTopo = () => {
       )}
       {singleLightboxOpen && singleLightboxSrc && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
           onClick={(e) => { if (e.target === e.currentTarget) closeSingle(); }}
           aria-modal="true"
           role="dialog"
         >
-          <div className="max-w-[90vw] max-h-[90vh]">
-            <img
-              src={singleLightboxSrc}
-              alt={singleLightboxAlt}
-              className="w-full h-full object-contain rounded-md"
-            />
-          </div>
+          <button
+            onClick={closeSingle}
+            className="absolute top-6 right-6 text-white text-3xl leading-none z-10"
+            aria-label="Close"
+          >
+            ×
+          </button>
+
+          <img
+            src={singleLightboxSrc}
+            alt={singleLightboxAlt}
+            className="max-w-[90%] max-h-[90%] object-contain rounded"
+          />
         </div>
       )}
 
