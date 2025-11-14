@@ -195,7 +195,7 @@ const DanaoTopo = () => {
               </p>
 
               <p className="text-muted-foreground mb-6">
-                Whilst you could multi select options, 100% mentioned they would prefer the French Sport Grading system. A grading conversion tool could be considered at a later stage.
+                Whilst you could multi select options, 95% mentioned they would prefer the French Sport Grading system. A grading conversion tool could be considered at a later stage.
               </p>
 
               <p className="text-muted-foreground mb-6">
