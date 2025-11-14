@@ -9,11 +9,11 @@ import design02a from "@/assets/alexandramarley-ux-danao-design-02-a.webp";
 import design02b from "@/assets/alexandramarley-ux-danao-design-02-b.webp";
 import design03 from "@/assets/alexandramarley-ux-danao-design-03.webp";
 import design04 from "@/assets/alexandramarley-ux-danao-design-04.webp";
-import userJourney from "@/assets/alexandramarley-ux-danao-userjourney.png";
+import userJourney from "@/assets/alexandramarley-ux-danao-topo-user-journey.png";
 import danaoBenchmark1 from "@/assets/alexandramarley-ux-danao-benchmark-01.webp";
 import danaoBenchmark2 from "@/assets/alexandramarley-ux-danao-benchmark-02.webp";
 import danaoBenchmark3 from "@/assets/alexandramarley-ux-danao-benchmark-03.webp";
-import sketcheswireframes from "@/assets/alexandramarley-ux-danao-sketches-wireframes.png";
+import sketcheswireframes from "@/assets/alexandramarley-ux-danao-topo-sketcheswireframes.webp";
 import deliverable1 from '@/assets/alexandramarley-ux-danao-topo-home.webp';
 import deliverable2 from '@/assets/alexandramarley-ux-danao-topo-info.webp';
 import deliverable3 from '@/assets/alexandramarley-ux-danao-topo-map.webp';
@@ -148,7 +148,7 @@ const DanaoTopo = () => {
                   <li>• design should be appropriate for low budget development teams, simple and easy to implement</li>
                 </ul>
                 <p className="text-muted-foreground">
-                  This project took place in August/September 2025, I was responsible for the full project from research to the final design.
+                  This project took place in July-September 2025, I was responsible for the full project from research to the final design.
                 </p>
               </div>
                 <div className="aspect-[4/3] overflow-hidden rounded-lg">
@@ -203,7 +203,7 @@ const DanaoTopo = () => {
               </p>
 
               <p className="text-muted-foreground mb-6">
-                The main use cases are for users to find out:
+                The <span className="font-semibold">main use cases</span> main use cases are for users to find out:
               </p>
 
               <ul className="list-inside space-y-2 text-muted-foreground mb-6">
@@ -216,7 +216,7 @@ const DanaoTopo = () => {
               </ul>
 
               <p className="text-muted-foreground mb-6">
-                The secondary, less important use cases are:
+                The <span className="font-semibold">secondary</span>, less important use cases are:
               </p>
 
               <ul className="list-inside space-y-2 text-muted-foreground mb-8">
@@ -369,7 +369,7 @@ const DanaoTopo = () => {
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">Route Information</h4>
                      <p className="text-muted-foreground mb-4">
-                    Within the application, there is a large amount of text to display. Routes have information with varying length. For example, a route description can often be a few paragraphs long, whereas the difficulty is 2 - 3 characters. It would be overwhelming to show all the information at once. As a solution, I chose to use expanding list items for routes, which show the short, vital information all the time, and when expanded show the long detailed description.
+                    Within the application, there is a large amount of text to display. Routes have information with varying length. For example, a route description can often be a few paragraphs long, whereas the difficulty is 2-3 characters. It would be overwhelming to show all the information at once. As a solution, I chose to use expanding list items for routes, which show the short, vital information all the time, and when expanded, show the long detailed description.
                   </p>
                   <p className="text-muted-foreground mb-4">
                     When a user taps a route line in the topo image, or its name in the textual list below:
@@ -413,7 +413,7 @@ const DanaoTopo = () => {
               </div>
               
 
-              {/* Block 2 */}
+              {/* Block 2 - Difficulty Distribution Chart */}
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   <div className="max-w-3xl">
@@ -457,19 +457,16 @@ const DanaoTopo = () => {
                 </div>
               </div>
 
-              {/* Block 3 */}
+              {/* Block 3 - Filter Option */}
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">Filter Option</h4>
                     <p className="text-muted-foreground mb-4">
-                      When creating a mood board & cross checking other climbing apps, one thing they’re missing, is a filter option with more choices. There were filters to differentiate the climbing style, or the difficulty grade, but no filter for the route length and rating. So I added one to my design that seemed useful.
+                      When I created a mood board & cross checked other climbing apps, one thing they were all missing, is a filter option with more choices. There were filters to differentiate the climbing style, or the difficulty grade, but no filter for the route length and rating. So I added one to my design that seemed useful.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      This is one area of the app I’m not totally satisfied with. The user experience is quite bad as a high number of taps is required, compared to a slider.
-                    </p>
-                    <p className="text-muted-foreground">
-                      This is my main priority in a future re-design, I have a new version in the wireframes and will pursue a new design there.
+                      When conducting user tests I realised the user experience is quite bad as a high number of taps is required, compared to a slider. This is my main priority in the future re-design, I have a new version planned (see wireframe example) and will pursue a new design there.
                     </p>
                   </div>
 
@@ -535,7 +532,7 @@ const DanaoTopo = () => {
                   When it came to the user testing, I gave the candidates the following tasks:
                 </p>
                 <ul className="list-inside space-y-2 text-muted-foreground mb-6">
-                  <li>• Find out how to get there from Cebu (by car/bus, doesn’t matter)</li>
+                  <li>• Find out how to get there from Cebu using any means of transport</li>
                   <li>• Find the overview of the different crags (climbing areas)</li>
                   <li>• Find the “Pocket Wall” and a route called Dong Ba Dong. You want to find out how long is the route, and how many quick drawers (QD) are needed</li>
                   <li>• Find the overview of all routes, and filter all routes more than 30 meters with a rating of 4 Stars or more</li>
@@ -543,11 +540,11 @@ const DanaoTopo = () => {
                 </ul>
 
                 <p className="text-muted-foreground mb-4">
-                  User 1 found the climbing area + route very easy, although they mentioned they wish the route would have been highlighted more clearer. They did try to interact with the map itself, which is with the prototype not possible. The info section was accessed without any problems, when using the filter function the user mentioned the fields are quite small to interact with and that a lot of taps are involved. In general they found the font size on the smaller side, but appreciated the simplicity of the design &amp; how few clicks are involved.
+                  <span className="font-semibold">User 1</span> found the climbing area + route very easy, although they mentioned they wish the route would have been highlighted more clearer. They did try to interact with the map itself, which is with the prototype not possible. The info section was accessed without any problems, when using the filter function the user mentioned the fields are quite small to interact with and that a lot of taps are involved. In general they found the font size on the smaller side, but appreciated the simplicity of the design &amp; how few clicks are involved.
                 </p>
 
                 <p className="text-muted-foreground mb-4">
-                  User 2 clicked right away on the Map first, instead of pressing on the Info section. After reading the instructions again, they found the info section without any problem. The second task they mastered without any problems. They also found the specific wall &amp; clicked on the mentioned route &amp; found all necessary information. Interestingly, the user couldn’t find “All Routes”, and filtered the routes through the filter icon on the crag wall, instead of going through - Info - All Routes - Filter. It’s possible that they didn’t read the whole Info section, but in any case I will look into highlighting the “All Routes” button better. The Help section was very easy to find, they didn’t mention anything regarding the font size. In general the user mentioned missing a back button.
+                  <span className="font-semibold">User 2</span> clicked right away on the map first, instead of pressing on the info section. After reading the instructions again, they found the info section without any problem. The second task they mastered without any problems. They also found the specific wall &amp; clicked on the mentioned route &amp; found all necessary information. Interestingly, the user couldn’t find “All Routes”, and filtered the routes through the filter icon on the crag wall, instead of going through - Info - All Routes - Filter. It’s possible that they didn’t read the whole info section, but in any case I will look into highlighting the “All Routes” button better. The help section was very easy to find, they didn’t mention anything regarding the font size. In general the user mentioned missing a back button.
                 </p>
 
                 <p className="text-muted-foreground mb-4">
@@ -555,12 +552,12 @@ const DanaoTopo = () => {
                 </p>
                 <ul className="list-inside space-y-2 text-muted-foreground mb-6">
                   <li>• Improve visibility of “All Routes” button</li>
-                  <li>• Improve the Filter screen (see wireframe example)</li>
-                  <li>• Thinking of adding a Back Navigation Button</li>
+                  <li>• Improve the filter screen (see wireframe example)</li>
+                  <li>• Thinking of adding a back navigation button</li>
                 </ul>
 
                 <p className="text-muted-foreground mb-6">
-                  I want to obtain more user tests to collect further feedback &amp; see what else might not work.
+                  I want to obtain more user tests to collect further feedback &amp; see what else could be improved.
                 </p>
               </div>
 

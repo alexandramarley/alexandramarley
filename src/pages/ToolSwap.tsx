@@ -10,8 +10,8 @@ import tsDesign04a from "@/assets/alexandramarley-ux-toolswap-design-04-1.webp";
 import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.webp";
 import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
-import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.png";
-import tsSketchesWireframes from "@/assets/alexandramarley-ux-toolswap-sketches-wirefreames.webp";
+import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.webp";
+import tsSketchesWireframes from "@/assets/alexandramarley-ux-ToolSwap-sketcheswireframes.webp";
 import deliverables6 from "@/assets/alexandramarley-ToolSwap-Create-Account.png";
 import deliverables11 from "@/assets/alexandramarley-ToolSwap-Create-Booking-Requests.png";
 import deliverables8 from "@/assets/alexandramarley-ToolSwap-Create-Listing.png";
@@ -165,13 +165,37 @@ const ToolSwap = () => {
                   As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up & it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
                 </p>
                 <p className="text-muted-foreground">
-                  I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goal:
+                  I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goals:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                  <li>create a mobile app that is easy and quick to use</li>
-                  <li>create a marketplace where tools can be lent/borrowed for a short amount of time</li>
-                  <li>reduce people's spending</li>
-                  <li>to be more eco-responsible</li>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span>create a mobile app that is easy and quick to use</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span>create a marketplace where tools can be lent/borrowed for a short amount of time</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span>reduce people's spending</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span>to be more eco-responsible</span>
+                  </li>
                 </ul>
                 <p className="text-muted-foreground">
                   This project took place in September/October 2025, I was responsible for the full project from research to the final design.
@@ -243,7 +267,9 @@ const ToolSwap = () => {
                 <li>a user rating system designed to enhance transparency, reliability, and trust.</li>
               </ul>
 
-              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6"><span className="font-semibold">Secondary</span></h4>
+              <p className="text-muted-foreground mb-6">
+                The <span className="font-semibold">secondary</span>, less important use cases are:
+              </p>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
                 <li>account overview with previous borrowed/listed items</li>
                 <li>to strengthen the community & supporting the environment</li>
@@ -259,7 +285,16 @@ const ToolSwap = () => {
               {/* Benchmark image */}
               <div className="flex justify-center mt-6">
                 <div className="w-full overflow-hidden rounded-lg">
-                  <img src={benchmark} alt="Benchmark - comparative analysis" className="w-full h-auto object-contain" />
+                  <img
+                    src={benchmark}
+                    alt="Benchmark - comparative analysis"
+                    className="w-full h-auto object-contain cursor-pointer"
+                    onClick={() => {
+                      setSingleLightboxSrc(benchmark);
+                      setSingleLightboxAlt("Benchmark - comparative analysis");
+                      setSingleLightboxOpen(true);
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -369,7 +404,7 @@ const ToolSwap = () => {
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">Map</h4>
                     <p className="text-muted-foreground mb-4">
-                      When looking at other marketplaces or selling applications, most are based on list-view designs, and the map-view is only of secondary importance. As my research showed users find the map very useful, therefore I decided to make the design map-oriented, but still offer the option of showing the items in a list view.
+                      When looking at other marketplaces or selling applications, most are based on list-view designs, and the map-view is only of secondary importance. As my research showed, users find the map very useful, therefore I decided to make the design map-oriented, but still offer the option of showing the items in a list view.
                     </p>
                     <p className="text-muted-foreground mb-4">
                       The map can be seen throughout the application in the background as a visual theme.
@@ -473,7 +508,7 @@ const ToolSwap = () => {
                       For the list view of the tools I wanted to include a filter/sort by option. This should make it easier for users to find the tool they want (short travel distance, find the cheapest option, etc.)
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      I first tried to combine it within the map view (when showing the results), but after further research I removed that and opted for a bottom sheet. This seemed more user friendly, better to reach with your thumb, and the function is clearer. After doing some bench marking with other marketplace apps I wanted to include filter chips at the top of the screen to highlight the most used features. However, overall this would have overcomplicated the design and made it less clear to navigate. Below you can see the different versions to the final result.
+                      I first tried to combine it within the map view (when showing the results), but after further research I removed that and opted for a bottom sheet. This seemed more user friendly, better to reach with your thumb, and the function is clearer. After doing some bench marking with other marketplace apps I wanted to include filter chips at the top of the screen to highlight the most used features. However, overall this would have overcomplicated the design and made it less clear to navigate. Below you can see the different versions to the final result (right side).
                     </p>
 
                     <div className="w-full overflow-hidden rounded-lg mt-6">
@@ -532,20 +567,38 @@ const ToolSwap = () => {
                 </ul>
 
                 <p className="text-muted-foreground mb-4">
-                  User 1 struggled with the CTA buttons on the booking screens. Currently they are only underlined, so I’ll change this into clearer CTA’s. The Reserve-a-tool flow seemed to be quite clear as the user did not face any challenges with the search flow, although they tried to use the keyboard which is not fully interactive. They were also looking for a FAQ page and wanted to know how they could report an issue or a user. Since then I’ve added those pages to the main menu, accessible through the category Settings.
+                  <span className="font-semibold">User 1</span> struggled with the CTA buttons on the booking screens. Currently they are only underlined, so I’ll change this into clearer CTA’s. The Reserve-a-tool flow seemed to be quite clear as the user did not face any challenges with the search flow, although they tried to use the keyboard which is not fully interactive. They were also looking for a FAQ page and wanted to know how they could report an issue or a user. Since then I’ve added those pages to the main menu, accessible through the category Settings.
                 </p>
 
                 <p className="text-muted-foreground mb-4">
-                  User 2 solved the first task without any problems, and didn’t mind the category suggestions above the search bar, which I found very positive. When the user created a listing, they got confused when they had to insert the price, as the screen didn’t wait for the user to confirm the value, and instead changed right away to the next screen. So I will add her a step in between, so that the user can confirm the price through a “Continue” CTA. With the third task, the user got a bit confused as he expected to see a jigsaw listing in the listings (as he just created in an earlier task). Also instead of pressing on Bookings - Requests, the user first clicked on the different states (Upcoming / Completed / Requests) but after clarification they mentioned that they wanted to see what there was.
+                  <span className="font-semibold">User 2</span> solved the first task without any problems, and didn’t mind the category suggestions above the search bar, which I found very positive. When the user created a listing, they got confused when they had to insert the price, as the screen didn’t wait for the user to confirm the value, and instead changed right away to the next screen. So I will add her a step in between, so that the user can confirm the price through a “Continue” CTA. With the third task, the user got a bit confused as he expected to see a jigsaw listing in the listings (as he just created in an earlier task). Also instead of pressing on Bookings - Requests, the user first clicked on the different states (Upcoming / Completed / Requests) but after clarification they mentioned that they wanted to see what there was.
                 </p>
 
                 <p className="text-muted-foreground mb-4">
                   Based on that feedback I applied the following changes:
                 </p>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                  <li>Added FAQ / Report an Issue section to the Menu</li>
-                  <li>Changed the CTA’s of the Booking section page</li>
-                  <li>Added an additional step in the “Create Listing” to confirm price (instead of stepping ahead)</li>
+                <ul className="space-y-2 text-muted-foreground mb-6">
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span>Added FAQ / Report an Issue section to the Menu</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span>Changed the CTA's of the Booking section page</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span>Added an additional step in the "Create Listing" to confirm price (instead of stepping ahead)</span>
+                  </li>
                 </ul>
 
                 <p className="text-muted-foreground mb-6">
