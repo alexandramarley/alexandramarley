@@ -12,7 +12,7 @@ const Portrait = () => {
           <div className="container mx-auto px-6">
             <div className="mt-12 flex items-center justify-center">
               <div className="text-center">
-                <div className="inline-block bg-muted/40 text-muted-foreground px-6 py-4 rounded-lg"> 
+                <div className="inline-block text-muted-foreground px-6 py-4"> 
                   <h2 className="text-2xl md:text-3xl font-semibold">Coming soon</h2>
                 </div>
                 <p className="text-sm text-muted-foreground mt-4">This site is being updated & will show new content soon.</p>

@@ -2,8 +2,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PortfolioGrid from "@/components/PortfolioGrid";
 const Photography = () => {
-  const title = "Photography";
-  const description = "Exploring visual storytelling through the lens";
+  const title = "Photography Portfolio";
+  const description = "Some highlights of my photography work";
 
   return (
     <div className="min-h-screen">

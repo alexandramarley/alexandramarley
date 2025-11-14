@@ -11,10 +11,10 @@ const UXUIDesign = () => {
         <section className="py-12 md:py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-              UX/UI Design
+              UX/UI Design Portfolio
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mb-12">
-              Case studies showcasing user-centered design solutions
+              
             </p>
 
             <PortfolioGrid filter="uxui" />
