@@ -10,7 +10,7 @@ import tsDesign04a from "@/assets/alexandramarley-ux-toolswap-design-04-1.webp";
 import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.webp";
 import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
-import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.webp";
+import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
 import tsSketchesWireframes from "@/assets/alexandramarley-ux-ToolSwap-sketcheswireframes.webp";
 import deliverables6 from "@/assets/alexandramarley-ToolSwap-Create-Account.png";
 import deliverables11 from "@/assets/alexandramarley-ToolSwap-Create-Booking-Requests.png";
