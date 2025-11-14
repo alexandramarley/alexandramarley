@@ -66,7 +66,7 @@ const Index = () => {
               Beyond the Frame
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Where design thinks, and imagery speaks — always beyond the frame.
+              Where design thinks, and imagery speaks — always beyond the frame
             </p>
           </div>
         </section>

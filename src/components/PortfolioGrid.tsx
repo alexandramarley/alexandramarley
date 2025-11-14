@@ -90,9 +90,15 @@ const PortfolioGrid = ({ filter }: PortfolioGridProps) => {
                 />
               </div>
               
-              {/* Overlay on hover */}
+              {/* Text bar at bottom - visible on mobile only */}
+              <div className="md:hidden absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border px-4 py-3">
+                <h3 className="text-sm font-semibold mb-0.5">{item.title}</h3>
+                <p className="text-xs text-muted-foreground line-clamp-1">{item.description}</p>
+              </div>
+
+              {/* Overlay on hover - desktop only */}
               <div
-                className={`absolute inset-0 bg-background/90 flex flex-col items-center justify-center transition-opacity duration-300 ${
+                className={`hidden md:flex absolute inset-0 bg-background/90 flex-col items-center justify-center transition-opacity duration-300 ${
                   hoveredId === item.id ? "opacity-100" : "opacity-0"
                 }`}
               >
@@ -110,9 +116,15 @@ const PortfolioGrid = ({ filter }: PortfolioGridProps) => {
                 />
               </div>
               
-              {/* Overlay on hover */}
+              {/* Text bar at bottom - visible on mobile only */}
+              <div className="md:hidden absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t border-border px-4 py-3">
+                <h3 className="text-sm font-semibold mb-0.5">{item.title}</h3>
+                <p className="text-xs text-muted-foreground line-clamp-1">{item.description}</p>
+              </div>
+
+              {/* Overlay on hover - desktop only */}
               <div
-                className={`absolute inset-0 bg-background/90 flex flex-col items-center justify-center transition-opacity duration-300 ${
+                className={`hidden md:flex absolute inset-0 bg-background/90 flex-col items-center justify-center transition-opacity duration-300 ${
                   hoveredId === item.id ? "opacity-100" : "opacity-0"
                 }`}
               >
