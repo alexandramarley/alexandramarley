@@ -3,11 +3,11 @@ import Footer from "@/components/Footer";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
-import tsDesign01_3 from "@/assets/alexandramarley-ux-toolswap-design-01-3.png";
-import tsDesign02 from "@/assets/alexandramarley-ux-toolswap-design-02.png";
-import tsDesignChoices3 from "@/assets/alexandramarley-ux-toolswap-designchoices_3.png";
+import tsDesign01_3 from "@/assets/alexandramarley-ux-toolswap-design-01.webp";
+import tsDesign02 from "@/assets/alexandramarley-ux-toolswap-design-02.webp";
+import tsDesign03 from "@/assets/alexandramarley-ux-toolswap-design-03.png";
 import tsDesign04a from "@/assets/alexandramarley-ux-toolswap-design-04-1.webp";
-import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.png";
+import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.webp";
 import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-toolswap-userjourney.png";
@@ -24,7 +24,7 @@ import deliverables12 from "@/assets/ToolSwap-Messages-Chat.png";
 import deliverables9 from "@/assets/ToolSwap-Review-Listing.png";
 import deliverables10 from "@/assets/ToolSwap-Reviews.png";
 import deliverables2 from "@/assets/ToolSwap-Search.png";
-import benchmark from "@/assets/alexandramarley-ux-toolswap-benchmark-01.png";
+import benchmark from "@/assets/alexandramarley-ux-toolswap-benchmark-01.webp";
 
 const ToolSwap = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -174,7 +174,7 @@ const ToolSwap = () => {
                   <li>to be more eco-responsible</li>
                 </ul>
                 <p className="text-muted-foreground">
-                  This project took place in September/October, I was responsible for the full project from research to the final design.
+                  This project took place in September/October 2025, I was responsible for the full project from research to the final design.
                 </p>
               </div>
 
@@ -213,7 +213,7 @@ const ToolSwap = () => {
             {/* Full-width Process Image */}
             <div className="mt-8">
               <div className="flex justify-center">
-                <div className="w-full max-w-3xl overflow-hidden rounded-lg">
+                <div className="w-full max-w-4xl overflow-hidden rounded-lg">
                   <img
                     src={tsResearch01}
                     alt="Process step visualization"
@@ -234,12 +234,11 @@ const ToolSwap = () => {
               </p>
 
               <p className="text-muted-foreground mb-6">
-                Search by tool type / Map view of nearby tools & Availability calendar were the three most named features that the users would like to have, so I focused the next design iterations on these areas.
+                Search by tool type / map view of nearby tools & availability calendar were the three most named features that the users would like to have, so I focused the next design iterations on these areas.
               </p>
 
               <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6">The main use cases for the app are:</h4>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>list your tools to lend at your availability through a calendar</li>
                 <li>search & find tools to borrow near your location</li>
                 <li>a user rating system designed to enhance transparency, reliability, and trust.</li>
               </ul>
@@ -251,9 +250,11 @@ const ToolSwap = () => {
               </ul>
 
               <h4 className="text-xl font-semibold mb-4">Benchmark</h4>
-
               <p className="text-muted-foreground mb-6">
-                Example one shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen. In contrast, example two offers a clean and intuitive interface, prioritizing essential features like search and categories, which enhances the user experience.
+                As part of my research I compared similar products and their designs to identify best practices and areas for improvement.
+                </p>
+              <p className="text-muted-foreground mb-6">
+                <span className="text-blue-500 font-semibold">Example Blue </span> shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen. In contrast, <span className="text-red-500 font-semibold">Example Red</span> offers a clean and intuitive interface, prioritising essential features like search and categories, which enhances the user experience.
               </p>
               {/* Benchmark image */}
               <div className="flex justify-center mt-6">
@@ -332,7 +333,7 @@ const ToolSwap = () => {
   <section className="pt-2 pb-16">
           <div className="container mx-auto px-6">
             <div className="space-y-16">
-              {/* Block 1 */}
+              {/* Block 1 - Navigation & Search */}
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
@@ -362,7 +363,7 @@ const ToolSwap = () => {
                 </div>
               </div>
               
-              {/* Block 2 */}
+              {/* Block 2 - Map */}
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
@@ -389,7 +390,7 @@ const ToolSwap = () => {
                 </div>
               </div>
 
-              {/* Block 3 */}
+              {/* Block 3 - Terminology Main Menu*/}
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
@@ -398,16 +399,16 @@ const ToolSwap = () => {
                     The terminology for the main menu was quite tricky. In the beginning I used the categories Reserve Tool - Create Listing - My Account - Settings. The first two categories are quite clear, My Account would have been responsible for your own bookings, but also the bookings you receive for the items you lend.
                   </p>
                   <p className="text-muted-foreground mb-4">
-                    I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked some users what makes more sense to them, and everyone voted for <span className="text-green-500 font-semibold">option 2</span> vs <span className="text-red-500 font-semibold">option 1</span>.
+                    I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked users what makes more sense to them, and everyone voted for <span className="text-green-500 font-semibold">option 2</span> vs <span className="text-red-500 font-semibold">option 1</span>.
                   </p>
                   </div>
                   <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
                     <img
-                      src={tsDesignChoices3}
+                      src={tsDesign03}
                       alt="Terminology / Menu choices - full"
                       className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
                       onClick={() => {
-                        setSingleLightboxSrc(tsDesignChoices3);
+                        setSingleLightboxSrc(tsDesign03);
                         setSingleLightboxAlt("Terminology / Menu choices - full");
                         setSingleLightboxOpen(true);
                       }}
@@ -416,7 +417,7 @@ const ToolSwap = () => {
                 </div>
               </div>
 
-              {/* Block 4 */}
+              {/* Block 4 - List Item */}
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   <div className="max-w-3xl">
@@ -463,30 +464,44 @@ const ToolSwap = () => {
                 </div>
               </div>
 
-              {/* Block 5 */}
-               <div>
-                <div className="max-w-3xl px-12">
-                  <h4 className="text-lg font-semibold mb-2">Filter / Sort by </h4>
-                  <p className="text-muted-foreground mb-4">
-                    For the list view of the tools I wanted to include a filter/sort by option. This should make it easier for users to find the tool they want (short travel distance, find the cheapest option, etc.)
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    I first tried to combine it within the map view (when showing the results), but after further research I removed that and opted for a bottom sheet. This seemed more user friendly, better to reach with your thumb, and the function is clearer. After doing some bench marking with other marketplace apps I wanted to include a swiping banner at the top of the bottom sheet to highlight the most used features. However, overall this would have overcomplicated the design and made it less clear to navigate. Below you can see the different versions to the final result.
-                  </p>
-                </div>
-                <div className="w-full px-12 mt-6">
-                    <div className="w-full overflow-hidden rounded-lg">
+              {/* Block 5 - Filter / Sort by */}
+              <div>
+                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                  <div className="max-w-3xl">
+                    <h4 className="text-lg font-semibold mb-2">Filter / Sort by</h4>
+                    <p className="text-muted-foreground mb-4">
+                      For the list view of the tools I wanted to include a filter/sort by option. This should make it easier for users to find the tool they want (short travel distance, find the cheapest option, etc.)
+                    </p>
+                    <p className="text-muted-foreground mb-4">
+                      I first tried to combine it within the map view (when showing the results), but after further research I removed that and opted for a bottom sheet. This seemed more user friendly, better to reach with your thumb, and the function is clearer. After doing some bench marking with other marketplace apps I wanted to include filter chips at the top of the screen to highlight the most used features. However, overall this would have overcomplicated the design and made it less clear to navigate. Below you can see the different versions to the final result.
+                    </p>
+
+                    <div className="w-full overflow-hidden rounded-lg mt-6">
+                      <img
+                        src={tsDesign05}
+                        alt="Filter & Sort design - full"
+                        className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                        onClick={() => {
+                          setSingleLightboxSrc(tsDesign05);
+                          setSingleLightboxAlt("Filter & Sort design - full");
+                          setSingleLightboxOpen(true);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
                     <img
-                      src={tsDesign05}
-                      alt="Filter & Sort design - full"
-                      className="w-full h-auto object-cover cursor-pointer"
+                      src={deliverables5}
+                      alt="ToolSwap Filter"
+                      className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
                       onClick={() => {
-                        setSingleLightboxSrc(tsDesign05);
-                        setSingleLightboxAlt("Filter & Sort design - full");
+                        setSingleLightboxSrc(deliverables5);
+                        setSingleLightboxAlt("ToolSwap Filter");
                         setSingleLightboxOpen(true);
                       }}
                     />
-                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -509,7 +524,7 @@ const ToolSwap = () => {
                     You live in Canary Wharf &amp; look for a power drill from September 13th 2025 - September 20th, 2025. Try to reserve the item closest to you, assuming you already have an account (steven.smith@gmail.com / Password), and continue with the checkout flow.
                   </li>
                   <li>
-                    You live in Canary Wharf (15 Chichester Way, E14 3EG) and want to lend your Jigsaw to other people. Try to create your own listing, the price is £per day and no description is needed (this can be skipped).
+                    You live in Canary Wharf (15 Chichester Way, E14 3EG) and want to lend your Jigsaw to other people. Try to create your own listing, the price is £4 per day and no description is needed (this can be skipped).
                   </li>
                   <li>
                     Try to find the Booking Requests for your bookings (the tools that you are lending to others)
@@ -534,7 +549,7 @@ const ToolSwap = () => {
                 </ul>
 
                 <p className="text-muted-foreground mb-6">
-                  I want to conduct further user tests to collect additional feedback to improve the design further.
+                  I want to conduct more user tests to collect additional feedback to improve the design further.
                 </p>
               </div>
 
