@@ -99,8 +99,10 @@ const Navigation = () => {
       </div>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border">
-        <div className="flex items-center justify-around py-4 px-2">
+      {/* Add safe-area padding so the nav fills to the very bottom on phones (no gap) */}
+      {/* Add a small extra fallback offset for older phones so labels sit higher above the home indicator */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border pb-[calc(env(safe-area-inset-bottom)+0.5rem)]">
+        <div className="flex items-center justify-around py-4 px-2 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
           {navItems.map((item) => (
             <div key={item.id} className="relative">
               {item.subItems ? (
