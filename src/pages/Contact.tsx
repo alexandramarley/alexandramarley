@@ -18,11 +18,14 @@ const Contact = () => {
                 </h2>
                 <div className="max-w-2xl">
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Originally from the photography industry, I'm combining my years of experience in sales, client engagement, and digital operations into my UX/UI designs. I have a strong eye for detail, a team-first mindset, and a drive to create intuitive, user-focused experiences in fast-paced environments.
+                  Originally from the photography industry and working in eCommerce for over four years, I'm combining my years of experience in sales, client engagement, and digital operations into my designs. I have a strong eye for detail, a team-first mindset, and a drive to create intuitive, user-focused experiences in fast-paced environments.
                 </p>
                 <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Outdoor enthusiast, traveler, climber, and photographer. Born in Switzerland, living in London, available worldwide. Let's create something together.
+                  I’m an outdoor enthusiast, in my spare time you can find me rock climbing or with a camera in my hand. I love traveling around the globe and learn more about our beautiful world. 
+                </p><p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Born in Switzerland, living in London, available worldwide. Let's create something together. 
                 </p>
+                
 
                 {/* Contact Links */}
                 <div className="space-y-8 mt-12">
