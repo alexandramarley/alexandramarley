@@ -128,6 +128,53 @@ const DanaoTopo = () => {
           </div>
         </section>
 
+        {/* Research snapshot block (16:9): left = text, right = three short items */}
+        <section className="py-8">
+          <div className="container mx-auto px-6">
+            <div className="aspect-[16/9] overflow-hidden rounded-lg bg-background">
+              <div className="w-full h-full flex items-stretch">
+                <div className="w-full px-6 md:px-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 h-full items-start">
+                    {/* Left: Title + longer text */}
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Overview</h3>
+                      <p className="text-muted-foreground max-w-2xl mb-6">
+                        As an outdoor climber, you usually rely on guide books and topos (lines drawn on pictures of rock, explaining the route) to navigate climbing areas. They include info on how to access the climbing area, the length of the routes, the difficulty grade, and other useful information. However, when I visited a climbing area in the Philippines, Danao, all that was available, was a spreadsheet with lots of data.
+                      </p>
+                      <p className="text-muted-foreground mb-6">
+                        I took this opportunity to turn this information into a mobile application design, with improvements to traditional climbing guidebooks. My mission with this design:
+                      </p>
+                                <ul className="space-y-3 text-muted-foreground mb-6">
+                  <li>• make the most important information for climbers easily accessible</li>
+                  <li>• create a visually appealing design</li>
+                  <li>• design should be appropriate for low budget development teams, simple and easy to implement</li>
+                </ul>
+                    </div>
+
+                    {/* Right: three short titled lines */}
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xl md:text-2xl font-semibold mb-3">Role</h4>
+                        <p className="text-muted-foreground">Product Designer (full scope delivery, from research to final design)</p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl md:text-2xl font-semibold mb-3">Team</h4>
+                        <p className="text-muted-foreground">Independent project</p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl md:text-2xl font-semibold mb-3">Timeline</h4>
+                        <p className="text-muted-foreground">3 months (July - September 2025)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Overview Section */}
         <section className="pt-6 pb-12 bg-muted/30">
           <div className="container mx-auto px-6">
