@@ -136,76 +136,80 @@ const ToolSwap = () => {
       <Navigation />
       
       <main className="pt-20 md:pt-24 pb-20 md:pb-8">
-        {/* Hero Section */}
+        {/* Hero Section: three-line title with right-side 9:16 image (matches Danao layout) */}
         <section className="py-12 md:py-20">
           <div className="container mx-auto px-6">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-              ToolSwap
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-              A community-driven platform for sharing and borrowing tools
-            </p>
-            <div className="flex flex-wrap gap-3 mb-0">
-              <div className="rounded-full bg-muted px-4 py-2 text-sm">UI/UX Design</div>
-              <div className="rounded-full bg-muted px-4 py-2 text-sm">Community Platform</div>
-              <div className="rounded-full bg-muted px-4 py-2 text-sm">Mobile App</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+              {/* Left: three-line heading + intro (spans 2/3 on md+) */}
+              <div className="md:col-span-2">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight leading-tight md:leading-snug w-full">
+                  <span className="text-green-700 font-semibold">ToolSwap:</span> A community marketplace for borrowing tools — reducing cost and boosting sustainability
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-2xl mb-6">
+                  A mobile-first platform to find, list and borrow tools in your neighbourhood
+                </p>
+                <div className="flex flex-wrap gap-3 mb-0">
+                  <div className="rounded-full bg-muted px-4 py-2 text-sm">UI/UX Design</div>
+                  <div className="rounded-full bg-muted px-4 py-2 text-sm">Community Platform</div>
+                  <div className="rounded-full bg-muted px-4 py-2 text-sm">Mobile App</div>
+                </div>
+              </div>
+
+              {/* Right: tall image (9:16) shown on md+ (occupies 1/3) */}
+              <div className="hidden md:flex justify-center">
+                <div className="aspect-[9/16] w-full max-w-[160px] sm:max-w-[200px] md:max-w-[216px] lg:max-w-[280px] overflow-hidden rounded-lg mx-auto">
+                  <img
+                    src={deliverables1}
+                    alt="ToolSwap preview"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Project Overview */}
-        <section className="pt-6 pb-12 bg-muted/30">
+        {/* Overview (adopted from DanaoTopo): left long text, right Role/Team/Timeline — stacks on mobile */}
+        <section className="pt-6 pb-12">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="max-w-3xl space-y-4">
-                <h2 className="text-2xl md:text-3xl font-semibold mb-6">
-                  Project Overview
-                </h2>
-                <p className="text-muted-foreground">
-                  As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up & it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
-                </p>
-                <p className="text-muted-foreground">
-                  I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goals:
-                </p>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>create a mobile app that is easy and quick to use</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>create a marketplace where tools can be lent/borrowed for a short amount of time</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>reduce people's spending</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>to be more eco-responsible</span>
-                  </li>
-                </ul>
-                <p className="text-muted-foreground">
-                  This project took place in September/October 2025, I was responsible for the full project from research to the final design.
-                </p>
-              </div>
+            <div className="overflow-hidden rounded-lg bg-background md:aspect-[16/9]">
+              <div className="w-full flex items-stretch md:h-full">
+                <div className="w-full px-6 md:px-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
+                    {/* Left: Title + longer text */}
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Overview</h3>
+                      <p className="text-muted-foreground max-w-2xl mb-6">
+                        As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up & it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
+                      </p>
+                      <p className="text-muted-foreground mb-6">
+                        I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goals:
+                      </p>
+                      <ul className="space-y-3 text-muted-foreground mb-6">
+                        <li>• create a mobile app that is easy and quick to use</li>
+                        <li>• create a marketplace where tools can be lent/borrowed for a short amount of time</li>
+                        <li>• reduce people's spending and encourage sustainable choices</li>
+                      </ul>
+                    </div>
 
-              {/* Centered image next to Project Overview */}
-              <div className="flex items-center justify-center">
-                <div className="w-full max-w-[220px] overflow-hidden rounded-lg">
-                  <img src={deliverables1} alt="ToolSwap Home" className="w-full h-auto object-contain" />
+                    {/* Right: three short titled lines */}
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Role</h4>
+                        <p className="text-muted-foreground">Product Designer (full scope delivery, from research to final design)</p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Team</h4>
+                        <p className="text-muted-foreground">Independent project</p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Timeline</h4>
+                        <p className="text-muted-foreground">September - October 2025</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
