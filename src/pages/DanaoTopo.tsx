@@ -149,7 +149,7 @@ const DanaoTopo = () => {
   {/* Research snapshot block (16:9): left = text, right = three short items */}
   <section className="py-6">
           <div className="container mx-auto px-6">
-            <div className="overflow-hidden rounded-lg bg-background md:aspect-[16/9]">
+            <div className="overflow-hidden rounded-lg bg-background">
               <div className="w-full flex items-stretch md:h-full">
                 <div className="w-full px-6 md:px-12">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
@@ -711,7 +711,7 @@ const DanaoTopo = () => {
                 onClick={() => window.scrollTo(0, 0)}
                 className="group relative block overflow-hidden rounded-xl shadow-lg"
               >
-                <div className="aspect-[16/9] w-full overflow-hidden">
+                <div className="w-full overflow-hidden">
                   <img
                     src={toolswapteaser}
                     alt="ToolSwap Project - Community-driven platform for sharing tools"

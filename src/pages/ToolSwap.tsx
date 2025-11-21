@@ -11,7 +11,6 @@ import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.webp";
 import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
-import tsSketchesWireframes from "@/assets/alexandramarley-ux-ToolSwap-sketcheswireframes.webp";
 import deliverables6 from "@/assets/alexandramarley-ToolSwap-Create-Account.png";
 import deliverables11 from "@/assets/alexandramarley-ToolSwap-Create-Booking-Requests.png";
 import deliverables8 from "@/assets/alexandramarley-ToolSwap-Create-Listing.png";
@@ -31,7 +30,6 @@ const ToolSwap = () => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [researchLightboxOpen, setResearchLightboxOpen] = useState(false);
   const [journeyLightboxOpen, setJourneyLightboxOpen] = useState(false);
-  const [sketchLightboxOpen, setSketchLightboxOpen] = useState(false);
   // Generic single-image lightbox used by a few design images
   const [singleLightboxOpen, setSingleLightboxOpen] = useState(false);
   const [singleLightboxSrc, setSingleLightboxSrc] = useState<string | null>(null);
@@ -111,16 +109,6 @@ const ToolSwap = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [journeyLightboxOpen]);
 
-  // Key handling for sketches/wireframes combined image lightbox
-  useEffect(() => {
-    if (!sketchLightboxOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSketchLightboxOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [sketchLightboxOpen]);
-
   // Key handling for the generic single-image lightbox
   useEffect(() => {
     if (!singleLightboxOpen) return;
@@ -172,7 +160,7 @@ const ToolSwap = () => {
         {/* Overview (adopted from DanaoTopo): left long text, right Role/Team/Timeline — stacks on mobile */}
         <section className="pt-6 pb-12">
           <div className="container mx-auto px-6">
-            <div className="overflow-hidden rounded-lg bg-background md:aspect-[16/9]">
+            <div className="overflow-hidden rounded-lg bg-background">
               <div className="w-full flex items-stretch md:h-full">
                 <div className="w-full px-6 md:px-12">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
@@ -310,60 +298,45 @@ const ToolSwap = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">DESIGN</h2>
-              <p className="text-muted-foreground mb-6">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
+              <p className="text-muted-foreground mb-8">
                 It was clear that I had to come up with a design that has minimal clicks, and features the two main things the app should do: Reserve and list tools.
               </p>
-              <p className="text-muted-foreground mb-6">
-                I started to work on the app structure and document the user journey. My key considerations were the user goals and to document the structure. There are three different journeys: to search &amp; borrow someone&apos;s tool, to list your own tools, and accessing your account.
-              </p>
-              <ul className="list-inside space-y-2 text-muted-foreground mb-6">
-                <li>• Quick listing flow for lenders</li>
-                <li>• Fast booking for borrowers</li>
-                <li>• Clear tool condition and pickup/delivery instructions</li>
-              </ul>
             </div>
 
-            {/* Flowchart image */}
+            {/* User journey paragraph on the left, flowchart image centered on the right (responsive) */}
             <div className="mt-8">
-              <div className="flex justify-center">
-                <div className="w-full max-w-3xl overflow-hidden rounded-lg">
-                  <img
-                    src={tsUserJourney}
-                    alt="User journey flowchart"
-                    className="w-full h-auto object-contain cursor-pointer"
-                    onClick={() => setJourneyLightboxOpen(true)}
-                  />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div className="max-w-3xl">
+                  <p className="text-muted-foreground mb-6">
+                    I started to work on the app structure and document the user journey. My key considerations were the user goals and to document the structure. There are three different journeys: to search &amp; borrow someone&apos;s tool, to list your own tools, and accessing your account.
+                  </p>
+
+                  <ul className="list-inside space-y-2 text-muted-foreground mb-6">
+                    <li>• Quick listing flow for lenders</li>
+                    <li>• Fast booking for borrowers</li>
+                    <li>• Clear tool condition and pickup/delivery instructions</li>
+                  </ul>
+                </div>
+
+                <div className="flex justify-center">
+                  <div className="w-full max-w-3xl overflow-hidden rounded-lg">
+                    <img
+                      src={tsUserJourney}
+                      alt="User journey flowchart"
+                      className="w-full h-auto object-contain cursor-pointer"
+                      onClick={() => setJourneyLightboxOpen(true)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Sketches & Wireframes - single combined image under paragraph */}
-            <div className="max-w-3xl mt-8">
-              <h4 className="text-lg font-semibold mb-2">Sketches & Wireframes</h4>
-              <p className="text-muted-foreground mb-6">After defining the user journey I drew some sketches & created medium fidelity wireframes before moving onto the actual design.</p>
-            </div>
-
-            {/* Sketches & Wireframes (constrained to text width) */}
-            <div className="mt-4">
-              <div className="max-w-3xl mx-auto">
-                <div className="overflow-hidden rounded-lg">
-                  <img
-                    src={tsSketchesWireframes}
-                    alt="Sketches and wireframes combined"
-                    className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSketchLightboxOpen(true)}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSketchLightboxOpen(true); }}
-                  />
-                </div>
-              </div>
-            </div>
+            {/* Sketches & Wireframes image removed per request */}
 
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-0">Next step was converting the wireframes into actual designs. Some of my challenges & reasonings are highlighted below.</p>
+              <p className="text-muted-foreground mb-0">After defining the user journey I drew some sketches & created medium fidelity wireframe which helped me clarify the structure and flow. Next step was converting the wireframes into actual designs. Some of my challenges & reasonings are highlighted below.</p>
             </div>
           </div>
         </section>
@@ -824,29 +797,7 @@ const ToolSwap = () => {
           </div>
         )}
 
-        {/* Sketches & Wireframes combined image lightbox (single image) */}
-        {sketchLightboxOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) setSketchLightboxOpen(false);
-            }}
-          >
-            <button
-              onClick={() => setSketchLightboxOpen(false)}
-              className="absolute top-6 right-6 text-white text-3xl leading-none"
-              aria-label="Close"
-            >
-              ×
-            </button>
-
-            <img
-              src={tsSketchesWireframes}
-              alt="Sketches and wireframes - full"
-              className="max-w-[90%] max-h-[90%] object-contain rounded"
-            />
-          </div>
-        )}
+        {/* Sketches & Wireframes lightbox removed */}
 
         {/* Generic single-image lightbox used by multiple design images */}
         {singleLightboxOpen && singleLightboxSrc && (
