@@ -168,7 +168,7 @@ const ToolSwap = () => {
                     <div>
                       <h3 className="text-2xl md:text-3xl font-semibold mb-4">Overview</h3>
                       <p className="text-muted-foreground max-w-2xl mb-6">
-                        As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up & it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
+                        As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up and it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
                       </p>
                       <p className="text-muted-foreground mb-6">
                         I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goals:
@@ -204,6 +204,9 @@ const ToolSwap = () => {
           </div>
         </section>
 
+      
+
+
         {/* Process Section (mirrored from DanaoTopo structure) */}
         <section className="py-12">
           <div className="container mx-auto px-6">
@@ -211,69 +214,92 @@ const ToolSwap = () => {
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
               <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS</h2>
               <p className="text-muted-foreground mb-8">
-                To find out more about our users and if there’s a need for such a tool I relied mainly on quantitative and qualitative methods. I created a survey to find out what tools people would be interested to borrow, and if they would pay for it. I asked them a bunch of questions:
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>do they own/rent their home</li>
-                <li>do they have access to some outdoor space</li>
-                <li>how often do they borrow tools from friends/family or do they already own most tools</li>
-                <li>if there would be an app where they can borrow tools, would they use it</li>
-                <li>what would be their worries/fears when using the app</li>
-                <li>what would serve as a motivation or assurance to use the app</li>
-              </ul>
-              <p className="text-muted-foreground mb-6">
-                Based on research insights, key priorities were identified: ease of discovery, quick listing flows, and trust-building features such as user ratings and verification.
+                To find out more about our users and if there’s a need for such a tool. I relied mainly on quantitative and qualitative methods. I created a survey to find out more about our users, what tools people would be interested to borrow, and if they would pay for it. The results: 
               </p>
             </div>
 
-            {/* Full-width Process Image */}
-            <div className="mt-8">
-              <div className="flex justify-center">
-                <div className="w-full max-w-4xl overflow-hidden rounded-lg">
-                  <img
-                    src={tsResearch01}
-                    alt="Process step visualization"
-                    className="w-full h-auto object-contain cursor-pointer"
-                    onClick={() => setResearchLightboxOpen(true)}
-                  />
+{/* Research Findings */}
+        <section className="py-8">
+          <div className="container mx-auto px-6">
+            <div className="w-full">
+              {/* Make findings use full available width and distribute cards evenly on md+ */}
+              <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
+                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                    <h4 className="text-lg font-semibold mb-2">User Demand</h4>
+                    <p className="text-muted-foreground">60% of participants are somewhat interested in using the app, 46% use tools monthly or weekly. Most commonly used categories: hand tools (80%), followed by DIY tools, then kitchen/garden tools.</p>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                    <h4 className="text-lg font-semibold mb-2">Motivations</h4>
+                    <p className="text-muted-foreground">Users are driven by practical and ethical benefits: 
+                      <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Convenience</li>
+                <li>User verification</li>
+                <li>Sustainability and reducing waste</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                    <h4 className="text-lg font-semibold mb-2">Barriers and Trust Concerns</h4>
+                    <p className="text-muted-foreground">The biggest hesitation is around possible damage to borrowed tools. Users also worry about reliability and responsibility. They want reassurance that both lenders and borrowers can be trusted.</p>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                    <h4 className="text-lg font-semibold mb-2">Essential Trust-Building Features</h4>
+                    <p className="text-muted-foreground">To increase confidence in using the app, participants identified key features: 
+                      <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Insurance or damage guarantee</li>
+                <li>User verification</li>
+                <li>Ratings & reviews</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                    <h4 className="text-lg font-semibold mb-2">Priority Features & Core Use Cases</h4>
+                    <p className="text-muted-foreground">Most desired app functionalities include: 
+                      <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Search by tool type</li>
+                <li>Map view of nearby tools</li>
+                <li>Availability calendar</li>
+                      </ul>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="max-w-3xl mt-12">
-              <p className="text-muted-foreground mb-6">
-                From the survey I learnt that 60% would be somewhat interested in using this app, 46% users use tools monthly or even on a weekly base. Hand tools like hammer, screw drivers etc are used most often (80%), with DIY tools taking the second place and kitchen tools/garden tools third.
-              </p>
+          </div>
+        </section>  
 
               <p className="text-muted-foreground mb-6">
-                Whilst most users said they are worried about damage to the tools that they would lend, an insurance/guarantee for damages & verified/rated users would make them more comfortable to use the app. Convenience, saving money and supporting sustainability are the main three motivators for using the app.
-              </p>
-
-              <p className="text-muted-foreground mb-6">
-                Search by tool type / map view of nearby tools & availability calendar were the three most named features that the users would like to have, so I focused the next design iterations on these areas.
-              </p>
-
-              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6">The <span className="font-semibold">main use cases</span> for the app are:</h4>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>search & find tools to borrow near your location</li>
-                <li>a user rating system designed to enhance transparency, reliability, and trust.</li>
-              </ul>
-
-              <p className="text-muted-foreground mb-6">
-                The <span className="font-semibold">secondary</span>, less important use cases are:
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>account overview with previous borrowed/listed items</li>
-                <li>to strengthen the community & supporting the environment</li>
-              </ul>
-
-              <h4 className="text-xl font-semibold mb-4">Benchmark</h4>
-              <p className="text-muted-foreground mb-6">
-                As part of my research I compared similar products and their designs to identify best practices and areas for improvement.
+                As part of my research I did some  <span className="font-semibold">benchmarking</span> and compared similar products and their designs to identify best practices and areas for improvement.
                 </p>
-              <p className="text-muted-foreground mb-6">
-                <span className="text-blue-500 font-semibold">Example Blue </span> shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen. In contrast, <span className="text-red-500 font-semibold">Example Red</span> offers a clean and intuitive interface, prioritising essential features like search and categories, which enhances the user experience.
-              </p>
+             {/* Benchmark summary cards (two items) */}
+              <div className="mt-8">
+                <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
+                  <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                    <div className="mx-auto max-w-md md:max-w-none text-left">
+                      <p className="text-muted-foreground"><span className="text-blue-500 font-semibold">Example Blue </span> shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen.</p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                    <div className="mx-auto max-w-md md:max-w-none text-left">
+                      <p className="text-muted-foreground">In contrast, <span className="text-red-500 font-semibold">Example Red</span> offers a clean and intuitive interface, prioritising essential features like search and categories, which enhances the user experience.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               {/* Benchmark image */}
               <div className="flex justify-center mt-6">
                 <div className="w-full overflow-hidden rounded-lg">
@@ -289,9 +315,33 @@ const ToolSwap = () => {
                   />
                 </div>
               </div>
-            </div>
           </div>
         </section>
+
+
+
+
+
+            <div className="max-w-3xl mt-12">
+              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6">The <span className="font-semibold">main use cases</span> for the app are:</h4>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>search and find tools to borrow near your location</li>
+                <li>a user rating system designed to enhance transparency, reliability, and trust.</li>
+              </ul>
+
+              <p className="text-muted-foreground mb-6">
+                The <span className="font-semibold">secondary</span>, less important use cases are:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>account overview with previous borrowed/listed items</li>
+                <li>to strengthen the community and supporting the environment</li>
+              </ul>
+            </div>
+
+
+
+
+
 
         {/* Process Step Two Section */}
         <section className="py-12 bg-muted/30">
@@ -300,6 +350,8 @@ const ToolSwap = () => {
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
               <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
               <p className="text-muted-foreground mb-8">
+                Based on research insights, key priorities were identified: ease of discovery, quick listing flows, and trust-building features such as user ratings and verification.<p></p>
+                
                 It was clear that I had to come up with a design that has minimal clicks, and features the two main things the app should do: Reserve and list tools.
               </p>
             </div>
@@ -332,11 +384,9 @@ const ToolSwap = () => {
               </div>
             </div>
 
-            {/* Sketches & Wireframes image removed per request */}
-
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-0">After defining the user journey I drew some sketches & created medium fidelity wireframe which helped me clarify the structure and flow. Next step was converting the wireframes into actual designs. Some of my challenges & reasonings are highlighted below.</p>
+              <p className="text-muted-foreground mb-0">After defining the user journey I drew some sketches and created medium fidelity wireframe which helped me clarify the structure and flow. Next step was converting the wireframes into actual designs. Some of my challenges and reasonings are highlighted below.</p>
             </div>
           </div>
         </section>
@@ -520,7 +570,7 @@ const ToolSwap = () => {
           </div>
         </section>
 
-        {/* Process Step Three Section */}
+        {/* Process Step Three Section - Prototype & Testing */}
         <section className="py-12">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -578,9 +628,100 @@ const ToolSwap = () => {
                   </li>
                 </ul>
 
-                <p className="text-muted-foreground mb-6">
-                  I want to conduct more user tests to collect additional feedback to improve the design further.
-                </p>
+                {/* Findings & Next Steps - modelled after DanaoTopo styling */}
+                <section className="py-8">
+                  <div className="container mx-auto px-6">
+                    <div className="w-full">
+                      <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
+                        <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                          <div className="mx-auto max-w-md md:max-w-none text-left">
+                            <h4 className="text-lg font-semibold mb-2">Findings</h4>
+                            <ul className="list-inside space-y-2 text-muted-foreground">
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M15 9l-6 6M9 9l6 6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>CTA buttons styled only as underlined text were not recognized as actionable, causing confusion</span>
+                              </li>
+
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M15 9l-6 6M9 9l6 6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>Users expect access to supporting resources such as FAQs and issue reporting</span>
+                              </li>
+
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M15 9l-6 6M9 9l6 6" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>User confusion occurred when entering the price for a new listing (value auto-submitted without user confirmation)</span>
+                              </li>
+
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>The search and reserve flow is generally intuitive and easy to follow</span>
+                              </li>
+
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>Category suggestions above the search bar were not perceived as intrusive</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                          <div className="mx-auto max-w-md md:max-w-none text-left">
+                            <h4 className="text-lg font-semibold mb-2">Next Steps</h4>
+                            <ul className="list-inside space-y-2 text-muted-foreground">
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>Replace ambiguous underlined CTAs with clearer buttons</span>
+                              </li>
+
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>Added FAQ / Report an Issue section to the Menu</span>
+                              </li>
+
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>Add clearer feedback in the create-listing flow (confirm price step)</span>
+                              </li>
+
+                              <li className="flex items-start gap-2">
+                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="10" />
+                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>Conduct more user tests to collect further data</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
 
               {/* Right: Embedded prototype (responsive) */}
@@ -600,7 +741,7 @@ const ToolSwap = () => {
           </div>
         </section>
 
-        {/* Process Step Four Section */}
+        {/* Process Step Four Section - Deliverables */}
         <section className="py-12">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">

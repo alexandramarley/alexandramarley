@@ -205,7 +205,7 @@ const DanaoTopo = () => {
                 RESEARCH & ANALYSIS
               </h2>
               <p className="text-muted-foreground mb-8">
-                In my research I used a mix of qualitative and quantitive methods to find out more about our users and their behaviour. Besides observing & talking to climbers I created a survey to gather market research, which would drive decision making in the design process. My findings:
+                In my research I used a mix of qualitative and quantitive methods to find out more about our users and their behaviour. Besides observing and talking to climbers I created a survey to gather market research, which would drive decision making in the design process. My findings:
               </p>
             </div>
 
