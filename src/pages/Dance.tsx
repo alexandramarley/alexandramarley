@@ -20,9 +20,9 @@ import dance15 from "@/assets/alexandramarley-photo-dance-15.webp";
 
 const Dance = () => {
   const photos = [
-    dance01, dance02, dance11, dance03, dance04, dance05,
-    dance06, dance07, dance08, dance09, dance10,
-    dance12, dance13, dance14, dance15,
+    dance02, dance03, dance09, dance10, dance04, dance08,
+    dance06, dance05, dance12, dance11, dance01,
+    dance07, dance13, dance14, dance15,
   ];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
