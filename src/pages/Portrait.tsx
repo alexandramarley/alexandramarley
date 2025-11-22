@@ -28,8 +28,6 @@ const Portrait = () => {
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-  const [landscapes, setLandscapes] = useState<Set<number>>(new Set());
-
   const openLightbox = (i: number) => {
     setCurrentIndex(i);
     setLightboxOpen(true);
@@ -69,60 +67,22 @@ const Portrait = () => {
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-6">
 
-            {/* Portrait gallery: five rows [3,3,3,5,3] preserving original ratios.
-                Each item uses a uniform wrapper height and images use h-full w-auto to
-                preserve aspect ratio while matching height. */}
-            {(() => {
-              const rows = [
-                photos.slice(0, 3),   // row 1 (3)
-                photos.slice(3, 6),   // row 2 (3)
-                photos.slice(6, 9),   // row 3 (3)
-                photos.slice(9, 14),  // row 4 (5)
-                photos.slice(14, 17), // row 5 (3)
-              ];
-
-              return rows.map((row, rowIndex) => {
-                const startIndex = rows.slice(0, rowIndex).reduce((s, r) => s + r.length, 0);
-                return (
-                  <div
-                    key={rowIndex}
-                    className="mb-2"
-                    style={{ gridTemplateColumns: `repeat(${row.length}, minmax(0, 1fr))` }}
-                  >
-                    <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${row.length}, minmax(0, 1fr))` }}>
-                      {row.map((src, idx) => {
-                        const i = startIndex + idx;
-                        return (
-                          <div key={i} className="h-72 md:h-96 overflow-hidden rounded-lg flex items-center justify-center">
-                            <img
-                              src={src}
-                              alt={`Portrait ${i + 1}`}
-                              // If detected as landscape, slightly scale up height to visually match portraits
-                              style={{ height: landscapes.has(i) ? '110%' : '100%', width: 'auto' }}
-                              className="object-contain cursor-pointer"
-                              role="button"
-                              tabIndex={0}
-                              onClick={() => openLightbox(i)}
-                              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openLightbox(i); }}
-                              onLoad={(e) => {
-                                const imgEl = e.currentTarget as HTMLImageElement;
-                                if (imgEl.naturalWidth > imgEl.naturalHeight) {
-                                  setLandscapes(prev => {
-                                    const next = new Set(prev);
-                                    next.add(i);
-                                    return next;
-                                  });
-                                }
-                              }}
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              });
-            })()}
+            {/* Masonry-like photo grid used on Dance page: CSS columns keep aspect ratios and avoid cropping */}
+            <div className="columns-2 sm:columns-3 md:columns-4 gap-4 xl:columns-5">
+              {photos.map((src, i) => (
+                <div key={i} className="break-inside-avoid mb-4">
+                  <img
+                    src={src}
+                    alt={`Portrait ${i + 1}`}
+                    className="w-full h-auto rounded-lg object-contain cursor-pointer"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => openLightbox(i)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openLightbox(i); }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
