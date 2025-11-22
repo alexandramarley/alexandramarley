@@ -131,7 +131,7 @@ const ToolSwap = () => {
               {/* Left: three-line heading + intro (spans 2/3 on md+) */}
               <div className="md:col-span-2">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight leading-tight md:leading-snug w-full">
-                  <span className="text-green-700 font-semibold">ToolSwap:</span> A community marketplace for borrowing tools — reducing cost and boosting sustainability
+                  <span className="text-green-700 font-semibold">ToolSwap:</span> A community marketplace for borrowing tools - reducing cost and boosting sustainability
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mb-6">
                   A mobile-first platform to find, list and borrow tools in your neighbourhood
@@ -161,21 +161,21 @@ const ToolSwap = () => {
         <section className="pt-6 pb-12">
           <div className="container mx-auto px-6">
             <div className="overflow-hidden rounded-lg bg-background">
-              <div className="w-full flex items-stretch md:h-full">
-                <div className="w-full px-6 md:px-12">
+                <div className="w-full flex items-stretch md:h-full">
+                <div className="w-full">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
                     {/* Left: Title + longer text */}
                     <div>
                       <h3 className="text-2xl md:text-3xl font-semibold mb-4">Overview</h3>
                       <p className="text-muted-foreground max-w-2xl mb-6">
-                        As the cost of living in London increases each year, and everyone tries to be environmentally friendly, it's understandable that not everyone has a pressure washer, or a drill. Especially because you only need it every once in a while! We are also in a time where DIY-makeovers are hyped up and it's very tempting to do one yourself. What if there would be an app where you could borrow available tools in your area, and in return you offer your fancy Artisan Stand Mixer that you only use every six months?
+                        As London’s cost of living rises and we all try to be more eco-friendly, it makes sense that not everyone owns a pressure washer or drill—especially when you only need one occasionally. With DIY makeovers on the rise, it’s tempting to try them yourself. So what if there were an app where you could borrow tools from people nearby, and offer up that fancy Artisan Stand Mixer you only use every six months in return?
                       </p>
                       <p className="text-muted-foreground mb-6">
                         I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goals:
                       </p>
                       <ul className="space-y-3 text-muted-foreground mb-6">
                         <li>• create a mobile app that is easy and quick to use</li>
-                        <li>• create a marketplace where tools can be lent/borrowed for a short amount of time</li>
+                        <li>• create a marketplace where tools can be lent/borrowed for a short amount of time with a user rating system designed to enhance transparency, reliability, and trust.</li>
                         <li>• reduce people's spending and encourage sustainable choices</li>
                       </ul>
                     </div>
@@ -214,66 +214,69 @@ const ToolSwap = () => {
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
               <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS</h2>
               <p className="text-muted-foreground mb-8">
-                To find out more about our users and if there’s a need for such a tool. I relied mainly on quantitative and qualitative methods. I created a survey to find out more about our users, what tools people would be interested to borrow, and if they would pay for it. The results: 
+                To find out more about our users and if there’s a need for such a tool I relied mainly on quantitative and qualitative methods. I created a survey to find out more about our users, what tools people would be interested to borrow, and if they would pay for it. The results: 
               </p>
             </div>
 
 {/* Research Findings */}
         <section className="py-8">
           <div className="container mx-auto px-6">
-            <div className="w-full">
-              {/* Make findings use full available width and distribute cards evenly on md+ */}
-              <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+              <div className="w-full">
+              {/* Make findings use full available width and allow cards to wrap onto multiple rows when needed */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full items-stretch">
+                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
+                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
                     <h4 className="text-lg font-semibold mb-2">User Demand</h4>
                     <p className="text-muted-foreground">60% of participants are somewhat interested in using the app, 46% use tools monthly or weekly. Most commonly used categories: hand tools (80%), followed by DIY tools, then kitchen/garden tools.</p>
                   </div>
                 </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
+                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
                     <h4 className="text-lg font-semibold mb-2">Motivations</h4>
-                    <p className="text-muted-foreground">Users are driven by practical and ethical benefits: 
+                    <div className="text-muted-foreground">
+                      <p className="mb-2">Users are driven by practical and ethical benefits:</p>
                       <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>Convenience</li>
-                <li>User verification</li>
-                <li>Sustainability and reducing waste</li>
+                        <li>Convenience</li>
+                        <li>User verification</li>
+                        <li>Sustainability and reducing waste</li>
                       </ul>
-                    </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
+                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
                     <h4 className="text-lg font-semibold mb-2">Barriers and Trust Concerns</h4>
                     <p className="text-muted-foreground">The biggest hesitation is around possible damage to borrowed tools. Users also worry about reliability and responsibility. They want reassurance that both lenders and borrowers can be trusted.</p>
                   </div>
                 </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
+                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
                     <h4 className="text-lg font-semibold mb-2">Essential Trust-Building Features</h4>
-                    <p className="text-muted-foreground">To increase confidence in using the app, participants identified key features: 
+                    <div className="text-muted-foreground">
+                      <p className="mb-2">To increase confidence in using the app, participants identified key features:</p>
                       <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>Insurance or damage guarantee</li>
-                <li>User verification</li>
-                <li>Ratings & reviews</li>
+                        <li>User verification</li>
+                        <li>Ratings & reviews</li>
+                        <li>Insurance or damage guarantee</li>
                       </ul>
-                    </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-xs md:max-w-none text-left">
+                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
+                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
                     <h4 className="text-lg font-semibold mb-2">Priority Features & Core Use Cases</h4>
-                    <p className="text-muted-foreground">Most desired app functionalities include: 
+                    <div className="text-muted-foreground">
+                      <p className="mb-2">Most desired app functionalities include:</p>
                       <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>Search by tool type</li>
-                <li>Map view of nearby tools</li>
-                <li>Availability calendar</li>
+                        <li>Search by tool type</li>
+                        <li>Availability calendar</li>
+                        <li>Map view of nearby tools</li>
                       </ul>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -318,41 +321,14 @@ const ToolSwap = () => {
           </div>
         </section>
 
-
-
-
-
-            <div className="max-w-3xl mt-12">
-              <h4 className="list-disc list-inside space-y-2 text-muted-foreground mb-6">The <span className="font-semibold">main use cases</span> for the app are:</h4>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>search and find tools to borrow near your location</li>
-                <li>a user rating system designed to enhance transparency, reliability, and trust.</li>
-              </ul>
-
-              <p className="text-muted-foreground mb-6">
-                The <span className="font-semibold">secondary</span>, less important use cases are:
-              </p>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>account overview with previous borrowed/listed items</li>
-                <li>to strengthen the community and supporting the environment</li>
-              </ul>
-            </div>
-
-
-
-
-
-
         {/* Process Step Two Section */}
         <section className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
               <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
-              <p className="text-muted-foreground mb-8">
-                Based on research insights, key priorities were identified: ease of discovery, quick listing flows, and trust-building features such as user ratings and verification.<p></p>
-                
-                It was clear that I had to come up with a design that has minimal clicks, and features the two main things the app should do: Reserve and list tools.
+              <p className="text-muted-foreground mb-4">
+                Based on research insights, key priorities were identified: ease of discovery, quick listing flows, and trust-building features such as user ratings and verification. The secondary, less important use cases would be an account overview with previous borrowed/listed items and the aim to strengthen the community and supporting the environment
               </p>
             </div>
 
@@ -360,14 +336,17 @@ const ToolSwap = () => {
             <div className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="max-w-3xl">
-                  <p className="text-muted-foreground mb-6">
-                    I started to work on the app structure and document the user journey. My key considerations were the user goals and to document the structure. There are three different journeys: to search &amp; borrow someone&apos;s tool, to list your own tools, and accessing your account.
+                  <p className="text-muted-foreground mb-8">
+                It was clear that I had to come up with a design that has minimal clicks, and features the two main things the app should do: Reserve and list tools.
+              </p>
+              <p className="text-muted-foreground mb-6">
+                    I started to work on the app structure and document the user journey. My key considerations were the user goals and to document the structure. There are three different journeys:
                   </p>
 
                   <ul className="list-inside space-y-2 text-muted-foreground mb-6">
-                    <li>• Quick listing flow for lenders</li>
-                    <li>• Fast booking for borrowers</li>
-                    <li>• Clear tool condition and pickup/delivery instructions</li>
+                    <li>• To search and borrow someone&apos;s tool</li>
+                    <li>• To list your own tools</li>
+                    <li>• To access your account</li>
                   </ul>
                 </div>
 
@@ -579,7 +558,7 @@ const ToolSwap = () => {
                 <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
                 <h2 className="text-2xl md:text-3xl font-semibold mb-4">PROTOTYPE &amp; TESTING</h2>
                 <p className="text-muted-foreground mb-4">
-                  The tasks for my user tests were as followed:
+                  After finishing my design screens, I connected all the different frames &amp; created a prototype. When it came to the user testing, I gave the candidates the following tasks:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
                   <li>
@@ -594,134 +573,14 @@ const ToolSwap = () => {
                 </ul>
 
                 <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 1</span> struggled with the CTA buttons on the booking screens. Currently they are only underlined, so I’ll change this into clearer CTA’s. The Reserve-a-tool flow seemed to be quite clear as the user did not face any challenges with the search flow, although they tried to use the keyboard which is not fully interactive. They were also looking for a FAQ page and wanted to know how they could report an issue or a user. Since then I’ve added those pages to the main menu, accessible through the category Settings.
+                  <span className="font-semibold">User 1</span> struggled with the CTA buttons on the booking screens. Currently they are only underlined, so I’ll change this into clearer CTA’s. The Reserve-a-tool flow seemed to be quite clear as the user did not face any challenges with the search flow, although they tried to use the keyboard which is not fully interactive. They were also looking for a FAQ page and wanted to know how they could report an issue or a user. Since then I’ve added those pages to the main menu, accessible through the category settings.
                 </p>
 
                 <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 2</span> solved the first task without any problems, and didn’t mind the category suggestions above the search bar, which I found very positive. When the user created a listing, they got confused when they had to insert the price, as the screen didn’t wait for the user to confirm the value, and instead changed right away to the next screen. So I will add her a step in between, so that the user can confirm the price through a “Continue” CTA. With the third task, the user got a bit confused as he expected to see a jigsaw listing in the listings (as he just created in an earlier task). Also instead of pressing on Bookings - Requests, the user first clicked on the different states (Upcoming / Completed / Requests) but after clarification they mentioned that they wanted to see what there was.
+                  <span className="font-semibold">User 2</span> solved the first task without any problems, and didn’t mind the category suggestions above the search bar, which I found very positive. When the user created a listing, they got confused when they had to insert the price, as the screen didn’t wait for the user to confirm the value, and instead changed right away to the next screen. So I will add here a step in between, so that the user can confirm the price through a “Continue” CTA. With the third task, the user got a bit confused as he expected to see a jigsaw listing in the listings (as he just created in an earlier task). Also, instead of pressing on Bookings - Requests, the user first clicked on the different states (Upcoming / Completed / Requests) but after clarification they mentioned that they wanted to see what there was.
                 </p>
 
-                <p className="text-muted-foreground mb-4">
-                  Based on that feedback I applied the following changes:
-                </p>
-                <ul className="space-y-2 text-muted-foreground mb-6">
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>Added FAQ / Report an Issue section to the Menu</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>Changed the CTA's of the Booking section page</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span>Added an additional step in the "Create Listing" to confirm price (instead of stepping ahead)</span>
-                  </li>
-                </ul>
-
-                {/* Findings & Next Steps - modelled after DanaoTopo styling */}
-                <section className="py-8">
-                  <div className="container mx-auto px-6">
-                    <div className="w-full">
-                      <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
-                        <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                          <div className="mx-auto max-w-md md:max-w-none text-left">
-                            <h4 className="text-lg font-semibold mb-2">Findings</h4>
-                            <ul className="list-inside space-y-2 text-muted-foreground">
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M15 9l-6 6M9 9l6 6" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>CTA buttons styled only as underlined text were not recognized as actionable, causing confusion</span>
-                              </li>
-
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M15 9l-6 6M9 9l6 6" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>Users expect access to supporting resources such as FAQs and issue reporting</span>
-                              </li>
-
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M15 9l-6 6M9 9l6 6" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>User confusion occurred when entering the price for a new listing (value auto-submitted without user confirmation)</span>
-                              </li>
-
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>The search and reserve flow is generally intuitive and easy to follow</span>
-                              </li>
-
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>Category suggestions above the search bar were not perceived as intrusive</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-
-                        <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                          <div className="mx-auto max-w-md md:max-w-none text-left">
-                            <h4 className="text-lg font-semibold mb-2">Next Steps</h4>
-                            <ul className="list-inside space-y-2 text-muted-foreground">
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>Replace ambiguous underlined CTAs with clearer buttons</span>
-                              </li>
-
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>Added FAQ / Report an Issue section to the Menu</span>
-                              </li>
-
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>Add clearer feedback in the create-listing flow (confirm price step)</span>
-                              </li>
-
-                              <li className="flex items-start gap-2">
-                                <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span>Conduct more user tests to collect further data</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+                
               </div>
 
               {/* Right: Embedded prototype (responsive) */}
@@ -735,6 +594,102 @@ const ToolSwap = () => {
                     className="w-full h-full"
                     allowFullScreen
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* Findings & Next Steps - moved out of the two-column grid to be full-width and centered */}
+        <section className="py-8">
+          <div className="container mx-auto px-6">
+            <div className="w-full">
+              <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
+                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                  <div className="mx-auto max-w-md md:max-w-none text-left">
+                    <h4 className="text-lg font-semibold mb-2">Findings</h4>
+                    <ul className="list-inside space-y-2 text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>CTA buttons styled only as underlined text were not recognized as actionable, causing confusion</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Users expect access to supporting resources such as FAQs and issue reporting</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>User confusion occurred when entering the price for a new listing (value auto-submitted without user confirmation)</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 8v8M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>The search and reserve flow is generally intuitive and easy to follow</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 8v8M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Category suggestions above the search bar were not perceived as intrusive</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
+                  <div className="mx-auto max-w-md md:max-w-none text-left">
+                    <h4 className="text-lg font-semibold mb-2">Next Steps</h4>
+                    <ul className="list-inside space-y-2 text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Replace ambiguous underlined CTAs with clearer buttons</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Added FAQ / Report an Issue section to the Menu</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Add clearer feedback in the create-listing flow (confirm price step)</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <circle cx="12" cy="12" r="9" />
+                          <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Conduct more user tests to collect further data</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -937,8 +892,6 @@ const ToolSwap = () => {
             />
           </div>
         )}
-
-        {/* Sketches & Wireframes lightbox removed */}
 
         {/* Generic single-image lightbox used by multiple design images */}
         {singleLightboxOpen && singleLightboxSrc && (
