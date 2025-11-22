@@ -23,7 +23,7 @@ import p17 from "@/assets/alexandramarley-photo-portrait-17.webp";
 const Portrait = () => {
   // Re-imported photos in numeric order 01..17 and build five rows: 3,3,3,5,3
   const photos = [
-    p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17,
+    p01, p02, p05, p04, p09, p06, p07, p08, p10, p03, p11, p12, p13, p14, p15, p16, p17,
   ];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);

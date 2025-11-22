@@ -145,11 +145,11 @@ const ToolSwap = () => {
 
               {/* Right: tall image (9:16) shown on md+ (occupies 1/3) */}
               <div className="hidden md:flex justify-center">
-                <div className="aspect-[9/16] w-full max-w-[160px] sm:max-w-[200px] md:max-w-[216px] lg:max-w-[280px] overflow-hidden rounded-lg mx-auto">
+                <div className="w-full max-w-[160px] sm:max-w-[200px] md:max-w-[216px] lg:max-w-[280px] overflow-hidden rounded-lg mx-auto">
                   <img
                     src={deliverables1}
                     alt="ToolSwap preview"
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               </div>
@@ -168,15 +168,15 @@ const ToolSwap = () => {
                     <div>
                       <h3 className="text-2xl md:text-3xl font-semibold mb-4">Overview</h3>
                       <p className="text-muted-foreground max-w-2xl mb-6">
-                        As London’s cost of living rises and we all try to be more eco-friendly, it makes sense that not everyone owns a pressure washer or drill—especially when you only need one occasionally. With DIY makeovers on the rise, it’s tempting to try them yourself. So what if there were an app where you could borrow tools from people nearby, and offer up that fancy Artisan Stand Mixer you only use every six months in return?
+                        As London’s cost of living rises and we all try to be more eco-friendly, it makes sense that not everyone owns a pressure washer or drill—especially when you only need one occasionally. With DIY makeovers on the rise, it’s tempting to try them yourself. So what if there were an app where you could borrow tools from people nearby, and offer up that fancy Artisan stand mixer you only use every six months in return?
                       </p>
                       <p className="text-muted-foreground mb-6">
                         I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goals:
                       </p>
                       <ul className="space-y-3 text-muted-foreground mb-6">
-                        <li>• create a mobile app that is easy and quick to use</li>
-                        <li>• create a marketplace where tools can be lent/borrowed for a short amount of time with a user rating system designed to enhance transparency, reliability, and trust.</li>
-                        <li>• reduce people's spending and encourage sustainable choices</li>
+                        <li>• Create a mobile app that is easy and quick to use</li>
+                        <li>• Create a marketplace where tools can be lent/borrowed for a short amount of time with a user rating system designed to enhance transparency, reliability, and trust.</li>
+                        <li>• Reduce people's spending and encourage sustainable choices</li>
                       </ul>
                     </div>
 
@@ -292,13 +292,13 @@ const ToolSwap = () => {
                 <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
                   <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
                     <div className="mx-auto max-w-md md:max-w-none text-left">
-                      <p className="text-muted-foreground"><span className="text-blue-500 font-semibold">Example Blue </span> shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen.</p>
+                      <p className="text-muted-foreground"><span className="text-blue-500 font-semibold">Example blue </span> shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen.</p>
                     </div>
                   </div>
 
                   <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
                     <div className="mx-auto max-w-md md:max-w-none text-left">
-                      <p className="text-muted-foreground">In contrast, <span className="text-red-500 font-semibold">Example Red</span> offers a clean and intuitive interface, prioritising essential features like search and categories, which enhances the user experience.</p>
+                      <p className="text-muted-foreground">In contrast, <span className="text-red-500 font-semibold">example red</span> offers a clean and intuitive interface, prioritising essential features like search and categories, which enhances the user experience.</p>
                     </div>
                   </div>
                 </div>
@@ -380,7 +380,7 @@ const ToolSwap = () => {
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">Navigation & Search</h4>
                      <p className="text-muted-foreground mb-4">
-                    When experimenting with different navigation types (Hamburger Menu, Floating Buttons, Bottom Navigation) I realised that using a hamburger menu with a floating search bar would be the best solution. <span className="text-red-500 font-semibold">The search bar</span> is one of the main CTA’s in the whole app, therefore I wanted it to be as accessible as possible. I did some benchmarking with other map-prioritised applications, and even though there is a clear design pattern, I decided to have the search bar at the bottom, as it is much easier to reach with your thumb (compared to the top).
+                    When experimenting with different navigation types (hamburger menu, floating buttons, bottom navigation) I realised that using a hamburger menu with a floating search bar would be the best solution. <span className="text-red-500 font-semibold">The search bar</span> is one of the main CTA’s in the whole app, therefore I wanted it to be as accessible as possible. I did some benchmarking with other map-prioritised applications, and even though there is a clear design pattern, I decided to have the search bar at the bottom, as it is much easier to reach with your thumb (compared to the top).
                   </p>
                   <p className="text-muted-foreground mb-4">
                     This decision meant that I had to change a lot of other design patterns, which might look a bit strange in the beginning (e.g. <span className="text-blue-500 font-semibold">category suggestions</span> on top of the search bar, instead underneath).
@@ -437,7 +437,7 @@ const ToolSwap = () => {
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">Terminology Main Menu</h4>
                       <p className="text-muted-foreground mb-4">
-                    The terminology for the main menu was quite tricky. In the beginning I used the categories Reserve Tool - Create Listing - My Account - Settings. The first two categories are quite clear, My Account would have been responsible for your own bookings, but also the bookings you receive for the items you lend.
+                    The terminology for the main menu was quite tricky. In the beginning I used the categories reserve tool - create listing - my account - settings. The first two categories are quite clear, my account would have been responsible for your own bookings, but also the bookings you receive for the items you lend.
                   </p>
                   <p className="text-muted-foreground mb-4">
                     I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked users what makes more sense to them, and everyone voted for <span className="text-green-500 font-semibold">option 2</span> vs <span className="text-red-500 font-semibold">option 1</span>.
@@ -464,13 +464,13 @@ const ToolSwap = () => {
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">List Item</h4>
                     <p className="text-muted-foreground mb-4">
-                      The list item screen went through various changes as I struggled to combine all the important information on one screen nicely. In the end I chose to use a bottom sheet to have the map in the background, which helps the user to identify where the tool is located. In the screenshot on the right you can see how the user can find the most important information, highlighted in <span className="text-red-500 font-semibold">Red</span>.
+                      The list item screen went through various changes as I struggled to combine all the important information on one screen nicely. In the end I chose to use a bottom sheet to have the map in the background, which helps the user to identify where the tool is located. In the screenshot on the right you can see how the user can find the most important information, highlighted in <span className="text-red-500 font-semibold">red</span>.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      The <span className="text-red-500 font-semibold">Red</span> and <span className="text-blue-500 font-semibold">Blue</span> highlighted section is scrollable, after the description underneath you can find the reviews for this specific items from other users, plus what else the lender borrows.
+                      The <span className="text-red-500 font-semibold">red</span> and <span className="text-blue-500 font-semibold">blue</span> highlighted section is scrollable, after the description underneath you can find the reviews for this specific items from other users, plus what else the lender borrows.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      Highlighted in <span className="text-green-500 font-semibold">Green</span>  is the CTA to book the item + the overall price you’d pay. These items are fixed, as they should be all-time accessible.
+                      Highlighted in <span className="text-green-500 font-semibold">green</span>  is the CTA to book the item + the overall price you’d pay. These items are fixed, as they should be all-time accessible.
                     </p>
                     <p className="text-muted-foreground mb-4">
                       Below you can see the previous versions that lend to the end version.
@@ -562,22 +562,22 @@ const ToolSwap = () => {
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
                   <li>
-                    You live in Canary Wharf &amp; look for a power drill from September 13th 2025 - September 20th, 2025. Try to reserve the item closest to you, assuming you already have an account (steven.smith@gmail.com / Password), and continue with the checkout flow.
+                    You live in Canary Wharf &amp; look for a power drill from September 13th 2025 - September 20th, 2025. Try to reserve the item closest to you, assuming you already have an account (steven.smith@gmail.com / password), and continue with the checkout flow.
                   </li>
                   <li>
-                    You live in Canary Wharf (15 Chichester Way, E14 3EG) and want to lend your Jigsaw to other people. Try to create your own listing, the price is £4 per day and no description is needed (this can be skipped).
+                    You live in Canary Wharf (15 Chichester Way, E14 3EG) and want to lend your jigsaw to other people. Try to create your own listing, the price is £4 per day and no description is needed (can be skipped).
                   </li>
                   <li>
-                    Try to find the Booking Requests for your bookings (the tools that you are lending to others)
+                    Try to find the booking requests for your bookings (the tools that you are lending to others)
                   </li>
                 </ul>
 
                 <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 1</span> struggled with the CTA buttons on the booking screens. Currently they are only underlined, so I’ll change this into clearer CTA’s. The Reserve-a-tool flow seemed to be quite clear as the user did not face any challenges with the search flow, although they tried to use the keyboard which is not fully interactive. They were also looking for a FAQ page and wanted to know how they could report an issue or a user. Since then I’ve added those pages to the main menu, accessible through the category settings.
+                  <span className="font-semibold">User 1</span> struggled with the CTA buttons on the booking screens. Currently they are only underlined, so I’ll change this into clearer CTA’s. The reserve-a-tool flow seemed to be quite clear as the user did not face any challenges with the search flow, although they tried to use the keyboard which is not fully interactive. They were also looking for a FAQ page and wanted to know how they could report an issue or a user. Since then I’ve added those pages to the main menu, accessible through the category settings.
                 </p>
 
                 <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 2</span> solved the first task without any problems, and didn’t mind the category suggestions above the search bar, which I found very positive. When the user created a listing, they got confused when they had to insert the price, as the screen didn’t wait for the user to confirm the value, and instead changed right away to the next screen. So I will add here a step in between, so that the user can confirm the price through a “Continue” CTA. With the third task, the user got a bit confused as he expected to see a jigsaw listing in the listings (as he just created in an earlier task). Also, instead of pressing on Bookings - Requests, the user first clicked on the different states (Upcoming / Completed / Requests) but after clarification they mentioned that they wanted to see what there was.
+                  <span className="font-semibold">User 2</span> solved the first task without any problems, and didn’t mind the category suggestions above the search bar, which I found very positive. When the user created a listing, they got confused when they had to insert the price, as the screen didn’t wait for the user to confirm the value, and instead changed right away to the next screen. So I will add here a step in between, so that the user can confirm the price through a “continue” CTA. With the third task, the user got a bit confused as he expected to see a jigsaw listing in the listings (as he just created in an earlier task). Also, instead of pressing on bookings - requests, the user first clicked on the different states (upcoming / completed / requests) but after clarification they mentioned that they wanted to see what there was.
                 </p>
 
                 
@@ -670,7 +670,7 @@ const ToolSwap = () => {
                           <circle cx="12" cy="12" r="10" />
                           <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span>Added FAQ / Report an Issue section to the Menu</span>
+                        <span>Added FAQ / report an issue section to the menu</span>
                       </li>
 
                       <li className="flex items-start gap-2">

@@ -65,19 +65,17 @@ const Business = () => {
       <Navigation />
 
       <main className="pt-20 md:pt-24 pb-20 md:pb-8">
-        <section className="py-16 md:py-20">
+         <section className="py-16 md:py-20">
           <div className="container mx-auto px-6">
 
-            {/* Grid gallery: rows of 3 images. Each item keeps original ratio via h-full w-auto
-                so portrait images (like b01) match the landscape height while preserving aspect ratio. */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {/* Masonry-like photo grid used on Dance page: CSS columns keep aspect ratios and avoid cropping */}
+            <div className="columns-2 sm:columns-3 md:columns-4 gap-4 xl:columns-5">
               {photos.map((src, i) => (
-                <div key={i} className="h-56 md:h-72 overflow-hidden rounded-lg flex items-center justify-center">
+                <div key={i} className="break-inside-avoid mb-4">
                   <img
                     src={src}
-                    alt={`Business ${i + 1}`}
-                    // keep original ratio and match wrapper height
-                    className="h-full w-auto object-contain cursor-pointer"
+                    alt={`Portrait ${i + 1}`}
+                    className="w-full h-auto rounded-lg object-contain cursor-pointer"
                     role="button"
                     tabIndex={0}
                     onClick={() => openLightbox(i)}

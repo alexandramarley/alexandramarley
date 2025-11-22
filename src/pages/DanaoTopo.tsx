@@ -163,9 +163,9 @@ const DanaoTopo = () => {
                         I took this opportunity to turn this information into a mobile application design, with improvements to traditional climbing guidebooks. My mission with this design:
                       </p>
                       <ul className="space-y-3 text-muted-foreground mb-6">
-                        <li>• make the most important information for climbers easily accessible</li>
-                        <li>• create a visually appealing design</li>
-                        <li>• design should be appropriate for low budget development teams, simple and easy to implement</li>
+                        <li>• Make the most important information for climbers easily accessible</li>
+                        <li>• Create a visually appealing design</li>
+                        <li>• Design should be appropriate for low budget development teams, simple and easy to implement</li>
                       </ul>
                     </div>
 
@@ -264,7 +264,7 @@ const DanaoTopo = () => {
                   {/* Item 1 */}
                   <div className="p-6 bg-muted/10 rounded-lg flex flex-col items-stretch">
                     <div className="flex-1">
-                      <p className="text-muted-foreground"><span className="text-blue-500 font-semibold">With Example Blue</span> we can see that there is too much happening, and the colour choice makes it more chaotic</p>
+                      <p className="text-muted-foreground"><span className="text-blue-500 font-semibold">Example blue</span> we can see that there is too much happening, and the colour choice makes it more chaotic</p>
                     </div>
                     <div className="mt-4 w-full flex justify-center">
                       <div className="w-full max-w-[320px] overflow-hidden rounded-lg">
@@ -284,7 +284,7 @@ const DanaoTopo = () => {
                   {/* Item 2 */}
                   <div className="p-6 bg-muted/10 rounded-lg flex flex-col items-stretch">
                     <div className="flex-1">
-                      <p className="text-muted-foreground"><span className="text-green-500 font-semibold">Example Green</span> has no filter for route length / grade rating (some offer to filter the climbing style or the difficulty grade, but there should be more options), and the overlapping of the different routes creates a bad user experience</p>
+                      <p className="text-muted-foreground"><span className="text-green-500 font-semibold">Example green</span> has no filter for route length / grade rating (some offer to filter the climbing style or the difficulty grade, but there should be more options), and the overlapping of the different routes creates a bad user experience</p>
                     </div>
                     <div className="mt-4 w-full flex justify-center">
                       <div className="w-full max-w-[320px] overflow-hidden rounded-lg">
@@ -304,7 +304,7 @@ const DanaoTopo = () => {
                   {/* Item 3 */}
                   <div className="p-6 bg-muted/10 rounded-lg flex flex-col items-stretch">
                     <div className="flex-1">
-                      <p className="text-muted-foreground"><span className="text-red-500 font-semibold">Example Red</span> is only designed for desktop applications. Whilst they have an app for mobile users, no topos can be viewed and are referred to the website.</p>
+                      <p className="text-muted-foreground"><span className="text-red-500 font-semibold">Example red</span> is only designed for desktop applications. Whilst they have an app for mobile users, no topos can be viewed and are referred to the website.</p>
                     </div>
                     <div className="mt-4 w-full flex justify-center">
                       <div className="w-full max-w-[320px] overflow-hidden rounded-lg">
@@ -392,9 +392,9 @@ const DanaoTopo = () => {
                       When a user taps a route line in the topo image, or its name in the textual list below:
                     </p>
                     <ul className="list-inside space-y-2 text-muted-foreground mb-4">
-                      <li>• The list item will expand and show the route description <span className="text-green-500 font-semibold">(Green)</span></li>
-                      <li>• The route line in the topo will be highlighted <span className="text-red-500 font-semibold">(Red)</span></li>
-                      <li>• The route title information will become bold, showing the selection clearly <span className="text-blue-500 font-semibold">(Blue)</span></li>
+                      <li>• The list item will expand and show the route description <span className="text-green-500 font-semibold">(green)</span></li>
+                      <li>• The route line in the topo will be highlighted <span className="text-red-500 font-semibold">(red)</span></li>
+                      <li>• The route title information will become bold, showing the selection clearly <span className="text-blue-500 font-semibold">(blue)</span></li>
                     </ul>
                     <p className="text-muted-foreground mb-4">
                       Below you can see the different versions up to the final design (different choice of font thickness, collapsing route overview).
@@ -439,7 +439,7 @@ const DanaoTopo = () => {
                       I wanted to include a cool colour chart to show how many different routes and grades are available in a given climbing area. However, in the pie chart the grades were unreadable, too small. As next option I tried out a bar chart, plus I shortened the text and added icons with a small description instead. If I added the different grades next to the bar, it was unreadable, therefore I thought of scraping the chart altogether and use a text description instead.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      After showing the chart to fellow climbers I gathered the feedback that they were missing the information on how many easy or difficult routes are at this climbing area. So it is important to see the variations of routes, but also the numbers of routes (someone who only climbs very easy routes will not want to go to a climbing area that features one easy climb). Therefore I added a chart but with a number icon next to it, to know how many routes are available altogether <span className="text-red-500 font-semibold">(Red)</span>.
+                      After showing the chart to fellow climbers I gathered the feedback that they were missing the information on how many easy or difficult routes are at this climbing area. So it is important to see the variations of routes, but also the numbers of routes (someone who only climbs very easy routes will not want to go to a climbing area that features one easy climb). Therefore I added a chart but with a number icon next to it, to know how many routes are available altogether <span className="text-red-500 font-semibold">(red)</span>.
                     </p>
                     <p className="text-muted-foreground mb-4">
                       Below you can see the process from the start to the final design.
@@ -507,7 +507,7 @@ const DanaoTopo = () => {
                 <div className="max-w-3xl px-12">
                   <h4 className="text-lg font-semibold mb-2">Search Function</h4>
                   <p className="text-muted-foreground mb-4">
-                    The search function caused some friction initially as I wasn’t sure how I should combine the search field with the title of the page. I feared removing the “All Routes” title might cause confusion and users would not know what page they’re on.
+                    The search function caused some friction initially as I wasn’t sure how I should combine the search field with the title of the page. I feared removing the “all routes” title might cause confusion and users would not know what page they’re on.
                   </p>
                   <p className="text-muted-foreground mb-4">
                     In the end I continued using the main page navigation that is used throughout the other pages to maintain consistency, and used a common design pattern for search fields underneath.
@@ -558,7 +558,7 @@ const DanaoTopo = () => {
                 </p>
 
                 <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 2</span> clicked right away on the map first, instead of pressing on the info section. After reading the instructions again, they found the info section without any problem. The second task they mastered without any problems. They also found the specific wall &amp; clicked on the mentioned route &amp; found all necessary information. Interestingly, the user couldn’t find “All Routes”, and filtered the routes through the filter icon on the crag wall, instead of going through - Info - All Routes - Filter. It’s possible that they didn’t read the whole info section, but in any case I will look into highlighting the “All Routes” button better. The help section was very easy to find, they didn’t mention anything regarding the font size. In general the user mentioned missing a back button.
+                  <span className="font-semibold">User 2</span> clicked right away on the map first, instead of pressing on the info section. After reading the instructions again, they found the info section without any problem. The second task they mastered without any problems. They also found the specific wall &amp; clicked on the mentioned route &amp; found all necessary information. Interestingly, the user couldn’t find “all routes”, and filtered the routes through the filter icon on the crag wall, instead of going through - info - all routes - filter. It’s possible that they didn’t read the whole info section, but in any case I will look into highlighting the “all routes” button better. The help section was very easy to find, they didn’t mention anything regarding the font size. In general the user mentioned missing a back button.
                 </p>
 
                 {/* Findings & Next Steps User Testing: moved below to be full-width (ToolSwap style) */}
@@ -598,7 +598,7 @@ const DanaoTopo = () => {
                           <circle cx="12" cy="12" r="10" />
                           <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span>Some elements lack clarity or visibility (filter fields, All routes button)</span>
+                        <span>Some elements lack clarity or visibility (filter fields, all routes button)</span>
                       </li>
 
                       <li className="flex items-start gap-2">
@@ -637,7 +637,7 @@ const DanaoTopo = () => {
                           <circle cx="12" cy="12" r="10" />
                           <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span>Improve visibility of “All Routes” button</span>
+                        <span>Improve visibility of “all routes” button</span>
                       </li>
 
                       <li className="flex items-start gap-2">
@@ -734,7 +734,7 @@ const DanaoTopo = () => {
                 I’m pleased with the final design, especially the map page. Finding a suitable base map was challenging — Google’s satellite imagery lacked clarity — so I used OpenStreetMap and created a custom dark version through AI. The crag info section also presented challenges, but I’m happy with the outcome.
               </p>
               <p className="text-muted-foreground mb-4">
-                Next, I plan to refine the All Routes and Filter sections and conduct more user testing to guide future improvements. I’m currently in contact with the route developer of Danao to potentially bring this project to life. I also recognise that some design elements may be complex to implement, and I aim to streamline them for easier development and a smoother user experience.
+                Next, I plan to refine the all routes and filter sections and conduct more user testing to guide future improvements. I’m currently in contact with the route developer of Danao to potentially bring this project to life. I also recognise that some design elements may be complex to implement, and I aim to streamline them for easier development and a smoother user experience.
               </p>
             </div>
           </div>
