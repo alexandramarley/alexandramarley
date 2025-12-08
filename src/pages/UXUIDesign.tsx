@@ -15,7 +15,7 @@ const UXUIDesign = () => {
         <section className="py-8 md:py-10">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-semibold mb-4 tracking-tight text-foreground">
-              Designing <span className="text-green-700 font-semibold">clean</span> and user friendly digital products for real users, with as <span className="text-green-700 font-semibold">few clicks</span> as possible
+              Designing <span className="text-green-700 font-semibold">clean</span> and <span className="text-green-700 font-semibold">user friendly</span> digital products for real users, with as few clicks as possible
             </h2>
             <h3 className="text-xl md:text-2xl font-normal text-muted-foreground">A selection of my work</h3>
           </div>
