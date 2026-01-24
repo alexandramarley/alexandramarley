@@ -4,6 +4,8 @@ import PortfolioGrid from "@/components/PortfolioGrid";
 import { Link } from "react-router-dom";
 import toolswapteaser from "@/assets/alexandramarley-ux-toolswap-teaser.webp";
 import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
+import toolswapcover from "@/assets/alexandramarley-uxdesign-toolswap-coverv1.webp"
+import danaocover from "@/assets/alexandramarley-uxdesign-danao-coverv1.webp"
 
 const UXUIDesign = () => {
   return (
@@ -27,11 +29,11 @@ const UXUIDesign = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* ToolSwap teaser */}
             <Link to="/projects/toolswap" className="group flex flex-col h-full">
-              <div className="aspect-[1/1] w-full overflow-hidden bg-muted">
+              <div className="w-full overflow-hidden bg-transparent h-56 md:h-72">
                 <img
-                  src={toolswapteaser}
+                  src={toolswapcover}
                   alt="ToolSwap — Community-driven platform for sharing tools"
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  className="h-full w-auto mx-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                 />
               </div>
               <div className="bg-background">
@@ -46,11 +48,11 @@ const UXUIDesign = () => {
 
             {/* Danao Topo teaser */}
             <Link to="/projects/danao-topo" className="group flex flex-col h-full">
-              <div className="aspect-[1/1] w-full overflow-hidden bg-muted">
+              <div className="w-full overflow-hidden bg-transparent h-56 md:h-72">
                 <img
-                  src={danaoteaser}
+                  src={danaocover}
                   alt="Danao Topo — Interactive topographical visualization"
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  className="h-full w-auto mx-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                 />
               </div>
               <div className="bg-background">

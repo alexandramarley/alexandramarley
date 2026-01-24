@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 // Image imports for Danao design choices and placeholders
-import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
 import danaoHero from "@/assets/alexandramarley-ux-danao-research-01.webp";
 import design01a from "@/assets/alexandramarley-ux-danao-design-01-a.webp";
 import design01b from "@/assets/alexandramarley-ux-danao-design-01-b.webp";
@@ -24,9 +23,20 @@ import deliverable7 from '@/assets/alexandramarley-ux-danao-topo-help.png';
 import deliverable8 from '@/assets/alexandramarley-ux-danao-topo-crag.webp';
 import deliverable9 from '@/assets/alexandramarley-ux-danao-topo-crag-detail.webp';
 import deliverable10 from '@/assets/alexandramarley-ux-danao-topo-crag-dm.webp';
+import contact from "@/assets/alexandramarley-uxdesign-contact-new.webp";
+import danaoAccount from "@/assets/alexandramarley-uxdesign-danao-account-new.webp";
+import danaoCragAscent from "@/assets/alexandramarley-uxdesign-danao-crag-ascent-new.webp";
+import danaoCragDetail from "@/assets/alexandramarley-uxdesign-danao-crag-detail-new.webp";
+import danaoCrag from "@/assets/alexandramarley-uxdesign-danao-crag-new.webp";
+import danaoFilter from "@/assets/alexandramarley-uxdesign-danao-filter-new.webp";
+import danaoInfo from "@/assets/alexandramarley-uxdesign-danao-info-new.webp";
+import danaoMapCrag from "@/assets/alexandramarley-uxdesign-danao-map-crag-new.webp";
+import danaoMapOverview from "@/assets/alexandramarley-uxdesign-danao-map-overview-new.webp";
+import danaoSearch from "@/assets/alexandramarley-uxdesign-danao-search-new.webp";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import toolswapteaser from "@/assets/alexandramarley-ux-toolswap-teaser.webp";
+import { useState, useEffect, useRef } from "react";
+import toolswapteaser from "@/assets/alexandramarley-uxdesign-toolswap-coverv1.webp";
+import danaoTitle from "@/assets/alexandramarley-uxdesign-danao-title.webp";
 
 const DanaoTopo = () => {
   const [singleLightboxOpen, setSingleLightboxOpen] = useState(false);
@@ -34,8 +44,21 @@ const DanaoTopo = () => {
   const [singleLightboxAlt, setSingleLightboxAlt] = useState<string>("");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  // Carousel refs/state for the new horizontal autoplay carousel
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const autoplayRef = useRef<number | null>(null);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
 
   const openSingle = (src: string, alt = "") => {
+    // If the image is part of the deliverables/gallery images, open the multi-image lightbox
+    const idx = deliverablesImages.indexOf(src);
+    if (idx !== -1) {
+      setCurrentIndex(idx);
+      setLightboxOpen(true);
+      return;
+    }
+
+    // Otherwise fall back to single-image lightbox
     setSingleLightboxSrc(src);
     setSingleLightboxAlt(alt);
     setSingleLightboxOpen(true);
@@ -54,18 +77,45 @@ const DanaoTopo = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [singleLightboxOpen]);
 
-  // Deliverables images for gallery modal (10 items)
+  // Deliverables images for gallery modal (10 items) - ordered per request
   const deliverablesImages = [
-    deliverable1,
-    deliverable2,
-    deliverable3,
-    deliverable4,
-    deliverable5,
-    deliverable6,
-    deliverable7,
-    deliverable8,
-    deliverable9,
-    deliverable10,
+    danaoInfo,
+    danaoMapOverview,
+    danaoMapCrag,
+    danaoCrag,
+    danaoCragDetail,
+    danaoCragAscent,
+    danaoFilter,
+    danaoSearch,
+    danaoAccount,
+    contact,
+  ];
+
+  // images for the overview carousel (order matters)
+  const overviewImages = [
+    danaoInfo,
+    danaoMapOverview,
+    danaoMapCrag,
+    danaoCrag,
+    danaoCragDetail,
+    danaoCragAscent,
+    danaoFilter,
+    danaoSearch,
+    danaoAccount,
+    contact,
+  ];
+
+  const overviewAlts = [
+    'Contact',
+    'Map Overview',
+    'Map Crag',
+    'Crag Detail',
+    'Crag',
+    'Crag Ascent',
+    'Filter',
+    'Search',
+    'Account',
+    'Contact',
   ];
 
   const openLightbox = (i: number) => {
@@ -99,6 +149,96 @@ const DanaoTopo = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxOpen, currentIndex]);
 
+  // Carousel auto-scroll helpers
+  const scrollNext = () => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const firstChild = el.querySelector<HTMLElement>(".carousel-item");
+    const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
+    el.scrollBy({ left: step, behavior: "smooth" });
+  };
+
+  const scrollPrev = () => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const firstChild = el.querySelector<HTMLElement>(".carousel-item");
+    const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
+    el.scrollBy({ left: -step, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (isCarouselPaused) return;
+    // autoplay every 3s
+    autoplayRef.current = window.setInterval(() => {
+      scrollNext();
+    }, 3000);
+    return () => { if (autoplayRef.current) window.clearInterval(autoplayRef.current); };
+  }, [isCarouselPaused]);
+
+  // Highlight center item: detect which carousel-item is closest to the carousel center
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const items = Array.from(el.querySelectorAll<HTMLElement>(".carousel-item"));
+    const origCount = overviewImages.length;
+    if (items.length < origCount) return;
+
+    const first = items[0];
+    const gap = parseFloat(getComputedStyle(first).marginRight || "0") || 0;
+    const itemWidth = first.offsetWidth + gap;
+    const setWidth = itemWidth * origCount;
+
+    const updateCenter = () => {
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let closest: HTMLElement | null = null;
+      let min = Infinity;
+      items.forEach((it) => {
+        const offset = it.offsetLeft + it.offsetWidth / 2;
+        const diff = Math.abs(offset - center);
+        if (diff < min) {
+          min = diff;
+          closest = it;
+        }
+        // set default (smaller)
+        it.classList.remove("scale-105");
+        it.classList.add("scale-90");
+      });
+      if (closest) {
+        closest.classList.remove("scale-90");
+        closest.classList.add("scale-105");
+      }
+    };
+
+    // set initial scroll to middle copy for seamless loop
+    // use setTimeout to ensure layout has finished
+    setTimeout(() => {
+      el.scrollLeft = setWidth;
+      updateCenter();
+    }, 50);
+
+    const onScroll = () => {
+      updateCenter();
+      // if user scrolls manually, pause autoplay briefly
+      setIsCarouselPaused(true);
+      if (autoplayRef.current) window.clearInterval(autoplayRef.current);
+      // handle seamless wrap: if we pass into first copy or beyond last copy, jump
+      if (el.scrollLeft <= itemWidth * 0.5) {
+        el.scrollLeft = el.scrollLeft + setWidth;
+      } else if (el.scrollLeft >= setWidth * 2 - itemWidth * 0.5) {
+        el.scrollLeft = el.scrollLeft - setWidth;
+      }
+      // resume after 2.5s
+      window.setTimeout(() => setIsCarouselPaused(false), 2500);
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateCenter);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateCenter);
+    };
+  }, []);
+
   const location = useLocation();
   useEffect(() => {
     if (location && (location.state as any)?.scrollTop) {
@@ -113,41 +253,82 @@ const DanaoTopo = () => {
       <main className="pt-20 md:pt-24 pb-20 md:pb-8">
         {/* Hero Section */}
         {/* Hero Section: three-line title with right-side 9:16 image */}
-        <section className="py-12 md:py-20">
-          <div className="container mx-auto px-6">
+        <section
+          className="py-8 md:py-12 relative bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${danaoTitle})` }}
+        >
+          {/* background overlay to improve text contrast */}
+          <div className="absolute inset-0 bg-black/10" aria-hidden />
+          <div className="container mx-auto px-6 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
               {/* Left: three-line heading + intro (spans 2/3 on md+) */}
-              <div className="md:col-span-2">
+              <div className="md:col-span-2 pr-20 md:pr-0">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight leading-tight md:leading-snug w-full">
                   <span className="text-green-700 font-semibold">Danao Topo:</span> Turning complex route data into a simple, interactive visualisation
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mb-6">
                   A mobile application design improving traditional climbing guidebooks
                 </p>
-                <div className="flex flex-wrap gap-3 mb-0">
-                  <div className="rounded-full bg-muted px-4 py-2 text-sm">UI/UX Design</div>
-                  <div className="rounded-full bg-muted px-4 py-2 text-sm">Climbing Guide</div>
-                  <div className="rounded-full bg-muted px-4 py-2 text-sm">Mobile App</div>
+                <div className="flex flex-wrap gap-2 md:gap-3 mb-0">
+                  <div className="rounded-full bg-muted px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm">UI/UX Design</div>
+                  <div className="rounded-full bg-muted px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm">Climbing Guide</div>
+                  <div className="rounded-full bg-muted px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm">Mobile App</div>
                 </div>
               </div>
 
-              {/* Right: tall image (9:16) shown on md+ (occupies 1/3) */}
-              <div className="hidden md:flex justify-center">
-                <div className="aspect-[9/16] w-full max-w-[160px] sm:max-w-[200px] md:max-w-[216px] lg:max-w-[280px] overflow-hidden rounded-lg mx-auto">
-                  <img
-                    src={danaoteaser}
-                    alt="Danao Topo preview"
-                    className="w-full h-full object-cover"
-                  />
+              {/* Right: tall image (9:16). Visible on all sizes; absolute on small screens so it can be cut off but not overlap text. */}
+              <div className="flex justify-center absolute right-6 top-1/2 -translate-y-1/2 md:relative md:right-0 md:top-auto md:translate-y-0">
+                <div className="aspect-[9/16] w-[140px] sm:w-[180px] md:w-full md:max-w-[216px] lg:max-w-[280px] overflow-hidden rounded-lg mx-auto">
+                  {/* danaoteaser removed per request; keeping container for layout */}
+                  <div className="w-full h-full bg-transparent" />
                 </div>
               </div>
             </div>
           </div>
         </section>
+        {/* Section menu: quick anchors for page sections (centered & sticky) */}
+        <div className="sticky top-14 z-40">
+          <div className="container mx-auto px-6 relative">
+            <nav className="flex justify-center py-3 md:py-4 bg-background/80 backdrop-blur-sm relative" role="navigation" aria-label="Page sections">
+              <ul className="flex flex-wrap justify-center items-center gap-3 md:gap-6">
+                {[
+                  { id: 'overview', mobile: 'Overview', desktop: 'Overview' },
+                  { id: 'research', mobile: 'Research', desktop: 'Research & Analysis' },
+                  { id: 'design', mobile: 'Design', desktop: 'Design' },
+                  { id: 'prototype', mobile: 'Prototype', desktop: 'Prototype & Testing' },
+                  { id: 'deliverables', mobile: 'Deliverables', desktop: 'Deliverables' },
+                  { id: 'conclusion', mobile: 'Conclusion', desktop: 'Conclusion' },
+                ].map(({ id, mobile, desktop }) => (
+                  <li key={id} className="flex-shrink-0">
+                    <a
+                      href={`#${id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const el = document.getElementById(id);
+                        if (!el) return;
+                        // calculate offset so the section title sits below the sticky menu
+                        const stickyNav = document.querySelector('nav[aria-label="Page sections"]') as HTMLElement | null;
+                        const stickyH = stickyNav ? stickyNav.offsetHeight : 0;
+                        const extra = 12; // small breathing room
+                        const top = el.getBoundingClientRect().top + window.scrollY - stickyH - extra;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                      }}
+                      className="text-sm md:text-base px-2 md:px-3 py-1 md:py-2 text-muted-foreground hover:text-foreground border-b-2 border-transparent hover:border-green-600 text-center block md:inline-block max-w-[96px] md:max-w-none"
+                    >
+                      <span className="block md:hidden">{mobile}</span>
+                      <span className="hidden md:block">{desktop}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              {/* subtle gradient line to visually match the main navigation when this bar becomes sticky */}
+              <div className="absolute bottom-0 left-0 right-0 h-px pointer-events-none bg-gradient-to-r from-muted/20 via-muted/40 to-muted/20" aria-hidden />
+            </nav>
+          </div>
+        </div>
 
-  {/* Overview */}
-  {/* Research snapshot block (16:9): left = text, right = three short items */}
-  <section className="py-6">
+{/* Overview New*/}
+  <section id="overview" className="pt-16 pb-6">
           <div className="container mx-auto px-6">
             <div className="overflow-hidden rounded-lg bg-background">
               <div className="w-full flex items-stretch md:h-full">
@@ -155,47 +336,155 @@ const DanaoTopo = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
                     {/* Left: Title + longer text */}
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Overview</h3>
-                      <p className="text-muted-foreground max-w-2xl mb-6">
-                        As an outdoor climber, you usually rely on guide books and topos (lines drawn on pictures of rock, explaining the route) to navigate climbing areas. They include info on how to access the climbing area, the length of the routes, the difficulty grade, and other useful information. However, when I visited a climbing area in the Philippines, Danao, all that was available, was a spreadsheet with lots of data.
+                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Identifying the core user problem</h3>
+                      <p className="text-muted-foreground max-w-2xl mb-8">
+                        Climbers in Danao relied on a spreadsheet and traditional guidebooks to access route information - a format that’s hard to use outdoors and impossible to navigate quickly.
                       </p>
-                      <p className="text-muted-foreground mb-6">
-                        I took this opportunity to turn this information into a mobile application design, with improvements to traditional climbing guidebooks. My mission with this design:
+                      <p className="text-muted-foreground mb-8">
+                        Danao Topo addresses this by transforming unstructured route data into a mobile-first climbing guide that prioritises clarity, offline access, and intuitive visual interaction.
                       </p>
-                      <ul className="space-y-3 text-muted-foreground mb-6">
-                        <li>• Make the most important information for climbers easily accessible</li>
-                        <li>• Create a visually appealing design</li>
-                        <li>• Design should be appropriate for low budget development teams, simple and easy to implement</li>
-                      </ul>
                     </div>
 
-                    {/* Right: three short titled lines */}
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Role</h4>
-                        <p className="text-muted-foreground">Product Designer (full scope delivery, from research to final design)</p>
-                      </div>
+                    {/* Right: Role / Team / Timeline stacked vertically; smaller visual weight so Overview remains priority */}
+                    <div className="mt-6 md:mt-0">
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="text-base font-semibold mb-1">Role</h4>
+                          <p className="text-sm text-muted-foreground">Product Designer (full scope delivery, from research to final design)</p>
+                        </div>
 
-                      <div>
-                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Team</h4>
-                        <p className="text-muted-foreground">Independent project</p>
-                      </div>
+                        <div>
+                          <h4 className="text-base font-semibold mb-1">Team</h4>
+                          <p className="text-sm text-muted-foreground">Independent project</p>
+                        </div>
 
-                      <div>
-                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Timeline</h4>
-                        <p className="text-muted-foreground">3 months (July - September 2025)</p>
+                        <div>
+                          <h4 className="text-base font-semibold mb-1">Timeline</h4>
+                          <p className="text-sm text-muted-foreground">3 months (July - September 2025)</p>
+                        </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        
+                </section>
+
+
+  <section className="py-16">
+    <div className="container mx-auto px-6 relative">
+      <div className="relative">
+        <button
+          aria-label="Previous"
+          onClick={() => { setIsCarouselPaused(true); scrollPrev(); }}
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-50 text-white rounded-full w-12 h-12 text-3xl flex items-center justify-center"
+        >
+          ‹
+        </button>
+
+        <div
+          ref={carouselRef}
+          onMouseEnter={() => setIsCarouselPaused(true)}
+          onMouseLeave={() => setIsCarouselPaused(false)}
+          className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar"
+        >
+          {/* left fade (hidden on mobile) */}
+          <div className="pointer-events-none hidden md:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent opacity-90 z-10" />
+          {
+            // render three copies for a seamless infinite scroll
+            [...overviewImages, ...overviewImages, ...overviewImages].map((img, idx) => {
+              const orig = idx % overviewImages.length;
+              return (
+                <div key={idx} className="carousel-item flex-none w-1/2 md:w-1/6 transform transition-transform duration-300 scale-90">
+                  <div className="overflow-hidden rounded-lg">
+                    <img src={img} alt={overviewAlts[orig]} className="w-full h-auto object-contain cursor-pointer" onClick={() => openSingle(img, overviewAlts[orig])} />
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+
+        <button
+          aria-label="Next"
+          onClick={() => { setIsCarouselPaused(true); scrollNext(); }}
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-50 text-white rounded-full w-12 h-12 text-3xl flex items-center justify-center"
+        >
+          ›
+        </button>
+
+  {/* right fade (hidden on mobile) */}
+  <div className="pointer-events-none hidden md:block absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent opacity-90 z-10" />
+      </div>
+    </div>
+  </section>
+
+    {/* Research summary: new titles + paragraph + six cards */}
+    <section className="py-10">
+      <div className="container mx-auto px-6">
+        <div className="max-w-3xl text-left">
+          <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS NEW</h2>
+        </div>
+
+        <div className="w-full">
+          <p className="text-muted-foreground mb-8 max-w-none">
+            I used a mix of qualitative and quantitive methods to understand our users and their behaviours and priorities when using climbing guide resources. Besides observing and talking to climbers I created a survey to gather market research. These insights shaped feature priorities and the overall information architecture. My findings:
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+            <div className="flex-1 w-full">
+              <h4 className="text-lg font-semibold mb-2">Primary Use Case</h4>
+              <p className="text-muted-foreground">90% of users prioritise access details, route grade, and route length. These form the essential content of the app.</p>
+            </div>
+          </div>
+
+          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+            <div className="flex-1 w-full">
+              <h4 className="text-lg font-semibold mb-2">Overview and key route details</h4>
+              <p className="text-muted-foreground">Users need quick access to where a route starts/ends, its length, difficulty, required gear and approach time.</p>
+            </div>
+          </div>
+
+          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+            <div className="flex-1 w-full">
+              <h4 className="text-lg font-semibold mb-2">Offline access is essential</h4>
+              <p className="text-muted-foreground">Poor reception in climbing areas makes downloadable offline content a key requirement.</p>
+            </div>
+          </div>
+
+          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+            <div className="flex-1 w-full">
+              <h4 className="text-lg font-semibold mb-2">Grading System</h4>
+              <p className="text-muted-foreground">95% prefer the French Sport Grading system; other grading conversions can be added later.</p>
+            </div>
+          </div>
+
+          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+            <div className="flex-1 w-full">
+              <h4 className="text-lg font-semibold mb-2">Secondary Use Cases</h4>
+              <p className="text-muted-foreground">Only 25% want to rate routes. Most users mainly view route info and track climbing projects.</p>
+            </div>
+          </div>
+
+          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+            <div className="flex-1 w-full">
+              <h4 className="text-lg font-semibold mb-2">Research methods</h4>
+              <p className="text-muted-foreground">Interviews, surveys and field observations informed feature prioritisation and the map-first approach.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     {/* Research & Analysis */}
-  {/* Process Section */}
-  <section className="py-6">
+    {/* Process Section */}
+    <section id="research" className="py-6">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">
@@ -328,7 +617,7 @@ const DanaoTopo = () => {
   
 
         {/* Process Step Two Section - Design */}
-        <section className="py-12 bg-muted/30">
+  <section id="design" className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             {/* Process Step Two - adopt ToolSwap structure: titles, paragraphs, and user journey image to the right */}
             <div className="max-w-3xl">
@@ -535,7 +824,7 @@ const DanaoTopo = () => {
           </div>
         </section>
         {/* Process Step Three Section - Prototype & Testing */}
-        <section className="py-12">
+  <section id="prototype" className="py-12">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
               {/* Left: Text content */}
@@ -675,7 +964,7 @@ const DanaoTopo = () => {
         </section>
 
         {/* Process Step Four Section */}
-        <section className="py-12">
+  <section id="deliverables" className="py-12">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Four</h3>
@@ -687,35 +976,35 @@ const DanaoTopo = () => {
             <div className="px-6">
               <div className="grid grid-cols-3 md:grid-cols-5 gap-6">
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(0)} src={deliverable1} alt="Home" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(0)} src={danaoInfo} alt="Info" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(1)} src={deliverable2} alt="Info" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(1)} src={danaoMapOverview} alt="Map Overview" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(2)} src={deliverable3} alt="Map" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(2)} src={danaoMapCrag} alt="Map Crag" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(3)} src={deliverable4} alt="Map detail" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(3)} src={danaoCrag} alt="Crag" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(4)} src={deliverable5} alt="Map detail DM" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(4)} src={danaoCragDetail} alt="Crag detail" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
 
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(5)} src={deliverable6} alt="Search" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(5)} src={danaoCragAscent} alt="Crag Ascent" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(6)} src={deliverable7} alt="Help" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(6)} src={danaoFilter} alt="Filter" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(7)} src={deliverable8} alt="Crag" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(7)} src={danaoSearch} alt="Search" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(8)} src={deliverable9} alt="Crag detail" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(8)} src={danaoAccount} alt="Account" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
                 <div className="overflow-hidden rounded-lg flex items-center justify-center p-2">
-                  <img onClick={() => openLightbox(9)} src={deliverable10} alt="Crag DM" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
+                  <img onClick={() => openLightbox(9)} src={contact} alt="Contact" className="max-w-full max-h-[180px] md:max-h-[280px] lg:max-h-[360px] object-contain cursor-pointer" />
                 </div>
               </div>
             </div>
@@ -724,8 +1013,8 @@ const DanaoTopo = () => {
 
 
 
-        {/* Process Step Five Section */}
-        <section className="py-12 bg-muted/30">
+  {/* Process Step Five Section */}
+  <section id="conclusion" className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
