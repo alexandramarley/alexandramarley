@@ -2,9 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 // Image imports for Danao design choices and placeholders
 import danaoHero from "@/assets/alexandramarley-ux-danao-research-01.webp";
-import design01a from "@/assets/alexandramarley-ux-danao-design-01-a.webp";
 import design01b from "@/assets/alexandramarley-ux-danao-design-01-b.webp";
-import design02a from "@/assets/alexandramarley-ux-danao-design-02-a.webp";
 import design02b from "@/assets/alexandramarley-ux-danao-design-02-b.webp";
 import design03 from "@/assets/alexandramarley-ux-danao-design-03.webp";
 import design04 from "@/assets/alexandramarley-ux-danao-design-04.webp";
@@ -246,6 +244,25 @@ const DanaoTopo = () => {
     }
   }, [location]);
 
+  // user test stories (for swipeable card)
+  const [userTestIndex, setUserTestIndex] = useState(0);
+  const userTestStories: React.ReactNode[] = [
+    (
+      <div>
+        <p className="text-muted-foreground mb-4">
+          <span className="font-semibold">User 1</span> found the climbing area + route very easy, although they mentioned they wish the route would have been highlighted more clearer. They did try to interact with the map itself, which is with the prototype not possible. The info section was accessed without any problems, when using the filter function the user mentioned the fields are quite small to interact with and that a lot of taps are involved. In general they found the font size on the smaller side, but appreciated the simplicity of the design &amp; how few clicks are involved.
+        </p>
+      </div>
+    ),
+    (
+      <div>
+        <p className="text-muted-foreground mb-4">
+          <span className="font-semibold">User 2</span> clicked right away on the map first, instead of pressing on the info section. After reading the instructions again, they found the info section without any problem. The second task they mastered without any problems. They also found the specific wall &amp; clicked on the mentioned route &amp; found all necessary information. Interestingly, the user couldn’t find “all routes”, and filtered the routes through the filter icon on the crag wall, instead of going through - info - all routes - filter. It’s possible that they didn’t read the whole info section, but in any case I will look into highlighting the “all routes” button better. The help section was very easy to find, they didn’t mention anything regarding the font size. In general the user mentioned missing a back button.
+        </p>
+      </div>
+    ),
+  ];
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -422,211 +439,159 @@ const DanaoTopo = () => {
     </div>
   </section>
 
-    {/* Research summary: new titles + paragraph + six cards */}
-    <section className="py-10">
+{/* Research & Analysis */}
+  {/* Research summary: new titles + paragraph + six cards */}
+  <section id="research" className="py-16 md:py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl text-left">
           <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS NEW</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS</h2>
         </div>
 
         <div className="w-full">
-          <p className="text-muted-foreground mb-8 max-w-none">
+          <p className="text-muted-foreground mb-12 max-w-none">
             I used a mix of qualitative and quantitive methods to understand our users and their behaviours and priorities when using climbing guide resources. Besides observing and talking to climbers I created a survey to gather market research. These insights shaped feature priorities and the overall information architecture. My findings:
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Primary Use Case</h4>
               <p className="text-muted-foreground">90% of users prioritise access details, route grade, and route length. These form the essential content of the app.</p>
             </div>
           </div>
-
-          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+          <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Overview and key route details</h4>
-              <p className="text-muted-foreground">Users need quick access to where a route starts/ends, its length, difficulty, required gear and approach time.</p>
+              <p className="text-muted-foreground">Users need to know where a route starts/ends, its length, difficulty, required gear, approach time, and best climbing conditions.</p>
             </div>
           </div>
-
-          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+          <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Offline access is essential</h4>
               <p className="text-muted-foreground">Poor reception in climbing areas makes downloadable offline content a key requirement.</p>
             </div>
           </div>
-
-          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+          <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Grading System</h4>
               <p className="text-muted-foreground">95% prefer the French Sport Grading system; other grading conversions can be added later.</p>
             </div>
           </div>
-
-          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+          <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Secondary Use Cases</h4>
               <p className="text-muted-foreground">Only 25% want to rate routes. Most users mainly view route info and track climbing projects.</p>
             </div>
           </div>
-
-          <div className="p-6 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+          <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
-              <h4 className="text-lg font-semibold mb-2">Research methods</h4>
-              <p className="text-muted-foreground">Interviews, surveys and field observations informed feature prioritisation and the map-first approach.</p>
+              <h4 className="text-lg font-semibold mb-2">6th Finding to be added</h4>
+              <p className="text-muted-foreground">n/a.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="w-full mt-12">
+          <div className="max-w-3xl">
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Competitor Analysis</h3>
+            <p className="text-muted-foreground mb-6">At the same time I did some benchmarking and compared other climbing apps and their design. I gathered:</p>
+          </div>
+        </div>
+        
+        <div className="w-full mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="w-full overflow-hidden rounded-md mb-4 h-40 md:h-44">
+                <img
+                  src={danaoBenchmark1}
+                  alt="Example 1"
+                  className="w-full h-full object-cover cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openSingle(danaoBenchmark1, 'Example 1')}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openSingle(danaoBenchmark1, 'Example 1'); }}
+                />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Example 1</h4>
+              <ul className="list-inside list-disc text-muted-foreground pl-4 space-y-1">
+                <li>Visually cluttered</li>
+                <li>Poor colour hierarchies</li>
+              </ul>
+            </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="w-full overflow-hidden rounded-md mb-4 h-40 md:h-44">
+                <img
+                  src={danaoBenchmark2}
+                  alt="Example 2"
+                  className="w-full h-full object-cover cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openSingle(danaoBenchmark2, 'Example 2')}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openSingle(danaoBenchmark1, 'Example 2'); }}
+                />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Example 2</h4>
+              <ul className="list-inside list-disc text-muted-foreground pl-4 space-y-1">
+                <li>Limited filtering options</li>
+                <li>Poor mobile readability</li>
+              </ul>
+            </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="w-full overflow-hidden rounded-md mb-4 h-40 md:h-44">
+                <img
+                  src={danaoBenchmark3}
+                  alt="Example 3"
+                  className="w-full h-full object-cover cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openSingle(danaoBenchmark3, 'Example 3')}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openSingle(danaoBenchmark1, 'Example 3'); }}
+                />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Example 3</h4>
+              <ul className="list-inside list-disc text-muted-foreground pl-4 space-y-1">
+                <li>Desktop-first layouts</li>
+                <li>Broken mobile flow</li>
+              </ul>
+            </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="w-full overflow-hidden rounded-md mb-4 h-40 md:h-44">
+                <img
+                  src={danaoBenchmark1}
+                  alt="Example 4"
+                  className="w-full h-full object-cover cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openSingle(danaoBenchmark1, 'Example 4')}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openSingle(danaoBenchmark1, 'Example 4'); }}
+                />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Example 4 / 27 Crag</h4>
+              <ul className="list-inside list-disc text-muted-foreground pl-4 space-y-1">
+                <li>Positive Aspect 1</li>
+                <li>Positive Aspect 2</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    {/* Research & Analysis */}
-    {/* Process Section */}
-    <section id="research" className="py-6">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">
-                The Process - Step One
-              </h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-                RESEARCH & ANALYSIS
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                In my research I used a mix of qualitative and quantitive methods to find out more about our users and their behaviour. Besides observing and talking to climbers I created a survey to gather market research, which would drive decision making in the design process. My findings:
-              </p>
-            </div>
 
-      {/* Research Findings (adopt ToolSwap structure) */}
-        <section className="py-8">
-          <div className="container mx-auto px-6">
-            <div className="w-full">
-              {/* Use the same card structure as ToolSwap - responsive grid that stacks on mobile */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full items-stretch">
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Primary Use Case</h4>
-                    <p className="text-muted-foreground">90% of users prioritise access details, route grade, and route length. These form the essential content of the app</p>
-                  </div>
-                </div>
-
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Overview and key route details</h4>
-                    <p className="text-muted-foreground">Users need to know where a route starts/ends, its length, difficulty, required gear, approach time, and best climbing conditions</p>
-                  </div>
-                </div>
-
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Offline access is essential</h4>
-                    <p className="text-muted-foreground">Poor reception in climbing areas makes downloadable offline content a key requirement</p>
-                  </div>
-                </div>
-
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Grading System</h4>
-                    <p className="text-muted-foreground">95% prefer the French Sport Grading system; other grading conversions can be added later</p>
-                  </div>
-                </div>
-
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Secondary Use Cases</h4>
-                    <p className="text-muted-foreground">Only 25% want to rate routes. Most users mainly view route info and track climbing project</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-              <p className="text-muted-foreground mb-6">
-                At the same time I did some <span className="font-semibold">benchmarking</span> and compared other climbing apps and their design. I gathered:
-              </p>
-
-              {/* Benchmarks: align each finding with its image (grid of 3 columns on md+) */}
-              <div className="w-full mb-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* Item 1 */}
-                  <div className="p-6 bg-muted/10 rounded-lg flex flex-col items-stretch">
-                    <div className="flex-1">
-                      <p className="text-muted-foreground"><span className="text-blue-500 font-semibold">Example blue</span> we can see that there is too much happening, and the colour choice makes it more chaotic</p>
-                    </div>
-                    <div className="mt-4 w-full flex justify-center">
-                      <div className="w-full max-w-[320px] overflow-hidden rounded-lg">
-                        <img
-                          src={danaoBenchmark1}
-                          alt="Danao benchmark 01"
-                          className="w-full h-auto object-contain cursor-pointer"
-                          role="button"
-                          tabIndex={0}
-                          onClick={() => openSingle(danaoBenchmark1, 'Danao benchmark 01')}
-                          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openSingle(danaoBenchmark1, 'Danao benchmark 01'); }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Item 2 */}
-                  <div className="p-6 bg-muted/10 rounded-lg flex flex-col items-stretch">
-                    <div className="flex-1">
-                      <p className="text-muted-foreground"><span className="text-green-500 font-semibold">Example green</span> has no filter for route length / grade rating (some offer to filter the climbing style or the difficulty grade, but there should be more options), and the overlapping of the different routes creates a bad user experience</p>
-                    </div>
-                    <div className="mt-4 w-full flex justify-center">
-                      <div className="w-full max-w-[320px] overflow-hidden rounded-lg">
-                        <img
-                          src={danaoBenchmark2}
-                          alt="Danao benchmark 02"
-                          className="w-full h-auto object-contain cursor-pointer"
-                          role="button"
-                          tabIndex={0}
-                          onClick={() => openSingle(danaoBenchmark2, 'Danao benchmark 02')}
-                          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openSingle(danaoBenchmark2, 'Danao benchmark 02'); }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Item 3 */}
-                  <div className="p-6 bg-muted/10 rounded-lg flex flex-col items-stretch">
-                    <div className="flex-1">
-                      <p className="text-muted-foreground"><span className="text-red-500 font-semibold">Example red</span> is only designed for desktop applications. Whilst they have an app for mobile users, no topos can be viewed and are referred to the website.</p>
-                    </div>
-                    <div className="mt-4 w-full flex justify-center">
-                      <div className="w-full max-w-[320px] overflow-hidden rounded-lg">
-                        <img
-                          src={danaoBenchmark3}
-                          alt="Danao benchmark 03"
-                          className="w-full h-auto object-contain cursor-pointer"
-                          role="button"
-                          tabIndex={0}
-                          onClick={() => openSingle(danaoBenchmark3, 'Danao benchmark 03')}
-                          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') openSingle(danaoBenchmark3, 'Danao benchmark 03'); }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </section>
-
-  
-
-        {/* Process Step Two Section - Design */}
-  <section id="design" className="py-12 bg-muted/30">
+    {/* Process Step Two Section - Design */}
+  <section id="design" className="pt-12 pb-2 bg-muted/30">
           <div className="container mx-auto px-6">
             {/* Process Step Two - adopt ToolSwap structure: titles, paragraphs, and user journey image to the right */}
             <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
-              <p className="text-muted-foreground mb-4">
-                I started to work on the app structure and document the user journeys. My key considerations were the user goals and how to organise route information so it’s easy to access in the field.
-              </p>
-            </div>
+                <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
+                <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
+              </div>
+              <div className="w-full">
+                <p className="text-muted-foreground mb-4 max-w-none">
+                  I started to work on the app structure and document the user journeys. My key considerations were the user goals and how to organise route information so it’s easy to access in the field.
+                </p>
+              </div>
 
             {/* User journey paragraph on the left, flowchart image centered on the right (responsive) */}
             <div className="mt-8">
@@ -659,9 +624,11 @@ const DanaoTopo = () => {
               </div>
             </div>
           <div className="max-w-3xl mt-8">
-              <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-0">After coming up with some sketches to get a rough idea of what I want to do, I created wireframes on Figma. As a next step, I continued with the design. Some details and highlights:</p>
-            </div>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Design Choices</h3>
+          </div>
+          <div className="w-full">
+            <p className="text-muted-foreground mb-6 max-w-none">After coming up with some sketches to get a rough idea of what I want to do, I created wireframes on Figma. As a next step, I continued with the design. Some details and highlights:</p>
+          </div>
             </div>
         </section>
 
@@ -669,51 +636,44 @@ const DanaoTopo = () => {
         <section className="pt-2 pb-16">
           <div className="container mx-auto px-6">
             <div className="space-y-16">
-              {/* Block 1 - Route Information */}
+              {/* Block 1 - Route Information (single card containing text + both images) */}
               <div>
-                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                  <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Route Information</h4>
-                    <p className="text-muted-foreground mb-4">
-                      Within the application, there is a large amount of text to display. Routes have information with varying length. For example, a route description can often be a few paragraphs long, whereas the difficulty is 2-3 characters. It would be overwhelming to show all the information at once. As a solution, I chose to use expanding list items for routes, which show the short, vital information all the time, and when expanded, show the long detailed description.
-                    </p>
-                    <p className="text-muted-foreground mb-4">
-                      When a user taps a route line in the topo image, or its name in the textual list below:
-                    </p>
-                    <ul className="list-inside space-y-2 text-muted-foreground mb-4">
-                      <li>• The list item will expand and show the route description <span className="text-green-500 font-semibold">(green)</span></li>
-                      <li>• The route line in the topo will be highlighted <span className="text-red-500 font-semibold">(red)</span></li>
-                      <li>• The route title information will become bold, showing the selection clearly <span className="text-blue-500 font-semibold">(blue)</span></li>
-                    </ul>
-                    <p className="text-muted-foreground mb-4">
-                      Below you can see the different versions up to the final design (different choice of font thickness, collapsing route overview).
-                    </p>
+                <div className="px-0 sm:px-12 mt-6">
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                      <div>
+                        <h4 className="text-lg font-semibold mb-2">Route Information</h4>
+                        <p className="text-muted-foreground mb-4">
+                          Within the application, there is a large amount of text to display. Routes have information with varying length. For example, a route description can often be a few paragraphs long, whereas the difficulty is 2-3 characters. It would be overwhelming to show all the information at once. As a solution, I chose to use expanding list items for routes, which show the short, vital information all the time, and when expanded, show the long detailed description.
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                          When a user taps a route line in the topo image, or its name in the textual list below:
+                        </p>
+                        <ul className="list-inside space-y-2 text-muted-foreground mb-4">
+                          <li>• The list item will expand and show the route description <span className="text-green-500 font-semibold">(green)</span></li>
+                          <li>• The route line in the topo will be highlighted <span className="text-red-500 font-semibold">(red)</span></li>
+                          <li>• The route title information will become bold, showing the selection clearly <span className="text-blue-500 font-semibold">(blue)</span></li>
+                        </ul>
+                        <p className="text-muted-foreground mb-4">
+                          Below you can see the different versions up to the final design (different choice of font thickness, collapsing route overview).
+                        </p>
+                      </div>
 
-                    <div className="w-full overflow-hidden rounded-lg mt-6">
-                      <img
-                        src={design01a}
-                        alt="Design choice 01 - option A"
-                        className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
-                        onClick={() => {
-                          setSingleLightboxSrc(design01a);
-                          setSingleLightboxAlt("Design choice 01 - option A");
-                          setSingleLightboxOpen(true);
-                        }}
-                      />
+                      <div className="flex items-center justify-center">
+                        <div className="w-full overflow-hidden rounded-md">
+                          <img
+                            src={design01b}
+                            alt="Design choice 01 - option B"
+                            className="w-full h-auto object-contain md:max-h-[390px] lg:max-h-[465px] cursor-pointer"
+                            onClick={() => {
+                              setSingleLightboxSrc(design01b);
+                              setSingleLightboxAlt("Design choice 01 - option B");
+                              setSingleLightboxOpen(true);
+                            }}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[390px] lg:max-w-[465px] mx-auto">
-                    <img
-                      src={design01b}
-                      alt="Design choice 01 - option B"
-                      className="w-full h-auto object-contain md:max-h-[390px] lg:max-h-[465px] cursor-pointer"
-                      onClick={() => {
-                        setSingleLightboxSrc(design01b);
-                        setSingleLightboxAlt("Design choice 01 - option B");
-                        setSingleLightboxOpen(true);
-                      }}
-                    />
                   </div>
                 </div>
               </div>
@@ -721,7 +681,7 @@ const DanaoTopo = () => {
 
               {/* Block 2 - Difficulty Distribution Chart */}
               <div>
-                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div className="px-0 sm:px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">Difficulty Distribution Chart</h4>
                     <p className="text-muted-foreground mb-4">
@@ -730,25 +690,9 @@ const DanaoTopo = () => {
                     <p className="text-muted-foreground mb-4">
                       After showing the chart to fellow climbers I gathered the feedback that they were missing the information on how many easy or difficult routes are at this climbing area. So it is important to see the variations of routes, but also the numbers of routes (someone who only climbs very easy routes will not want to go to a climbing area that features one easy climb). Therefore I added a chart but with a number icon next to it, to know how many routes are available altogether <span className="text-red-500 font-semibold">(red)</span>.
                     </p>
-                    <p className="text-muted-foreground mb-4">
-                      Below you can see the process from the start to the final design.
-                    </p>
-
-                    <div className="w-full overflow-hidden rounded-lg mt-6">
-                      <img
-                        src={design02a}
-                        alt="Design choice 02 - option A"
-                        className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
-                        onClick={() => {
-                          setSingleLightboxSrc(design02a);
-                          setSingleLightboxAlt("Design choice 02 - option A");
-                          setSingleLightboxOpen(true);
-                        }}
-                      />
                     </div>
-                  </div>
 
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[390px] lg:max-w-[465px] mx-auto">
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[390px] lg:max-w-[465px] mx-auto mt-6">
                     <img
                       src={design02b}
                       alt="Design choice 02 - option B"
@@ -763,37 +707,41 @@ const DanaoTopo = () => {
                 </div>
               </div>
 
-              {/* Block 3 - Filter Option */}
+              {/* Block 3 - Filter Option (single card containing text + image) */}
               <div>
-                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Filter Option</h4>
-                    <p className="text-muted-foreground mb-4">
-                      When I created a mood board and cross checked other climbing apps, one thing they were all missing, is a filter option with more choices. There were filters to differentiate the climbing style, or the difficulty grade, but no filter for the route length and rating. So I added one to my design that seemed useful.
-                    </p>
-                    <p className="text-muted-foreground mb-4">
-                      When conducting user tests I realised the user experience is quite bad as a high number of taps is required, compared to a slider. This is my main priority in the future re-design, I have a new version planned (see wireframe example) and will pursue a new design there.
-                    </p>
-                  </div>
+                <div className="px-0 sm:px-12 mt-6">
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                      <div>
+                        <h4 className="text-lg font-semibold mb-2">Filter Option</h4>
+                        <p className="text-muted-foreground mb-4">
+                          When I created a mood board and cross checked other climbing apps, one thing they were all missing, is a filter option with more choices. There were filters to differentiate the climbing style, or the difficulty grade, but no filter for the route length and rating. So I added one to my design that seemed useful.
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                          When conducting user tests I realised the user experience is quite bad as a high number of taps is required, compared to a slider. This is my main priority in the future re-design, I have a new version planned (see wireframe example) and will pursue a new design there.
+                        </p>
+                      </div>
 
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
-                    <img
-                      src={design03}
-                      alt="Design choice 03"
-                      className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
-                      onClick={() => {
-                        setSingleLightboxSrc(design03);
-                        setSingleLightboxAlt("Design choice 03");
-                        setSingleLightboxOpen(true);
-                      }}
-                    />
+                      <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                        <img
+                          src={design03}
+                          alt="Design choice 03"
+                          className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
+                          onClick={() => {
+                            setSingleLightboxSrc(design03);
+                            setSingleLightboxAlt("Design choice 03");
+                            setSingleLightboxOpen(true);
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Block 4 */}
               <div>
-                <div className="max-w-3xl px-12">
+                <div className="max-w-3xl px-0 sm:px-12">
                   <h4 className="text-lg font-semibold mb-2">Search Function</h4>
                   <p className="text-muted-foreground mb-4">
                     The search function caused some friction initially as I wasn’t sure how I should combine the search field with the title of the page. I feared removing the “all routes” title might cause confusion and users would not know what page they’re on.
@@ -805,7 +753,7 @@ const DanaoTopo = () => {
                     Below you can see different versions in the design process of the search function.
                   </p>
                 </div>
-                <div className="w-full px-12 mt-6">
+                <div className="w-full px-0 sm:px-12 mt-6">
                   <div className="w-full overflow-hidden rounded-lg">
                     <img
                       src={design04}
@@ -823,108 +771,116 @@ const DanaoTopo = () => {
             </div>
           </div>
         </section>
+
         {/* Process Step Three Section - Prototype & Testing */}
   <section id="prototype" className="py-12">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-              {/* Left: Text content */}
-              <div className="max-w-3xl md:pr-12">
-                <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-4">PROTOTYPE &amp; TESTING</h2>
-                <p className="text-muted-foreground mb-4">
-                  After finishing my design screens, I connected all the different frames &amp; created a prototype. When it came to the user testing, I gave the candidates the following tasks:
-                </p>
-                <ul className="list-inside space-y-2 text-muted-foreground mb-6">
-                  <li>• Find out how to get there from Cebu using any means of transport</li>
-                  <li>• Find the overview of the different crags (climbing areas)</li>
-                  <li>• Find the “Pocket Wall” and a route called Dong Ba Dong. You want to find out how long is the route, and how many quick drawers (QD) are needed</li>
-                  <li>• Find the overview of all routes, and filter all routes more than 30 meters with a rating of 4 Stars or more</li>
-                  <li>• Find a way how to contact the route setters</li>
-                </ul>
+            <div>
+              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">PROTOTYPE &amp; TESTING</h2>
 
-                <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 1</span> found the climbing area + route very easy, although they mentioned they wish the route would have been highlighted more clearer. They did try to interact with the map itself, which is with the prototype not possible. The info section was accessed without any problems, when using the filter function the user mentioned the fields are quite small to interact with and that a lot of taps are involved. In general they found the font size on the smaller side, but appreciated the simplicity of the design &amp; how few clicks are involved.
-                </p>
-
-                <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 2</span> clicked right away on the map first, instead of pressing on the info section. After reading the instructions again, they found the info section without any problem. The second task they mastered without any problems. They also found the specific wall &amp; clicked on the mentioned route &amp; found all necessary information. Interestingly, the user couldn’t find “all routes”, and filtered the routes through the filter icon on the crag wall, instead of going through - info - all routes - filter. It’s possible that they didn’t read the whole info section, but in any case I will look into highlighting the “all routes” button better. The help section was very easy to find, they didn’t mention anything regarding the font size. In general the user mentioned missing a back button.
-                </p>
-
-                {/* Findings & Next Steps User Testing: moved below to be full-width (ToolSwap style) */}
+              {/* Full-width paragraph */}
+              <div className="w-full">
+                <p className="text-muted-foreground mb-6 max-w-none">After finishing my design screens, I connected all the different frames &amp; created a prototype. When it came to the user testing, I gave the candidates the following tasks:</p>
               </div>
 
-              {/* Right: Embedded prototype (responsive) */}
-              <div className="mt-6 md:mt-0">
-                {/* Portrait aspect and constrained width on md+ so phone is larger but not too big.
-                    Remove iframe border and use a gentle scale (middle ground between previous sizes).
-                    On small screens this stacks below the text as before. */}
-                <div className="aspect-[9/16] md:aspect-[9/16] overflow-hidden rounded-lg shadow-sm bg-white md:max-w-[420px] lg:max-w-[480px] mx-auto md:mx-0">
-                  <iframe
-                    title="Danao Topo Prototype"
-                    src="https://embed.figma.com/proto/yX9iLC2Gjfsh4tJJcXFb5z/Danao-Topo?page-id=1%3A3&team_id=1233734426677711168&node-id=3-35&starting-point-node-id=3%3A35&embed-host=share"
-                    // subtle scale to make the phone mock slightly bigger than default but smaller than before
-                    style={{ border: 'none', transform: 'scale(1.03)', transformOrigin: 'center' }}
-                    className="w-full h-full"
-                    allowFullScreen
-                  />
+              {/* User Test Tasks card (full width) */}
+              <div className="w-full">
+                <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg mb-6">
+                  <h4 className="text-lg font-semibold mb-3">User Test Tasks</h4>
+                  <ul className="list-inside space-y-2 text-muted-foreground pl-4">
+                    <li>• Find out how to get there from Cebu using any means of transport</li>
+                    <li>• Find the overview of the different crags (climbing areas)</li>
+                    <li>• Find the “Pocket Wall” and a route called Dong Ba Dong. You want to find out how long is the route, and how many quick drawers (QD) are needed</li>
+                    <li>• Find the overview of all routes, and filter all routes more than 30 meters with a rating of 4 Stars or more</li>
+                    <li>• Find a way how to contact the route setters</li>
+                  </ul>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Findings & Next Steps - full width, centered (ToolSwap style) */}
-        <section className="py-8">
-          <div className="container mx-auto px-6">
-            <div className="w-full">
-              <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Findings</h4>
+              {/* Two cards side-by-side: left = user test story (swipeable), right = prototype iframe */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <div className="relative p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full pt-12 md:pt-14">
+                  {/* top-right swipe buttons (larger) */}
+                  <div className="absolute top-4 right-4 flex items-center gap-3">
+                    <button
+                      aria-label="Previous user test"
+                      onClick={() => setUserTestIndex((userTestIndex - 1 + userTestStories.length) % userTestStories.length)}
+                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      aria-label="Next user test"
+                      onClick={() => setUserTestIndex((userTestIndex + 1) % userTestStories.length)}
+                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
+                    >
+                      ›
+                    </button>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold mb-3">User Test {userTestIndex + 1}</h4>
+                    <div>{userTestStories[userTestIndex]}</div>
+                  </div>
+
+                </div>
+
+                <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex items-center justify-center h-full">
+                  <div className="w-full h-full overflow-hidden rounded-lg">
+                    <iframe
+                      title="Danao Topo Prototype Embed"
+                      src="https://embed.figma.com/proto/yX9iLC2Gjfsh4tJJcXFb5z/Danao-Topo?page-id=3950%3A6788&node-id=4268-12308&viewport=-1881%2C489%2C0.21&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4268%3A12308&embed-host=share"
+                      style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+                      className="w-full h-full min-h-[420px] md:min-h-[480px]"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Findings & Next Steps cards under Prototype (same card design) */}
+              <div className="w-full mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <h4 className="text-lg font-semibold mb-3">Findings</h4>
                     <ul className="list-inside space-y-2 text-muted-foreground">
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Some elements lack clarity or visibility (filter fields, all routes button)</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Tap targets can feel too small for some users</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Navigation could be improved with clearer pathways and a back button for easier movement</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 8v8M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Users appreciate the simplicity of the design and can complete key tasks</span>
                       </li>
                     </ul>
                   </div>
-                </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Next Steps</h4>
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <h4 className="text-lg font-semibold mb-3">Next Steps</h4>
                     <ul className="list-inside space-y-2 text-muted-foreground">
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Improve visibility of “all routes” button</span>
                       </li>
@@ -962,6 +918,8 @@ const DanaoTopo = () => {
             </div>
           </div>
         </section>
+
+        
 
         {/* Process Step Four Section */}
   <section id="deliverables" className="py-12">
@@ -1017,14 +975,20 @@ const DanaoTopo = () => {
   <section id="conclusion" className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">CONCLUSIONS</h2>
-              <p className="text-muted-foreground mb-6">
-                I’m pleased with the final design, especially the map page. Finding a suitable base map was challenging — Google’s satellite imagery lacked clarity — so I used OpenStreetMap and created a custom dark version through AI. The crag info section also presented challenges, but I’m happy with the outcome.
-              </p>
-              <p className="text-muted-foreground mb-4">
-                Next, I plan to refine the all routes and filter sections and conduct more user testing to guide future improvements. I’m currently in contact with the route developer of Danao to potentially bring this project to life. I also recognise that some design elements may be complex to implement, and I aim to streamline them for easier development and a smoother user experience.
-              </p>
+                <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
+                <h2 className="text-2xl md:text-3xl font-semibold mb-4">CONCLUSIONS</h2>
+            </div>
+
+            {/* Conclusions card (same style as User Test Tasks) */}
+            <div className="w-full mt-6">
+              <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg">
+                <p className="text-muted-foreground mb-6">
+                  I’m pleased with the final design, especially the map page. Finding a suitable base map was challenging — Google’s satellite imagery lacked clarity — so I used OpenStreetMap and created a custom dark version through AI. The crag info section also presented challenges, but I’m happy with the outcome.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Next, I plan to refine the all routes and filter sections and conduct more user testing to guide future improvements. I’m currently in contact with the route developer of Danao to potentially bring this project to life. I also recognise that some design elements may be complex to implement, and I aim to streamline them for easier development and a smoother user experience.
+                </p>
+              </div>
             </div>
           </div>
         </section>
