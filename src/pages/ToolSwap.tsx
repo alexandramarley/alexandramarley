@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
+import danaoteaser from "@/assets/alexandramarley-uxdesign-danao-coverv1.webp";
 import tsDesign01_3 from "@/assets/alexandramarley-ux-toolswap-design-01.webp";
 import tsDesign02 from "@/assets/alexandramarley-ux-toolswap-design-02.webp";
 import tsDesign03 from "@/assets/alexandramarley-ux-toolswap-design-03.png";
