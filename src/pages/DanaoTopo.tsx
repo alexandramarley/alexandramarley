@@ -174,8 +174,7 @@ const DanaoTopo = () => {
 
     const first = items[0];
     const gap = parseFloat(getComputedStyle(first).marginRight || "0") || 0;
-    const itemWidth = first.offsetWidth + gap;
-    const setWidth = itemWidth * origCount;
+    let itemWidth = first.offsetWidth + gap;
 
     const updateCenter = () => {
       const center = el.scrollLeft + el.clientWidth / 2;
@@ -198,33 +197,59 @@ const DanaoTopo = () => {
       }
     };
 
-    // set initial scroll to middle copy for seamless loop
-    // use setTimeout to ensure layout has finished
+    // Add left/right padding so the first and last items can be centered
+    const setSidePadding = () => {
+      // recompute itemWidth in case of responsive layout
+      itemWidth = first.offsetWidth + gap;
+      const sidePad = Math.max(0, (el.clientWidth - itemWidth) / 2);
+      el.style.paddingLeft = `${sidePad}px`;
+      el.style.paddingRight = `${sidePad}px`;
+    };
+
+    // ensure layout settles before measuring and centering
     setTimeout(() => {
-      el.scrollLeft = setWidth;
+      setSidePadding();
+      // On mobile (narrow viewports) start on the first item; otherwise start on the 3rd item
+      const isMobile = el.clientWidth < 768;
+      const startIndex = isMobile ? 0 : Math.min(2, items.length - 1);
+      const targetItem = items[startIndex];
+      if (targetItem) {
+        const targetCenter = targetItem.offsetLeft + targetItem.offsetWidth / 2;
+        el.scrollLeft = Math.max(0, targetCenter - el.clientWidth / 2);
+      } else {
+        el.scrollLeft = 0;
+      }
       updateCenter();
     }, 50);
 
+    let resumeTimeout: number | null = null;
     const onScroll = () => {
       updateCenter();
       // if user scrolls manually, pause autoplay briefly
       setIsCarouselPaused(true);
       if (autoplayRef.current) window.clearInterval(autoplayRef.current);
-      // handle seamless wrap: if we pass into first copy or beyond last copy, jump
-      if (el.scrollLeft <= itemWidth * 0.5) {
-        el.scrollLeft = el.scrollLeft + setWidth;
-      } else if (el.scrollLeft >= setWidth * 2 - itemWidth * 0.5) {
-        el.scrollLeft = el.scrollLeft - setWidth;
-      }
-      // resume after 2.5s
-      window.setTimeout(() => setIsCarouselPaused(false), 2500);
+      if (resumeTimeout) window.clearTimeout(resumeTimeout);
+      resumeTimeout = window.setTimeout(() => setIsCarouselPaused(false), 2500);
+    };
+
+    const onResize = () => {
+      setSidePadding();
+      updateCenter();
     };
 
     el.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", updateCenter);
+    window.addEventListener("resize", onResize);
     return () => {
       el.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", updateCenter);
+      window.removeEventListener("resize", onResize);
+      // clear padding style
+      try {
+        el.style.paddingLeft = "";
+        el.style.paddingRight = "";
+      } catch (e) {
+        // ignore
+      }
+      if (resumeTimeout) window.clearTimeout(resumeTimeout);
     };
   }, []);
 
@@ -416,13 +441,13 @@ const DanaoTopo = () => {
           {/* left fade (hidden on mobile) */}
           <div className="pointer-events-none hidden md:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent opacity-90 z-10" />
           {
-            // render three copies for a seamless infinite scroll
-            [...overviewImages, ...overviewImages, ...overviewImages].map((img, idx) => {
-              const orig = idx % overviewImages.length;
+            // single copy of images; we'll add side padding so the first/last items
+            // can be scrolled to the centre of the view even without duplicates
+            overviewImages.map((img, idx) => {
               return (
-                <div key={idx} className="carousel-item flex-none w-1/2 md:w-1/6 transform transition-transform duration-300 scale-90">
+                <div key={idx} className="carousel-item flex-none w-3/4 sm:w-1/2 md:w-[200px] lg:w-[260px] transform transition-transform duration-300 scale-90">
                   <div className="overflow-hidden rounded-lg">
-                    <img src={img} alt={overviewAlts[orig]} className="w-full h-auto object-contain cursor-pointer" onClick={() => openSingle(img, overviewAlts[orig])} />
+                    <img src={img} alt={overviewAlts[idx]} className="w-full h-auto object-contain cursor-pointer" onClick={() => openSingle(img, overviewAlts[idx])} />
                   </div>
                 </div>
               );
