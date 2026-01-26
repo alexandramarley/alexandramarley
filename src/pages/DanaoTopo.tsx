@@ -6,7 +6,7 @@ import design01b from "@/assets/alexandramarley-uxdesign-danao-design-01d.webp";
 import design02b from "@/assets/alexandramarley-uxdesign-danao-design-02b.webp";
 import design03 from "@/assets/alexandramarley-uxdesign-danao-design-03b.webp";
 import design04 from "@/assets/alexandramarley-uxdesign-danao-design-04b.webp";
-import userJourney from "@/assets/alexandramarley-ux-danao-topo-user-journey.png";
+import userJourney from "@/assets/alexandramarley-ux-danao-topo-user-journey.webp";
 import danaoBenchmark1 from "@/assets/alexandramarley-uxdesign-danao-benchmark1.webp";
 import danaoBenchmark2 from "@/assets/alexandramarley-uxdesign-danao-benchmark2.webp";
 import danaoBenchmark3 from "@/assets/alexandramarley-uxdesign-danao-benchmark3.webp";
@@ -360,10 +360,10 @@ const DanaoTopo = () => {
                     <div>
                       <h3 className="text-2xl md:text-3xl font-semibold mb-4">Identifying the core user problem</h3>
                       <p className="text-muted-foreground max-w-2xl mb-8">
-                        Climbers in Danao relied soley on a spreadsheet to access route information - a format that’s hard to use outdoors and impossible to navigate quickly.
+                        Climbers in Danao, Philippines relied solely on a shared spreadsheet to access route information - a format that’s hard to use outdoors and difficult to navigate quickly.
                       </p>
                       <p className="text-muted-foreground mb-8">
-                        This app design transforms text-heavy content into a mobile-first climbing guide that prioritises clarity, offline access, and intuitive visual interaction.
+                        This app design transforms text-heavy route data into a mobile-first climbing guide that prioritises clarity, offline access, and intuitive visual interaction.
                       </p>
                     </div>
 
@@ -454,8 +454,11 @@ const DanaoTopo = () => {
         </div>
 
         <div className="w-full">
+          <p className="text-muted-foreground mb-6 max-w-none">
+            I used a mix of qualitative and quantitative methods to understand users’ behaviours and priorities when using climbing guide resources. Alongside observing and speaking with climbers, I ran a survey to gather broader market insights.
+          </p>
           <p className="text-muted-foreground mb-12 max-w-none">
-            I used a mix of qualitative and quantitive methods to understand our users and their behaviours and priorities when using climbing guide resources. Besides observing and talking to climbers I created a survey to gather market research. These insights shaped feature priorities and the overall information architecture. My findings:
+            The research revealed a clear need for fast, glanceable route information that works offline and supports decision-making at the crag. These insights shaped feature priorities and the overall information architecture. My Findings:
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -491,16 +494,17 @@ const DanaoTopo = () => {
           </div>
           <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
-              <h4 className="text-lg font-semibold mb-2">Route Rating</h4>
+              <h4 className="text-lg font-semibold mb-2">Secondary Use Case</h4>
               <p className="text-muted-foreground">Only 25% want to rate routes. Most users mainly view route info and track climbing projects.</p>
             </div>
           </div>
         </div>
         
         <div className="w-full mt-12">
-          <div className="max-w-3xl">
+          <div className="w-full">
             <h3 className="text-xl md:text-2xl font-semibold mb-4">Competitor Analysis</h3>
-            <p className="text-muted-foreground mb-6">At the same time I did some benchmarking and compared other climbing apps and their design. I gathered:</p>
+            <p className="text-muted-foreground mb-6 max-w-none">At the same time I benchmarked existing climbing apps to understand common patterns and trade-offs in route discovery, filtering, and map interaction.</p>
+            <p className="text-muted-foreground mb-6 max-w-none">The findings informed which design approaches to build upon and where opportunities existed to improve clarity and usability on mobile.</p>
           </div>
         </div>
         
@@ -627,13 +631,14 @@ const DanaoTopo = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="max-w-3xl">
                   <p className="text-muted-foreground mb-6">
-                    I documented three main journeys:
+                    I documented four main journeys:
                   </p>
 
                   <ul className="list-inside space-y-2 text-muted-foreground mb-6">
                     <li>• User is researching climbing areas and wants general information about Danao</li>
                     <li>• User has decided to climb at Danao and wants access to detailed route information</li>
-                    <li>• User can’t find the info they need and needs assistance or support</li>
+                    <li>• User is looking for a specific route or climbing wall</li>
+                    <li>• User wants to view their projects, contact support or wants to change something in their account</li>
                   </ul>
                   <p className="text-muted-foreground mb-6">
                     To help me visualise and plan these user journeys, I created a flow chart. This allows me to rationalise the steps within the journey, and plan the navigation within the app.
@@ -920,6 +925,13 @@ const DanaoTopo = () => {
                         <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
                           <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
+                        <span>Larger touch targets</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                         <span>Improve the filter screen</span>
                       </li>
 
@@ -1010,10 +1022,10 @@ const DanaoTopo = () => {
             <div className="w-full mt-6">
               <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg">
                 <p className="text-muted-foreground mb-6">
-                  Danao Topo was an end-to-end exploration of designing for information-dense content in challenging outdoor conditions. Particular focus was placed on map interaction, route discoverability, and reducing cognitive load while preserving depth where needed.
+                  Danao Topo was an end-to-end exploration of designing for information-dense content in challenging outdoor conditions, with a particular focus on map interaction, route discoverability, and reducing cognitive load without losing useful detail.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  While the project remains a conceptual exercise, it was informed by real user input and realistic constraints. The process reinforced the importance clear information hierarchy, thoughtful interaction design - lessons directly applicable to complex, data-rich products beyond the climbing domain
+                  While the project remains conceptual, it was grounded in real user input and realistic constraints. The process reinforced the importance of clear information hierarchy and thoughtful interaction design - lessons that translate directly to complex, data-rich products beyond the climbing domain.
                 </p>
               </div>
             </div>
