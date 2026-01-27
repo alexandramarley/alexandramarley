@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import danaoteaser from "@/assets/alexandramarley-uxdesign-danao-coverv1.webp";
 import tsDesign01_3 from "@/assets/alexandramarley-ux-toolswap-design-01.webp";
 import tsDesign02 from "@/assets/alexandramarley-ux-toolswap-design-02.webp";
@@ -11,19 +11,26 @@ import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.webp";
 import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
-import deliverables6 from "@/assets/alexandramarley-ToolSwap-Create-Account.png";
-import deliverables11 from "@/assets/alexandramarley-ToolSwap-Create-Booking-Requests.png";
-import deliverables8 from "@/assets/alexandramarley-ToolSwap-Create-Listing.png";
-import deliverables4 from "@/assets/alexandramarley-ToolSwap-Detailed-View.png";
 import deliverables5 from "@/assets/alexandramarley-ToolSwap-Filter.png";
 import deliverables1 from "@/assets/alexandramarley-ToolSwap-Home.png";
-import deliverables3 from "@/assets/alexandramarley-ToolSwap-ListView.png";
-import deliverables7 from "@/assets/alexandramarley-toolswap-menu.png";
-import deliverables12 from "@/assets/alexandramarley-ToolSwap-Messages-Chat.png";
-import deliverables9 from "@/assets/alexandramarley-ToolSwap-Review-Listing.png";
-import deliverables10 from "@/assets/alexandramarley-ToolSwap-Reviews.png";
-import deliverables2 from "@/assets/alexandramarley-toolswap-Search.png";
-import benchmark from "@/assets/alexandramarley-ux-toolswap-benchmark-01.webp";
+import benchmark01 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark01.webp";
+import benchmark02 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark02.webp";
+import tsAccount from "@/assets/alexandramarley-uxdesign-toolswap-account.webp";
+import tsBookingRequests2 from "@/assets/alexandramarley-uxdesign-toolswap-booking-requests.webp";
+import tsBookingState from "@/assets/alexandramarley-uxdesign-toolswap-booking-state.webp";
+import tsCalendar from "@/assets/alexandramarley-uxdesign-toolswap-calendar.webp";
+import tsChat from "@/assets/alexandramarley-uxdesign-toolswap-chat.webp";
+import tsChats from "@/assets/alexandramarley-uxdesign-toolswap-chats.webp";
+import tsConfirmListing from "@/assets/alexandramarley-uxdesign-toolswap-confirm-listing.webp";
+import tsCreateListing2 from "@/assets/alexandramarley-uxdesign-toolswap-create-listing.webp";
+import tsDetailedChatinquiry from "@/assets/alexandramarley-uxdesign-toolswap-detailed-chatinquiry.webp";
+import tsDetailedView2 from "@/assets/alexandramarley-uxdesign-toolswap-detailed-view.webp";
+import tsFilter2 from "@/assets/alexandramarley-uxdesign-toolswap-filter.webp";
+import tsHome2 from "@/assets/alexandramarley-uxdesign-toolswap-home.webp";
+import tsListview2 from "@/assets/alexandramarley-uxdesign-toolswap-listview.webp";
+import tsRateLender from "@/assets/alexandramarley-uxdesign-toolswap-rate-lender.webp";
+import tsRating2 from "@/assets/alexandramarley-uxdesign-toolswap-rating.webp";
+import tsSearch2 from "@/assets/alexandramarley-uxdesign-toolswap-search.webp";
 
 const ToolSwap = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -34,6 +41,175 @@ const ToolSwap = () => {
   const [singleLightboxOpen, setSingleLightboxOpen] = useState(false);
   const [singleLightboxSrc, setSingleLightboxSrc] = useState<string | null>(null);
   const [singleLightboxAlt, setSingleLightboxAlt] = useState<string | null>(null);
+  // User test stories (swipeable card in Prototype section)
+  const [userTestIndex, setUserTestIndex] = useState(0);
+  const userTestStories: React.ReactNode[] = [
+    (
+      <div>
+        <h5 className="text-sm font-semibold mb-2 text-muted-foreground">User Test 1 — Reserve & discovery</h5>
+        <div className="text-muted-foreground mb-4">
+          <ul className="list-inside space-y-2 pl-4">
+            <li>• Struggled to identify CTA buttons on booking screens</li>
+            <li>• Underlined CTAs were not recognised as primary actions</li>
+            <li>• Booking flow itself was clear once the CTA was found</li>
+            <li>• Attempted to use the keyboard during search (not fully interactive)</li>
+            <li>• Looked for a FAQ and a way to report an issue or user</li>
+          </ul>
+        </div>
+      </div>
+    ),
+    (
+      <div>
+        <h5 className="text-sm font-semibold mb-2 text-muted-foreground">User Test 2 — Listing & bookings</h5>
+        <div className="text-muted-foreground mb-4">
+          <ul className="list-inside space-y-2 pl-4">
+            <li>• Completed the search and booking task without issues</li>
+            <li>• Did not mind category suggestions above the search bar</li>
+            <li>• Got confused when setting a price during listing creation</li>
+            <li>• Price screen advanced automatically without confirmation</li>
+            <li>• Expected to see a newly created listing reflected in the listings</li>
+            <li>• Initially explored booking states (upcoming / completed / requests) out of curiosity rather than intent</li>
+          </ul>
+        </div>
+      </div>
+    ),
+  ];
+  // Carousel refs/state for the overview carousel (copied from DanaoTopo pattern)
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const autoplayRef = useRef<number | null>(null);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
+
+  const overviewImages = [
+    tsCreateListing2,
+    tsConfirmListing,
+    tsHome2,
+    tsSearch2,
+    tsCalendar,
+    tsDetailedView2,
+    tsListview2,
+    tsBookingState,
+    tsAccount,
+    tsBookingRequests2,
+    tsChat,
+    tsRating2,
+  ];
+
+  const overviewAlts = [
+    'Home',
+    'Search',
+    'Calendar',
+    'Detailed View',
+    'List View',
+    'Booking State',
+    'Create Listing',
+    'Confirm Listing',
+    'Account',
+    'Booking Requests',
+    'Chat',
+  ];
+
+  const scrollNext = () => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const firstChild = el.querySelector<HTMLElement>(".carousel-item");
+    const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
+    el.scrollBy({ left: step, behavior: "smooth" });
+  };
+
+  const scrollPrev = () => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const firstChild = el.querySelector<HTMLElement>(".carousel-item");
+    const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
+    el.scrollBy({ left: -step, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (isCarouselPaused) return;
+    // autoplay every 3s
+    autoplayRef.current = window.setInterval(() => {
+      scrollNext();
+    }, 3000);
+    return () => { if (autoplayRef.current) window.clearInterval(autoplayRef.current); };
+  }, [isCarouselPaused]);
+
+  // Highlight center item and add side padding so first/last can center
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const items = Array.from(el.querySelectorAll<HTMLElement>(".carousel-item"));
+    const origCount = overviewImages.length;
+    if (items.length < origCount) return;
+
+    const first = items[0];
+    const gap = parseFloat(getComputedStyle(first).marginRight || "0") || 0;
+    let itemWidth = first.offsetWidth + gap;
+
+    const updateCenter = () => {
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let closest: HTMLElement | null = null;
+      let min = Infinity;
+      items.forEach((it) => {
+        const offset = it.offsetLeft + it.offsetWidth / 2;
+        const diff = Math.abs(offset - center);
+        if (diff < min) {
+          min = diff;
+          closest = it;
+        }
+        it.classList.remove("scale-105");
+        it.classList.add("scale-90");
+      });
+      if (closest) {
+        closest.classList.remove("scale-90");
+        closest.classList.add("scale-105");
+      }
+    };
+
+    const setSidePadding = () => {
+      itemWidth = first.offsetWidth + gap;
+      const sidePad = Math.max(0, (el.clientWidth - itemWidth) / 2);
+      el.style.paddingLeft = `${sidePad}px`;
+      el.style.paddingRight = `${sidePad}px`;
+    };
+
+    setTimeout(() => {
+      setSidePadding();
+      const isMobile = el.clientWidth < 768;
+      const startIndex = isMobile ? 0 : Math.min(2, items.length - 1);
+      const targetItem = items[startIndex];
+      if (targetItem) {
+        const targetCenter = targetItem.offsetLeft + targetItem.offsetWidth / 2;
+        el.scrollLeft = Math.max(0, targetCenter - el.clientWidth / 2);
+      } else {
+        el.scrollLeft = 0;
+      }
+      updateCenter();
+    }, 50);
+
+    let resumeTimeout: number | null = null;
+    const onScroll = () => {
+      updateCenter();
+      setIsCarouselPaused(true);
+      if (autoplayRef.current) window.clearInterval(autoplayRef.current);
+      if (resumeTimeout) window.clearTimeout(resumeTimeout);
+      resumeTimeout = window.setTimeout(() => setIsCarouselPaused(false), 2500);
+    };
+
+    const onResize = () => {
+      setSidePadding();
+      updateCenter();
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      try { el.style.paddingLeft = ""; el.style.paddingRight = ""; } catch (e) {}
+      if (resumeTimeout) window.clearTimeout(resumeTimeout);
+    };
+  }, []);
+
   const location = useLocation();
 
   useEffect(() => {
@@ -44,18 +220,18 @@ const ToolSwap = () => {
     }
   }, [location]);
   const deliverablesImages = [
-    deliverables1,
-    deliverables2,
-    deliverables3,
-    deliverables4,
-    deliverables5,
-    deliverables6,
-    deliverables7,
-    deliverables8,
-    deliverables9,
-    deliverables10,
-    deliverables11,
-    deliverables12,
+    tsHome2,
+    tsSearch2,
+    tsDetailedView2,
+    tsListview2,
+    tsFilter2,
+    tsBookingState,
+    tsAccount,
+    tsCreateListing2,
+    tsBookingRequests2,
+    tsChats,
+    tsChat,
+    tsRating2,
   ];
 
   const openLightbox = (i: number) => {
@@ -112,12 +288,39 @@ const ToolSwap = () => {
   // Key handling for the generic single-image lightbox
   useEffect(() => {
     if (!singleLightboxOpen) return;
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSingleLightboxOpen(false);
+      if (e.key === "Escape") {
+        setSingleLightboxOpen(false);
+        return;
+      }
+
+      // Allow left/right arrow navigation when the single-image lightbox
+      // is showing an image that belongs to the overview carousel.
+      if (e.key === "ArrowRight") {
+        if (!singleLightboxSrc) return;
+        const idx = overviewImages.findIndex((src) => src === singleLightboxSrc);
+        if (idx >= 0) {
+          const nextIndex = (idx + 1) % overviewImages.length;
+          setSingleLightboxSrc(overviewImages[nextIndex]);
+          setSingleLightboxAlt(overviewAlts[nextIndex] || null);
+        }
+      }
+
+      if (e.key === "ArrowLeft") {
+        if (!singleLightboxSrc) return;
+        const idx = overviewImages.findIndex((src) => src === singleLightboxSrc);
+        if (idx >= 0) {
+          const prevIndex = (idx - 1 + overviewImages.length) % overviewImages.length;
+          setSingleLightboxSrc(overviewImages[prevIndex]);
+          setSingleLightboxAlt(overviewAlts[prevIndex] || null);
+        }
+      }
     };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [singleLightboxOpen]);
+  }, [singleLightboxOpen, singleLightboxSrc]);
 
   return (
     <div className="min-h-screen">
@@ -131,7 +334,7 @@ const ToolSwap = () => {
               {/* Left: three-line heading + intro (spans 2/3 on md+) */}
               <div className="md:col-span-2">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight leading-tight md:leading-snug w-full">
-                  <span className="text-green-700 font-semibold">ToolSwap:</span> A community marketplace for borrowing tools - reducing cost and boosting sustainability
+                  <span className="text-green-700 font-semibold">ToolSwap:</span> A local tool-sharing marketplace that reduces waste and builds trust
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mb-6">
                   A mobile-first platform to find, list and borrow tools in your neighbourhood
@@ -157,8 +360,49 @@ const ToolSwap = () => {
           </div>
         </section>
 
-        {/* Overview (adopted from DanaoTopo): left long text, right Role/Team/Timeline — stacks on mobile */}
-        <section className="pt-6 pb-12">
+  
+
+        {/* Sticky section menu: quick anchors for page sections (centered & sticky) */}
+        <div className="sticky top-14 z-40">
+          <div className="container mx-auto px-6 relative">
+            <nav className="flex justify-center py-3 md:py-4 bg-background/80 backdrop-blur-sm relative" role="navigation" aria-label="Page sections">
+              <ul className="flex flex-wrap justify-center items-center gap-3 md:gap-6">
+                {[
+                  { id: 'overview', mobile: 'Overview', desktop: 'Overview' },
+                  { id: 'research', mobile: 'Research', desktop: 'Research & Analysis' },
+                  { id: 'design', mobile: 'Design', desktop: 'Design' },
+                  { id: 'prototype', mobile: 'Prototype', desktop: 'Prototype & Testing' },
+                  { id: 'deliverables', mobile: 'Deliverables', desktop: 'Deliverables' },
+                  { id: 'conclusion', mobile: 'Conclusion', desktop: 'Conclusion' },
+                ].map(({ id, mobile, desktop }) => (
+                  <li key={id} className="flex-shrink-0">
+                    <a
+                      href={`#${id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const el = document.getElementById(id);
+                        if (!el) return;
+                        // calculate offset so the section title sits below the sticky menu
+                        const stickyNav = document.querySelector('nav[aria-label="Page sections"]') as HTMLElement | null;
+                        const stickyH = stickyNav ? stickyNav.offsetHeight : 0;
+                        const extra = 12; // small breathing room
+                        const top = el.getBoundingClientRect().top + window.scrollY - stickyH - extra;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                      }}
+                      className="text-sm md:text-base px-2 md:px-3 py-1 md:py-2 text-muted-foreground hover:text-foreground border-b-2 border-transparent hover:border-green-600 text-center block md:inline-block max-w-[96px] md:max-w-none"
+                    >
+                      <span className="block md:hidden">{mobile}</span>
+                      <span className="hidden md:block">{desktop}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="absolute bottom-0 left-0 right-0 h-px pointer-events-none bg-gradient-to-r from-muted/20 via-muted/40 to-muted/20" aria-hidden />
+            </nav>
+          </div>
+        </div>
+
+        <section id="overview" className="pt-6 pb-12">
           <div className="container mx-auto px-6">
             <div className="overflow-hidden rounded-lg bg-background">
                 <div className="w-full flex items-stretch md:h-full">
@@ -166,35 +410,32 @@ const ToolSwap = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
                     {/* Left: Title + longer text */}
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Overview</h3>
+                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Problem vs Solution</h3>
                       <p className="text-muted-foreground max-w-2xl mb-6">
-                        As London’s cost of living rises and we all try to be more eco-friendly, it makes sense that not everyone owns a pressure washer or drill—especially when you only need one occasionally. With DIY makeovers on the rise, it’s tempting to try them yourself. So what if there were an app where you could borrow tools from people nearby, and offer up that fancy Artisan stand mixer you only use every six months in return?
+                        In dense cities like London, people often need tools only occasionally. Buying them is expensive, space-inefficient, and often unnecessary - yet borrowing informally lacks trust and reliability.
                       </p>
                       <p className="text-muted-foreground mb-6">
-                        I have created from scratch a design for a mobile application where you can reserve and list any home tools through different categories. My goals:
+                        ToolSwap is a mobile-first community marketplace that enables people to list, find, and borrow tools nearby — with trust built through verification, ratings, and simple booking flows.
                       </p>
-                      <ul className="space-y-3 text-muted-foreground mb-6">
-                        <li>• Create a mobile app that is easy and quick to use</li>
-                        <li>• Create a marketplace where tools can be lent/borrowed for a short amount of time with a user rating system designed to enhance transparency, reliability, and trust.</li>
-                        <li>• Reduce people's spending and encourage sustainable choices</li>
-                      </ul>
                     </div>
 
-                    {/* Right: three short titled lines */}
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Role</h4>
-                        <p className="text-muted-foreground">Product Designer (full scope delivery, from research to final design)</p>
-                      </div>
+                    {/* Right: Role / Team / Timeline stacked vertically; smaller visual weight so Overview remains priority */}
+                    <div className="mt-6 md:mt-0">
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="text-base font-semibold mb-1">Role</h4>
+                          <p className="text-sm text-muted-foreground">Product Designer (End-to-End)</p>
+                        </div>
 
-                      <div>
-                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Team</h4>
-                        <p className="text-muted-foreground">Independent project</p>
-                      </div>
+                        <div>
+                          <h4 className="text-base font-semibold mb-1">Team</h4>
+                          <p className="text-sm text-muted-foreground">Independent project</p>
+                        </div>
 
-                      <div>
-                        <h4 className="text-xl md:text-2xl font-semibold mb-4">Timeline</h4>
-                        <p className="text-muted-foreground">September - October 2025</p>
+                        <div>
+                          <h4 className="text-base font-semibold mb-1">Timeline</h4>
+                          <p className="text-sm text-muted-foreground">September - October 2025</p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -206,129 +447,232 @@ const ToolSwap = () => {
 
       
 
+  <section className="py-16">
+    <div className="container mx-auto px-6 relative">
+      <div className="relative">
+        <button
+          aria-label="Previous"
+          onClick={() => { setIsCarouselPaused(true); scrollPrev(); }}
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-50 text-white rounded-full w-12 h-12 text-3xl flex items-center justify-center"
+        >
+          ‹
+        </button>
 
-        {/* Process Section (mirrored from DanaoTopo structure) */}
-        <section className="py-12">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS</h2>
-              <p className="text-muted-foreground mb-8">
-                To find out more about our users and if there’s a need for such a tool I relied mainly on quantitative and qualitative methods. I created a survey to find out more about our users, what tools people would be interested to borrow, and if they would pay for it. The results: 
-              </p>
+        <div
+          ref={carouselRef}
+          onMouseEnter={() => setIsCarouselPaused(true)}
+          onMouseLeave={() => setIsCarouselPaused(false)}
+          className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar"
+        >
+          {/* left fade (hidden on mobile) */}
+          <div className="pointer-events-none hidden md:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent opacity-90 z-10" />
+          {
+            overviewImages.map((img, idx) => {
+              return (
+                <div key={idx} className="carousel-item flex-none w-3/4 sm:w-1/2 md:w-[200px] lg:w-[260px] transform transition-transform duration-300 scale-90">
+                  <div className="overflow-hidden rounded-lg">
+                    <img src={img} alt={overviewAlts[idx]}
+                      className="w-full h-auto object-contain cursor-pointer"
+                      onClick={() => { setSingleLightboxSrc(img); setSingleLightboxAlt(overviewAlts[idx]); setSingleLightboxOpen(true); }}
+                    />
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+
+        <button
+          aria-label="Next"
+          onClick={() => { setIsCarouselPaused(true); scrollNext(); }}
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-50 text-white rounded-full w-12 h-12 text-3xl flex items-center justify-center"
+        >
+          ›
+        </button>
+
+  {/* right fade (hidden on mobile) */}
+  <div className="pointer-events-none hidden md:block absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent opacity-90 z-10" />
+      </div>
+    </div>
+  </section>
+
+  {/* Process Section (mirrored from DanaoTopo structure) */}
+  <section id="research" className="py-16 md:py-20">
+      <div className="container mx-auto px-6">
+        <div className="max-w-3xl text-left">
+          <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS</h2>
+        </div>
+
+        <div className="w-full">
+          <p className="text-muted-foreground mb-6 max-w-none">
+           To understand whether there was a real need for a tool-sharing app, I used a mix of qualitative and quantitative research methods. I spoke with potential users, observed how people currently access tools, and ran a survey to explore borrowing habits and trust concerns.
+          </p>
+          <p className="text-muted-foreground mb-6 max-w-none">
+          Key insight: Tool borrowing is already a frequent need - the main barrier isn’t demand, but confidence and convenience. These insights directly informed feature prioritisation, information architecture, and the decision to design ToolSwap as a map-first experience.
+        </p></div>
+
+        <div className="w-full mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="flex-1 w-full">
+                <h4 className="text-lg font-semibold mb-2">User Demand</h4>
+                <div className="text-muted-foreground">
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>60% interested in borrowing tools via an app</li>
+                    <li>46% use tools monthly or weekly</li>
+                    <li>Most used categories: Hand tools / DIY tools / Kitchen or garden tools</li>
+                  </ul>
+
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Tool use is frequent - access matters more than ownership</p>
+                </div>
+              </div>
             </div>
 
-{/* Research Findings */}
-        <section className="py-8">
-          <div className="container mx-auto px-6">
-              <div className="w-full">
-              {/* Make findings use full available width and allow cards to wrap onto multiple rows when needed */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full items-stretch">
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">User Demand</h4>
-                    <p className="text-muted-foreground">60% of participants are somewhat interested in using the app, 46% use tools monthly or weekly. Most commonly used categories: hand tools (80%), followed by DIY tools, then kitchen/garden tools.</p>
-                  </div>
-                </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="flex-1 w-full">
+                <h4 className="text-lg font-semibold mb-2">Motivations</h4>
+                <div className="text-muted-foreground">
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Quick and convenient access</li>
+                    <li>Trust through user verification</li>
+                    <li>Reducing waste by sharing rarely used items</li>
+                  </ul>
 
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Motivations</h4>
-                    <div className="text-muted-foreground">
-                      <p className="mb-2">Users are driven by practical and ethical benefits:</p>
-                      <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                        <li>Convenience</li>
-                        <li>User verification</li>
-                        <li>Sustainability and reducing waste</li>
-                      </ul>
-                    </div>
-                  </div>
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Convenience drives adoption; sustainability reinforces engagement</p>
                 </div>
+              </div>
+            </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Barriers and Trust Concerns</h4>
-                    <p className="text-muted-foreground">The biggest hesitation is around possible damage to borrowed tools. Users also worry about reliability and responsibility. They want reassurance that both lenders and borrowers can be trusted.</p>
-                  </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="flex-1 w-full">
+                <h4 className="text-lg font-semibold mb-2">Barriers and Trust Concerns</h4>
+                <div className="text-muted-foreground">
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Fear of damage to borrowed tools</li>
+                    <li>Concerns around reliability and accountability</li>
+                    <li>Uncertainty about who to trust</li>
+                  </ul>
+
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Trust is the primary barrier to participation</p>
                 </div>
+              </div>
+            </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Essential Trust-Building Features</h4>
-                    <div className="text-muted-foreground">
-                      <p className="mb-2">To increase confidence in using the app, participants identified key features:</p>
-                      <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                        <li>User verification</li>
-                        <li>Ratings & reviews</li>
-                        <li>Insurance or damage guarantee</li>
-                      </ul>
-                    </div>
-                  </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="flex-1 w-full">
+                <h4 className="text-lg font-semibold mb-2">Essential Trust-Building Features</h4>
+                <div className="text-muted-foreground">
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Verified user profiles</li>
+                    <li>Ratings & reviews</li>
+                    <li>Insurance or damage guarantees</li>
+                  </ul>
+
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Trust features are core functionality, not add-ons</p>
                 </div>
+              </div>
+            </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg min-w-0 flex flex-col justify-start h-full">
-                  <div className="flex-1 w-full mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Priority Features & Core Use Cases</h4>
-                    <div className="text-muted-foreground">
-                      <p className="mb-2">Most desired app functionalities include:</p>
-                      <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                        <li>Search by tool type</li>
-                        <li>Availability calendar</li>
-                        <li>Map view of nearby tools</li>
-                      </ul>
-                    </div>
-                  </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+              <div className="flex-1 w-full">
+                <h4 className="text-lg font-semibold mb-2">Priority Features & Core Use Cases</h4>
+                <div className="text-muted-foreground">
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Search by tool type</li>
+                    <li>Availability calendar</li>
+                    <li>Map view of nearby tools</li>
+                  </ul>
+
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Visibility and proximity are prioritised over social features</p>
                 </div>
               </div>
             </div>
           </div>
-        </section>  
+        </div>
 
-              <p className="text-muted-foreground mb-6">
-                As part of my research I did some  <span className="font-semibold">benchmarking</span> and compared similar products and their designs to identify best practices and areas for improvement.
-                </p>
-             {/* Benchmark summary cards (two items) */}
-              <div className="mt-8">
-                <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
-                  <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                    <div className="mx-auto max-w-md md:max-w-none text-left">
-                      <p className="text-muted-foreground"><span className="text-blue-500 font-semibold">Example blue </span> shows an app that feels crowded and overwhelming due to the excessive information and colour overload presented on the home screen.</p>
-                    </div>
-                  </div>
-
-                  <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                    <div className="mx-auto max-w-md md:max-w-none text-left">
-                      <p className="text-muted-foreground">In contrast, <span className="text-red-500 font-semibold">example red</span> offers a clean and intuitive interface, prioritising essential features like search and categories, which enhances the user experience.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Benchmark image */}
-              <div className="flex justify-center mt-6">
-                <div className="w-full overflow-hidden rounded-lg">
-                  <img
-                    src={benchmark}
-                    alt="Benchmark - comparative analysis"
-                    className="w-full h-auto object-contain cursor-pointer"
-                    onClick={() => {
-                      setSingleLightboxSrc(benchmark);
-                      setSingleLightboxAlt("Benchmark - comparative analysis");
-                      setSingleLightboxOpen(true);
-                    }}
-                  />
-                </div>
-              </div>
+        <div className="w-full mt-12">
+          <div className="w-full">
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Competitor Analysis</h3>
+            <p className="text-muted-foreground mb-6 max-w-none">At the same time I benchmarked existing sharing and marketplace apps to compare similar products and their designs to identify best practices and areas for improvement. The findings informed which design approaches to build upon and where opportunities existed to improve clarity and usability on mobile.</p>
+            <p className="text-muted-foreground mb-6 max-w-none">Key takeaway: Existing marketplaces either overwhelm users with information or hide critical decision-making details. ToolSwap intentionally prioritises clarity and speed over feature density, particularly in map-based discovery and booking flows.</p>
           </div>
-        </section>
+        </div>
 
-        {/* Process Step Two Section */}
-        <section className="py-12 bg-muted/30">
+        <div className="w-full mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+                <div className="w-full overflow-hidden rounded-md mb-4 h-40 md:h-44 relative">
+                <img
+                  src={benchmark01}
+                  alt="Benchmark example 1"
+                  className="w-full h-full object-cover cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => { setSingleLightboxSrc(benchmark01); setSingleLightboxAlt('Benchmark - comparative analysis 1'); setSingleLightboxOpen(true); }}
+                />
+                <button
+                  aria-label="Open benchmark 1"
+                  onClick={() => { setSingleLightboxSrc(benchmark01); setSingleLightboxAlt('Benchmark - comparative analysis 1'); setSingleLightboxOpen(true); }}
+                  className="absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center bg-black bg-opacity-60 text-white rounded-full hover:bg-opacity-80 transition"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <circle cx="11" cy="11" r="7" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </button>
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Example 1</h4>
+              <ul className="list-inside list-disc text-muted-foreground pl-4 space-y-1">
+                <li>Visual clutter</li>
+                <li>Information overload</li>
+                <li>Conflicting visual hierarchy</li>
+              </ul>
+            </div>
+            <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
+                <div className="w-full overflow-hidden rounded-md mb-4 h-40 md:h-44 relative">
+                <img
+                  src={benchmark02}
+                  alt="Benchmark example 2"
+                  className="w-full h-full object-cover cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => { setSingleLightboxSrc(benchmark02); setSingleLightboxAlt('Benchmark - comparative analysis 2'); setSingleLightboxOpen(true); }}
+                />
+                <button
+                  aria-label="Open benchmark 2"
+                  onClick={() => { setSingleLightboxSrc(benchmark02); setSingleLightboxAlt('Benchmark - comparative analysis 2'); setSingleLightboxOpen(true); }}
+                  className="absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center bg-black bg-opacity-60 text-white rounded-full hover:bg-opacity-80 transition"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <circle cx="11" cy="11" r="7" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </button>
+              </div>
+              <h4 className="text-lg font-semibold mb-2">Example 2</h4>
+              <ul className="list-inside list-disc text-muted-foreground pl-4 space-y-1">
+                <li>Clean, minimal interface</li>
+                <li>Clear feature prioritisation</li>
+                <li>Intuitive navigation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  {/* Process Step Two Section */}
+  <section id="design" className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
               <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
-              <p className="text-muted-foreground mb-4">
-                Based on research insights, key priorities were identified: ease of discovery, quick listing flows, and trust-building features such as user ratings and verification. The secondary, less important use cases would be an account overview with previous borrowed/listed items and the aim to strengthen the community and supporting the environment
+            </div>
+
+            <div className="w-full">
+              <p className="text-muted-foreground mb-6 max-w-none">
+                Based on research insights, key priorities were identified: ease of discovery, quick listing flows, and trust-building features such as user ratings and verification. Secondary use cases included account management and booking history, supporting both borrowers and lenders while reinforcing a sense of community.
               </p>
             </div>
 
@@ -340,14 +684,17 @@ const ToolSwap = () => {
                 It was clear that I had to come up with a design that has minimal clicks, and features the two main things the app should do: Reserve and list tools.
               </p>
               <p className="text-muted-foreground mb-6">
-                    I started to work on the app structure and document the user journey. My key considerations were the user goals and to document the structure. There are three different journeys:
+                    To structure the experience, I mapped out the user journeys around three primary goals:
                   </p>
 
                   <ul className="list-inside space-y-2 text-muted-foreground mb-6">
-                    <li>• To search and borrow someone&apos;s tool</li>
-                    <li>• To list your own tools</li>
-                    <li>• To access your account</li>
+                    <li>• Finding and borrowing a nearby tool</li>
+                    <li>• Listing a tool for others to borrow</li>
+                    <li>• Managing bookings and account information</li>
                   </ul>
+                  <p className="text-muted-foreground mb-6">
+                    These journeys informed the overall information architecture and ensured the interface remained focused on real user needs.
+                  </p>
                 </div>
 
                 <div className="flex justify-center">
@@ -365,7 +712,10 @@ const ToolSwap = () => {
 
             <div className="max-w-3xl mt-8">
               <h4 className="text-lg font-semibold mb-2">Design Choices</h4>
-              <p className="text-muted-foreground mb-0">After defining the user journey I drew some sketches and created medium fidelity wireframe which helped me clarify the structure and flow. Next step was converting the wireframes into actual designs. Some of my challenges and reasonings are highlighted below.</p>
+            </div>
+
+            <div className="w-full">
+              <p className="text-muted-foreground mb-6 max-w-none">After defining the user journey I drew some sketches and created medium fidelity wireframe which helped me clarify the structure and flow. Next step was converting the wireframes into actual designs. Some of my challenges and reasonings are highlighted below.</p>
             </div>
           </div>
         </section>
@@ -376,30 +726,37 @@ const ToolSwap = () => {
             <div className="space-y-16">
               {/* Block 1 - Navigation & Search */}
               <div>
-                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Navigation & Search</h4>
-                     <p className="text-muted-foreground mb-4">
-                    When experimenting with different navigation types (hamburger menu, floating buttons, bottom navigation) I realised that using a hamburger menu with a floating search bar would be the best solution. <span className="text-red-500 font-semibold">The search bar</span> is one of the main CTA’s in the whole app, therefore I wanted it to be as accessible as possible. I did some benchmarking with other map-prioritised applications, and even though there is a clear design pattern, I decided to have the search bar at the bottom, as it is much easier to reach with your thumb (compared to the top).
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    This decision meant that I had to change a lot of other design patterns, which might look a bit strange in the beginning (e.g. <span className="text-blue-500 font-semibold">category suggestions</span> on top of the search bar, instead underneath).
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    The menu otherwise can be accessed through a traditional hamburger menu. The only time it’s not used, is when a critical user flow could be interrupted (e.g. creating a listing).
-                  </p>
-                  </div>
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
-                    <img
-                      src={tsDesign01_3}
-                      alt="Navigation & Search - full"
-                      className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
-                      onClick={() => {
-                        setSingleLightboxSrc(tsDesign01_3);
-                        setSingleLightboxAlt("Navigation & Search - full");
-                        setSingleLightboxOpen(true);
-                      }}
-                    />
+                <div className="px-0 sm:px-12 mt-6">
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                      <div>
+                        <h4 className="text-lg font-semibold mb-2">Navigation & Search</h4>
+                        <p className="text-muted-foreground mb-4">
+                          Search is the main entry point into ToolSwap, so it needed to stay visible without getting in the way. I placed the search bar at the bottom of the screen to support one-handed use, especially while exploring the map.
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                          Category suggestions appear above the search field. Although this breaks a common pattern, early testing showed it helped users move faster without causing confusion.
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                         The main menu remains accessible but is intentionally hidden during critical flows to avoid distraction.
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-center">
+                        <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg">
+                          <img
+                            src={tsDesign01_3}
+                            alt="Navigation & Search - full"
+                            className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
+                            onClick={() => {
+                              setSingleLightboxSrc(tsDesign01_3);
+                              setSingleLightboxAlt("Navigation & Search - full");
+                              setSingleLightboxOpen(true);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -408,12 +765,12 @@ const ToolSwap = () => {
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Map</h4>
+                    <h4 className="text-lg font-semibold mb-2">Map-first exploration</h4>
                     <p className="text-muted-foreground mb-4">
-                      When looking at other marketplaces or selling applications, most are based on list-view designs, and the map-view is only of secondary importance. As my research showed, users find the map very useful, therefore I decided to make the design map-oriented, but still offer the option of showing the items in a list view.
+                      Looking at similar marketplaces, most rely heavily on list views, with maps playing a secondary role. Research showed the opposite here - users cared most about what was close by.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      The map can be seen throughout the application in the background as a visual theme.
+                      For that reason, ToolSwap is designed as a map-first experience, with a list view available when users want to compare options more directly. Keeping the map visible throughout the app helps maintain spatial context during decision-making.
                     </p>
                   </div>
                   <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
@@ -433,27 +790,32 @@ const ToolSwap = () => {
 
               {/* Block 3 - Terminology Main Menu*/}
               <div>
-                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Terminology Main Menu</h4>
-                      <p className="text-muted-foreground mb-4">
-                    The terminology for the main menu was quite tricky. In the beginning I used the categories reserve tool - create listing - my account - settings. The first two categories are quite clear, my account would have been responsible for your own bookings, but also the bookings you receive for the items you lend.
-                  </p>
-                  <p className="text-muted-foreground mb-4">
-                    I found it very difficult to describe the differentiations &amp; even got confused myself when designing the screens, therefore I had to come up with a different menu. I came up with two options, asked users what makes more sense to them, and everyone voted for <span className="text-green-500 font-semibold">option 2</span> vs <span className="text-red-500 font-semibold">option 1</span>.
-                  </p>
-                  </div>
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
-                    <img
-                      src={tsDesign03}
-                      alt="Terminology / Menu choices - full"
-                      className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
-                      onClick={() => {
-                        setSingleLightboxSrc(tsDesign03);
-                        setSingleLightboxAlt("Terminology / Menu choices - full");
-                        setSingleLightboxOpen(true);
-                      }}
-                    />
+                <div className="px-0 sm:px-12 mt-6">
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                      <div className="max-w-3xl">
+                        <h4 className="text-lg font-semibold mb-2">Terminology Main Menu</h4>
+                        <p className="text-muted-foreground mb-4">
+                          Getting the main menu right took a few iterations. Early versions grouped actions by feature, which made it hard to tell whether certain items related to borrowing or lending.
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                          I tested two menu structures with users. The final version separates actions into Borrow and Lend, which aligned better with how users described their own mental model and reduced confusion around bookings.
+                        </p>
+                      </div>
+
+                      <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
+                        <img
+                          src={tsDesign03}
+                          alt="Terminology / Menu choices - full"
+                          className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
+                          onClick={() => {
+                            setSingleLightboxSrc(tsDesign03);
+                            setSingleLightboxAlt("Terminology / Menu choices - full");
+                            setSingleLightboxOpen(true);
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -464,16 +826,13 @@ const ToolSwap = () => {
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">List Item</h4>
                     <p className="text-muted-foreground mb-4">
-                      The list item screen went through various changes as I struggled to combine all the important information on one screen nicely. In the end I chose to use a bottom sheet to have the map in the background, which helps the user to identify where the tool is located. In the screenshot on the right you can see how the user can find the most important information, highlighted in <span className="text-red-500 font-semibold">red</span>.
+                      The tool detail screen went through several rounds of refinement. The main challenge was fitting all relevant information onto one screen without overwhelming the user.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      The <span className="text-red-500 font-semibold">red</span> and <span className="text-blue-500 font-semibold">blue</span> highlighted section is scrollable, after the description underneath you can find the reviews for this specific items from other users, plus what else the lender borrows.
+                      The final design uses a bottom sheet layout, keeping the map visible in the background to maintain location context. Key details appear first, followed by a scrollable description and reviews.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      Highlighted in <span className="text-green-500 font-semibold">green</span>  is the CTA to book the item + the overall price you’d pay. These items are fixed, as they should be all-time accessible.
-                    </p>
-                    <p className="text-muted-foreground mb-4">
-                      Below you can see the previous versions that lend to the end version.
+                      The booking CTA and total price are fixed at the bottom so they’re always easy to reach.
                     </p>
 
                     <div className="w-full overflow-hidden rounded-lg mt-6">
@@ -507,41 +866,45 @@ const ToolSwap = () => {
 
               {/* Block 5 - Filter / Sort by */}
               <div>
-                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                  <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Filter / Sort by</h4>
-                    <p className="text-muted-foreground mb-4">
-                      For the list view of the tools I wanted to include a filter/sort by option. This should make it easier for users to find the tool they want (short travel distance, find the cheapest option, etc.)
-                    </p>
-                    <p className="text-muted-foreground mb-4">
-                      I first tried to combine it within the map view (when showing the results), but after further research I removed that and opted for a bottom sheet. This seemed more user friendly, better to reach with your thumb, and the function is clearer. After doing some bench marking with other marketplace apps I wanted to include filter chips at the top of the screen to highlight the most used features. However, overall this would have overcomplicated the design and made it less clear to navigate. Below you can see the different versions to the final result (right side).
-                    </p>
+                <div className="px-0 sm:px-12 mt-6">
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                      <div className="max-w-3xl">
+                        <h4 className="text-lg font-semibold mb-2">Filter / Sort by</h4>
+                        <p className="text-muted-foreground mb-4">
+                          To support decision-making in list view, a filter and sort option was introduced. Early concepts embedded filters directly into the map view, but testing showed this reduced clarity and reachability.
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                          The final solution uses a bottom sheet pattern instead. This keeps controls reachable and the map clear, while prioritising the most common filters such as distance, price, and availability.
+                        </p>
 
-                    <div className="w-full overflow-hidden rounded-lg mt-6">
-                      <img
-                        src={tsDesign05}
-                        alt="Filter & Sort design - full"
-                        className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
-                        onClick={() => {
-                          setSingleLightboxSrc(tsDesign05);
-                          setSingleLightboxAlt("Filter & Sort design - full");
-                          setSingleLightboxOpen(true);
-                        }}
-                      />
+                        <div className="w-full overflow-hidden rounded-lg mt-6">
+                          <img
+                            src={tsDesign05}
+                            alt="Filter & Sort design - full"
+                            className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                            onClick={() => {
+                              setSingleLightboxSrc(tsDesign05);
+                              setSingleLightboxAlt("Filter & Sort design - full");
+                              setSingleLightboxOpen(true);
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                        <img
+                          src={deliverables5}
+                          alt="ToolSwap Filter"
+                          className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                          onClick={() => {
+                            setSingleLightboxSrc(deliverables5);
+                            setSingleLightboxAlt("ToolSwap Filter");
+                            setSingleLightboxOpen(true);
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
-                    <img
-                      src={deliverables5}
-                      alt="ToolSwap Filter"
-                      className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
-                      onClick={() => {
-                        setSingleLightboxSrc(deliverables5);
-                        setSingleLightboxAlt("ToolSwap Filter");
-                        setSingleLightboxOpen(true);
-                      }}
-                    />
                   </div>
                 </div>
               </div>
@@ -550,133 +913,134 @@ const ToolSwap = () => {
         </section>
 
         {/* Process Step Three Section - Prototype & Testing */}
-        <section className="py-12">
+  <section id="prototype" className="py-12">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-              {/* Left: Text content */}
-              <div className="max-w-3xl md:pr-12">
-                <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-4">PROTOTYPE &amp; TESTING</h2>
-                <p className="text-muted-foreground mb-4">
-                  After finishing my design screens, I connected all the different frames &amp; created a prototype. When it came to the user testing, I gave the candidates the following tasks:
-                </p>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-                  <li>
-                    You live in Canary Wharf &amp; look for a power drill from September 13th 2025 - September 20th, 2025. Try to reserve the item closest to you, assuming you already have an account (steven.smith@gmail.com / password), and continue with the checkout flow.
-                  </li>
-                  <li>
-                    You live in Canary Wharf (15 Chichester Way, E14 3EG) and want to lend your jigsaw to other people. Try to create your own listing, the price is £4 per day and no description is needed (can be skipped).
-                  </li>
-                  <li>
-                    Try to find the booking requests for your bookings (the tools that you are lending to others)
-                  </li>
-                </ul>
+            <div>
+              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">PROTOTYPE &amp; TESTING</h2>
 
-                <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 1</span> struggled with the CTA buttons on the booking screens. Currently they are only underlined, so I’ll change this into clearer CTA’s. The reserve-a-tool flow seemed to be quite clear as the user did not face any challenges with the search flow, although they tried to use the keyboard which is not fully interactive. They were also looking for a FAQ page and wanted to know how they could report an issue or a user. Since then I’ve added those pages to the main menu, accessible through the category settings.
-                </p>
-
-                <p className="text-muted-foreground mb-4">
-                  <span className="font-semibold">User 2</span> solved the first task without any problems, and didn’t mind the category suggestions above the search bar, which I found very positive. When the user created a listing, they got confused when they had to insert the price, as the screen didn’t wait for the user to confirm the value, and instead changed right away to the next screen. So I will add here a step in between, so that the user can confirm the price through a “continue” CTA. With the third task, the user got a bit confused as he expected to see a jigsaw listing in the listings (as he just created in an earlier task). Also, instead of pressing on bookings - requests, the user first clicked on the different states (upcoming / completed / requests) but after clarification they mentioned that they wanted to see what there was.
-                </p>
-
-                
+              {/* Full-width paragraph */}
+              <div className="w-full">
+                <p className="text-muted-foreground mb-6 max-w-none">After finishing my design screens, I connected all the different frames &amp; created a prototype. The user testing validated the core discovery and booking flows, while revealing clarity issues around CTAs and pricing confirmation.</p>
               </div>
 
-              {/* Right: Embedded prototype (responsive) */}
-              <div className="mt-6 md:mt-0">
-                {/* Match Danao iframe dimensions and constraints */}
-                  <div className="aspect-[9/16] md:aspect-[9/16] overflow-hidden rounded-lg shadow-sm bg-white md:max-w-[420px] lg:max-w-[480px] mx-auto md:mx-0">
-                  <iframe
-                    title="ToolSwap Prototype"
-                    src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?page-id=5173%3A5102&node-id=5508-7349&viewport=1279%2C352%2C0.08&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5508%3A7349&embed-host=share"
-                    style={{ border: '1px solid rgba(0, 0, 0, 0.1)', transform: 'scale(1.03)', transformOrigin: 'center' }}
-                    className="w-full h-full"
-                    allowFullScreen
-                  />
+              {/* User Test Tasks card (full width) */}
+              <div className="w-full">
+                <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg mb-6">
+                  <h4 className="text-lg font-semibold mb-3">User Test Tasks</h4>
+                  <ul className="list-inside space-y-2 text-muted-foreground pl-4">
+                    <li>• You live in Canary Wharf &amp; look for a power drill from September 13th 2025 - September 20th, 2025. Try to reserve the item closest to you, assuming you already have an account (steven.smith@gmail.com / password), and continue with the checkout flow.</li>
+                    <li>• You live in Canary Wharf (15 Chichester Way, E14 3EG) and want to lend your jigsaw to other people. Try to create your own listing, the price is £4 per day and no description is needed (can be skipped).</li>
+                    <li>• Try to find the booking requests for your bookings (the tools that you are lending to others)</li>
+                  </ul>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
+              {/* Two cards side-by-side: left = user test story (swipeable), right = prototype iframe */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <div className="relative p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full pt-12 md:pt-14">
+                  {/* top-right swipe buttons (larger) */}
+                  <div className="absolute top-4 right-4 flex items-center gap-3">
+                    <button
+                      aria-label="Previous user test"
+                      onClick={() => setUserTestIndex((userTestIndex - 1 + userTestStories.length) % userTestStories.length)}
+                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      aria-label="Next user test"
+                      onClick={() => setUserTestIndex((userTestIndex + 1) % userTestStories.length)}
+                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
+                    >
+                      ›
+                    </button>
+                  </div>
 
-        {/* Findings & Next Steps - moved out of the two-column grid to be full-width and centered */}
-        <section className="py-8">
-          <div className="container mx-auto px-6">
-            <div className="w-full">
-              <div className="flex flex-col md:flex-row md:flex-nowrap items-stretch justify-between gap-6 w-full">
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Findings</h4>
-                    <ul className="list-inside space-y-2 text-muted-foreground">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-3">Testing Insights</h4>
+                    <div>{userTestStories[userTestIndex]}</div>
+                  </div>
+
+                </div>
+
+                <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex items-center justify-center h-full">
+                  <div className="w-full h-full overflow-hidden rounded-lg">
+                    <iframe
+                      title="ToolSwap Prototype Embed"
+                      src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?page-id=5173%3A5102&node-id=5508-7349&viewport=1279%2C352%2C0.08&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5508%3A7349&embed-host=share"
+                      style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+                      className="w-full h-full min-h-[420px] md:min-h-[480px]"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Findings & Next Steps cards under Prototype (same card design) */}
+              <div className="w-full mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <h4 className="text-lg font-semibold mb-3">Findings</h4>
+                      <ul className="list-inside space-y-2 text-muted-foreground">
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>CTA buttons styled only as underlined text were not recognized as actionable, causing confusion</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Users expect access to supporting resources such as FAQs and issue reporting</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span>User confusion occurred when entering the price for a new listing (value auto-submitted without user confirmation)</span>
+                        <span>User confusion occurred when entering the price for a new listing (value auto-submitted without user confirmation)
+</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 8v8M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>The search and reserve flow is generally intuitive and easy to follow</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 8v8M8 12h8" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Category suggestions above the search bar were not perceived as intrusive</span>
                       </li>
                     </ul>
                   </div>
-                </div>
 
-                <div className="p-6 bg-muted/10 rounded-lg flex-1 min-w-0 flex justify-center">
-                  <div className="mx-auto max-w-md md:max-w-none text-left">
-                    <h4 className="text-lg font-semibold mb-2">Next Steps</h4>
+                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
+                    <h4 className="text-lg font-semibold mb-3">Next Steps</h4>
                     <ul className="list-inside space-y-2 text-muted-foreground">
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Replace ambiguous underlined CTAs with clearer buttons</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Added FAQ / report an issue section to the menu</span>
                       </li>
 
                       <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>Add clearer feedback in the create-listing flow (confirm price step)</span>
                       </li>
@@ -686,18 +1050,22 @@ const ToolSwap = () => {
                           <circle cx="12" cy="12" r="9" />
                           <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span>Conduct more user tests to collect further data</span>
+                        <span>Conduct more user tests to validate changes</span>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
-        {/* Process Step Four Section - Deliverables */}
-        <section className="py-12">
+
+        
+
+  {/* Process Step Four Section - Deliverables */}
+  <section id="deliverables" className="py-12">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Four</h3>
@@ -707,42 +1075,42 @@ const ToolSwap = () => {
             <div className="w-full mt-6">
               <div className="px-6">
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-                  <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(0)} src={deliverables1} alt="Create Account" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(0)} src={tsHome2} alt="Home" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(1)} src={deliverables2} alt="Create Booking Requests" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(1)} src={tsSearch2} alt="Search" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(2)} src={deliverables3} alt="Create Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(2)} src={tsDetailedView2} alt="Detailed View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(3)} src={deliverables4} alt="Detailed View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(3)} src={tsListview2} alt="List View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(4)} src={deliverables5} alt="Filter" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(4)} src={tsFilter2} alt="Filter" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(5)} src={deliverables6} alt="Home" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(5)} src={tsBookingState} alt="Booking State" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
 
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(6)} src={deliverables7} alt="List View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(6)} src={tsAccount} alt="Account" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(7)} src={deliverables8} alt="Menu" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(7)} src={tsCreateListing2} alt="Create Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(8)} src={deliverables9} alt="Messages Chat" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(8)} src={tsBookingRequests2} alt="Booking Requests" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(9)} src={deliverables10} alt="Review Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(9)} src={tsChats} alt="Chats" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(10)} src={deliverables11} alt="Reviews" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(10)} src={tsChat} alt="Chat" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(11)} src={deliverables12} alt="Search" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(11)} src={tsRating2} alt="Rating" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                 </div>
               </div>
@@ -750,23 +1118,24 @@ const ToolSwap = () => {
           </div>
         </section>
 
-        {/* Process Step Five Section */}
-        <section className="py-12 bg-muted/30">
+  {/* Process Step Five Section */}
+  <section id="conclusion" className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
               <h2 className="text-2xl md:text-3xl font-semibold mb-4">CONCLUSIONS</h2>
-              <p className="text-muted-foreground mb-6">
-                I’m really happy with the colour scheme I came up with and the overall design. I’m also happy with the overall usage of the application, there are not a lot of clicks involved.
-              </p>
+            </div>
 
-              <p className="text-muted-foreground mb-6">
-                The user tests showed that the abnormality in the search process (category suggestions on top of search bar instead of underneath) is not creating any pain points, it is not even mentioned by the users, which I’m very happy to hear.
-              </p>
-
-              <p className="text-muted-foreground mb-6">
-                As a next step I want to continue collecting more user feedback &amp; see how I can improve the design further, before bringing it onto the market.
-              </p>
+            {/* Conclusions card (same style as User Test Tasks) */}
+            <div className="w-full mt-6">
+              <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg">
+                <p className="text-muted-foreground mb-6">
+                 This project reinforced the importance of clear information hierarchy, especially when designing for time-pressured, real-world use cases. User testing validated several unconventional design decisions, such as category suggestions above the search bar, while also highlighting areas where clearer affordances were needed.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  While ToolSwap remains a conceptual project, it demonstrates my approach to designing data-rich, trust-sensitive marketplaces - balancing usability, clarity, and real-world constraints in mobile-first environments.
+                </p>
+              </div>
             </div>
           </div>
         </section>

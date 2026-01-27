@@ -388,7 +388,7 @@ const DanaoTopo = () => {
                         Climbers in Danao, Philippines relied solely on a shared spreadsheet to access route information - a format that’s hard to use outdoors and difficult to navigate quickly.
                       </p>
                       <p className="text-muted-foreground mb-8">
-                        This app design transforms text-heavy route data into a mobile-first climbing guide that prioritises clarity, offline access, and intuitive visual interaction.
+                        This app design transforms text-heavy route data into a mobile-first climbing guide designed to support real-world use. The solution focuses on clear map interaction, fast route discovery, and offline-friendly access, reducing cognitive load while preserving the depth climbers need when choosing routes.
                       </p>
                     </div>
 
