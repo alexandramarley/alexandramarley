@@ -3,15 +3,14 @@ import Footer from "@/components/Footer";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import danaoteaser from "@/assets/alexandramarley-uxdesign-danao-coverv1.webp";
-import tsDesign01_3 from "@/assets/alexandramarley-ux-toolswap-design-01.webp";
-import tsDesign02 from "@/assets/alexandramarley-ux-toolswap-design-02.webp";
+import tsDesign01_a from "@/assets/alexandramarley-uxdesign-toolswap-design01a.webp";
+import tsDesign01_b from "@/assets/alexandramarley-uxdesign-toolswap-design01b.webp";
+import tsDesign02_a from "@/assets/alexandramarley-uxdesign-toolswap-home.webp";
+import tsDesign02_b from "@/assets/alexandramarley-uxdesign-toolswap-listingcreated.webp";
 import tsDesign03 from "@/assets/alexandramarley-ux-toolswap-design-03.png";
-import tsDesign04a from "@/assets/alexandramarley-ux-toolswap-design-04-1.webp";
-import tsDesign04b from "@/assets/alexandramarley-ux-toolswap-design-04-2.webp";
-import tsDesign05 from "@/assets/alexandramarley-ux-toolswap-design-05.webp";
+import tsDesign04b from "@/assets/alexandramarley-uxdesign-toolswap-design04.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
-import deliverables5 from "@/assets/alexandramarley-ToolSwap-Filter.png";
 import deliverables1 from "@/assets/alexandramarley-ToolSwap-Home.png";
 import benchmark01 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark01.webp";
 import benchmark02 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark02.webp";
@@ -78,6 +77,43 @@ const ToolSwap = () => {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const autoplayRef = useRef<number | null>(null);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
+  // small carousel for Block 1 (Navigation & Search)
+  const block1Ref = useRef<HTMLDivElement | null>(null);
+
+  const scrollBlock1Next = () => {
+    const el = block1Ref.current;
+    if (!el) return;
+    const firstImg = el.querySelector<HTMLElement>('img');
+    const step = firstImg ? firstImg.offsetWidth + parseInt(getComputedStyle(firstImg).marginRight || '0') : el.clientWidth;
+    el.scrollBy({ left: step, behavior: 'smooth' });
+  };
+
+  const scrollBlock1Prev = () => {
+    const el = block1Ref.current;
+    if (!el) return;
+    const firstImg = el.querySelector<HTMLElement>('img');
+    const step = firstImg ? firstImg.offsetWidth + parseInt(getComputedStyle(firstImg).marginRight || '0') : el.clientWidth;
+    el.scrollBy({ left: -step, behavior: 'smooth' });
+  };
+
+  // small carousel for Block 2 (Map)
+  const block2Ref = useRef<HTMLDivElement | null>(null);
+
+  const scrollBlock2Next = () => {
+    const el = block2Ref.current;
+    if (!el) return;
+    const firstImg = el.querySelector<HTMLElement>('img');
+    const step = firstImg ? firstImg.offsetWidth + parseInt(getComputedStyle(firstImg).marginRight || '0') : el.clientWidth;
+    el.scrollBy({ left: step, behavior: 'smooth' });
+  };
+
+  const scrollBlock2Prev = () => {
+    const el = block2Ref.current;
+    if (!el) return;
+    const firstImg = el.querySelector<HTMLElement>('img');
+    const step = firstImg ? firstImg.offsetWidth + parseInt(getComputedStyle(firstImg).marginRight || '0') : el.clientWidth;
+    el.scrollBy({ left: -step, behavior: 'smooth' });
+  };
 
   const overviewImages = [
     tsCreateListing2,
@@ -702,7 +738,7 @@ const ToolSwap = () => {
                     <img
                       src={tsUserJourney}
                       alt="User journey flowchart"
-                      className="w-full h-auto object-contain cursor-pointer"
+                      className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
                       onClick={() => setJourneyLightboxOpen(true)}
                     />
                   </div>
@@ -743,17 +779,58 @@ const ToolSwap = () => {
                       </div>
 
                       <div className="flex items-center justify-center">
-                        <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg">
-                          <img
-                            src={tsDesign01_3}
-                            alt="Navigation & Search - full"
-                            className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
-                            onClick={() => {
-                              setSingleLightboxSrc(tsDesign01_3);
-                              setSingleLightboxAlt("Navigation & Search - full");
-                              setSingleLightboxOpen(true);
-                            }}
-                          />
+                        <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
+                          {/* Small swipeable carousel for design options */}
+                          {/* Carousel arrows moved to top-right */}
+
+                          <div ref={block1Ref} className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar">
+                            <div className="flex-none w-full">
+                              <img
+                                src={tsDesign01_a}
+                                alt="Navigation & Search - option A"
+                                className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => {
+                                  setSingleLightboxSrc(tsDesign01_a);
+                                  setSingleLightboxAlt("Navigation & Search - option A");
+                                  setSingleLightboxOpen(true);
+                                }}
+                              />
+                            </div>
+
+                            <div className="flex-none w-full">
+                              <img
+                                src={tsDesign01_b}
+                                alt="Navigation & Search - option B"
+                                className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => {
+                                  setSingleLightboxSrc(tsDesign01_b);
+                                  setSingleLightboxAlt("Navigation & Search - option B");
+                                  setSingleLightboxOpen(true);
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="absolute top-3 right-3 z-20 flex items-center gap-2">
+                            <button
+                              aria-label="Previous design"
+                              onClick={scrollBlock1Prev}
+                              className="text-2xl text-foreground hover:text-green-600 px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                            >
+                              ‹
+                            </button>
+                            <button
+                              aria-label="Next design"
+                              onClick={scrollBlock1Next}
+                              className="text-2xl text-foreground hover:text-green-600 px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                            >
+                              ›
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -774,16 +851,56 @@ const ToolSwap = () => {
                     </p>
                   </div>
                   <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
-                    <img
-                      src={tsDesign02}
-                      alt="Map design - full"
-                      className="w-full h-auto object-contain md:max-h-[260px] lg:max-h-[310px] cursor-pointer"
-                      onClick={() => {
-                        setSingleLightboxSrc(tsDesign02);
-                        setSingleLightboxAlt("Map design - full");
-                        setSingleLightboxOpen(true);
-                      }}
-                    />
+                    <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
+                      <div ref={block2Ref} className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar">
+                        <div className="flex-none w-full">
+                          <img
+                            src={tsDesign02_a}
+                            alt="Map design - option A"
+                            className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => {
+                              setSingleLightboxSrc(tsDesign02_a);
+                              setSingleLightboxAlt("Map design - option A");
+                              setSingleLightboxOpen(true);
+                            }}
+                          />
+                        </div>
+
+                        <div className="flex-none w-full">
+                          <img
+                            src={tsDesign02_b}
+                            alt="Map design - option B"
+                            className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => {
+                              setSingleLightboxSrc(tsDesign02_b);
+                              setSingleLightboxAlt("Map design - option B");
+                              setSingleLightboxOpen(true);
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="absolute top-3 right-3 z-20 flex items-center gap-2">
+                        <button
+                          aria-label="Previous map design"
+                          onClick={scrollBlock2Prev}
+                          className="text-2xl text-foreground hover:text-green-600 px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                        >
+                          ‹
+                        </button>
+                        <button
+                          aria-label="Next map design"
+                          onClick={scrollBlock2Next}
+                          className="text-2xl text-foreground hover:text-green-600 px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                        >
+                          ›
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -807,7 +924,7 @@ const ToolSwap = () => {
                         <img
                           src={tsDesign03}
                           alt="Terminology / Menu choices - full"
-                          className="w-full h-auto object-contain md:max-h-[440px] lg:max-h-[560px] cursor-pointer"
+                          className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
                           onClick={() => {
                             setSingleLightboxSrc(tsDesign03);
                             setSingleLightboxAlt("Terminology / Menu choices - full");
@@ -834,26 +951,13 @@ const ToolSwap = () => {
                     <p className="text-muted-foreground mb-4">
                       The booking CTA and total price are fixed at the bottom so they’re always easy to reach.
                     </p>
-
-                    <div className="w-full overflow-hidden rounded-lg mt-6">
-                      <img
-                        src={tsDesign04a}
-                        alt="List item design - option A - full"
-                        className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
-                        onClick={() => {
-                          setSingleLightboxSrc(tsDesign04a);
-                          setSingleLightboxAlt("List item design - option A - full");
-                          setSingleLightboxOpen(true);
-                        }}
-                      />
-                    </div>
                   </div>
 
                   <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
                     <img
                       src={tsDesign04b}
                       alt="List item design - option B - full"
-                      className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                      className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
                       onClick={() => {
                         setSingleLightboxSrc(tsDesign04b);
                         setSingleLightboxAlt("List item design - option B - full");
@@ -877,28 +981,15 @@ const ToolSwap = () => {
                         <p className="text-muted-foreground mb-4">
                           The final solution uses a bottom sheet pattern instead. This keeps controls reachable and the map clear, while prioritising the most common filters such as distance, price, and availability.
                         </p>
-
-                        <div className="w-full overflow-hidden rounded-lg mt-6">
-                          <img
-                            src={tsDesign05}
-                            alt="Filter & Sort design - full"
-                            className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
-                            onClick={() => {
-                              setSingleLightboxSrc(tsDesign05);
-                              setSingleLightboxAlt("Filter & Sort design - full");
-                              setSingleLightboxOpen(true);
-                            }}
-                          />
-                        </div>
                       </div>
 
                       <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
                         <img
-                          src={deliverables5}
+                          src={tsFilter2}
                           alt="ToolSwap Filter"
-                          className="w-full h-auto object-contain md:max-h-[520px] lg:max-h-[620px] cursor-pointer"
+                          className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
                           onClick={() => {
-                            setSingleLightboxSrc(deliverables5);
+                            setSingleLightboxSrc(tsFilter2);
                             setSingleLightboxAlt("ToolSwap Filter");
                             setSingleLightboxOpen(true);
                           }}
