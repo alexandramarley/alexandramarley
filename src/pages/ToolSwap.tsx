@@ -12,6 +12,7 @@ import tsDesign04b from "@/assets/alexandramarley-uxdesign-toolswap-design04.web
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
 import deliverables1 from "@/assets/alexandramarley-ToolSwap-Home.png";
+import filterVideo from "@/assets/ScreenRecording_01-28-2026 16-35-42_1.mov";
 import benchmark01 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark01.webp";
 import benchmark02 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark02.webp";
 import tsAccount from "@/assets/alexandramarley-uxdesign-toolswap-account.webp";
@@ -984,15 +985,13 @@ const ToolSwap = () => {
                       </div>
 
                       <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
-                        <img
-                          src={tsFilter2}
-                          alt="ToolSwap Filter"
-                          className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
-                          onClick={() => {
-                            setSingleLightboxSrc(tsFilter2);
-                            setSingleLightboxAlt("ToolSwap Filter");
-                            setSingleLightboxOpen(true);
-                          }}
+                        <video
+                          src={filterVideo}
+                          muted
+                          controls
+                          playsInline
+                          className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px]"
+                          aria-label="ToolSwap Filter demo"
                         />
                       </div>
                     </div>
