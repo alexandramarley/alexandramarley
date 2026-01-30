@@ -43,6 +43,8 @@ const ToolSwap = () => {
   const [singleLightboxOpen, setSingleLightboxOpen] = useState(false);
   const [singleLightboxSrc, setSingleLightboxSrc] = useState<string | null>(null);
   const [singleLightboxAlt, setSingleLightboxAlt] = useState<string | null>(null);
+  // Track where the single-image lightbox was opened from ('overview' | 'design-1' | 'design-2' | ... | 'benchmark')
+  const [singleLightboxOrigin, setSingleLightboxOrigin] = useState<string | null>(null);
   // User test stories (swipeable card in Prototype section)
   const [userTestIndex, setUserTestIndex] = useState(0);
   const userTestStories: React.ReactNode[] = [
@@ -347,31 +349,103 @@ const ToolSwap = () => {
   useEffect(() => {
     if (!singleLightboxOpen) return;
 
+    const navPairs = [
+      {
+        imgs: [tsDesign01_a, tsDesign01_b],
+        alts: [
+          "Navigation & Search - option A",
+          "Navigation & Search - option B",
+        ],
+      },
+      {
+        imgs: [tsDesign02_a, tsDesign02_b],
+        alts: [
+          "Map design - option A",
+          "Map design - option B",
+        ],
+      },
+      {
+        imgs: [tsDesign03a, tsDesign03b],
+        alts: [
+          "Terminology / Menu choices - option A",
+          "Terminology / Menu choices - option B",
+        ],
+      },
+    ];
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setSingleLightboxOpen(false);
+        setSingleLightboxOrigin(null);
         return;
       }
 
-      // Allow left/right arrow navigation when the single-image lightbox
-      // is showing an image that belongs to the overview carousel.
+      // If the open image was opened from the Map design block, restrict navigation to only that pair
+      const mapImgs = [tsDesign02_a, tsDesign02_b];
+      const mapAlts = ["Map design - option A", "Map design - option B"];
+      if (singleLightboxOrigin === 'design-2' && mapImgs.includes(singleLightboxSrc as string)) {
+        if (e.key === "ArrowRight") {
+          const idx = mapImgs.findIndex((s) => s === singleLightboxSrc);
+          const nextIndex = (idx + 1) % mapImgs.length;
+          setSingleLightboxSrc(mapImgs[nextIndex]);
+          setSingleLightboxAlt(mapAlts[nextIndex]);
+          return;
+        }
+
+        if (e.key === "ArrowLeft") {
+          const idx = mapImgs.findIndex((s) => s === singleLightboxSrc);
+          const prevIndex = (idx - 1 + mapImgs.length) % mapImgs.length;
+          setSingleLightboxSrc(mapImgs[prevIndex]);
+          setSingleLightboxAlt(mapAlts[prevIndex]);
+          return;
+        }
+      }
+
+      // First: overview carousel navigation (existing behaviour)
       if (e.key === "ArrowRight") {
         if (!singleLightboxSrc) return;
-        const idx = overviewImages.findIndex((src) => src === singleLightboxSrc);
-        if (idx >= 0) {
-          const nextIndex = (idx + 1) % overviewImages.length;
+        const idxOverview = overviewImages.findIndex((src) => src === singleLightboxSrc);
+        if (idxOverview >= 0) {
+          const nextIndex = (idxOverview + 1) % overviewImages.length;
           setSingleLightboxSrc(overviewImages[nextIndex]);
           setSingleLightboxAlt(overviewAlts[nextIndex] || null);
+          return;
+        }
+
+        // If not part of overview, check the design pairs (Block 1/2/3) but only when opened from a design block
+        if (singleLightboxOrigin?.startsWith('design')) {
+          for (const pair of navPairs) {
+            const idxNav = pair.imgs.findIndex((src) => src === singleLightboxSrc);
+            if (idxNav >= 0) {
+              const nextIndex = (idxNav + 1) % pair.imgs.length;
+              setSingleLightboxSrc(pair.imgs[nextIndex]);
+              setSingleLightboxAlt(pair.alts[nextIndex]);
+              return;
+            }
+          }
         }
       }
 
       if (e.key === "ArrowLeft") {
         if (!singleLightboxSrc) return;
-        const idx = overviewImages.findIndex((src) => src === singleLightboxSrc);
-        if (idx >= 0) {
-          const prevIndex = (idx - 1 + overviewImages.length) % overviewImages.length;
+        const idxOverview = overviewImages.findIndex((src) => src === singleLightboxSrc);
+        if (idxOverview >= 0) {
+          const prevIndex = (idxOverview - 1 + overviewImages.length) % overviewImages.length;
           setSingleLightboxSrc(overviewImages[prevIndex]);
           setSingleLightboxAlt(overviewAlts[prevIndex] || null);
+          return;
+        }
+
+        if (singleLightboxOrigin?.startsWith('design')) {
+          for (const pair of navPairs) {
+            const idxNav = pair.imgs.findIndex((src) => src === singleLightboxSrc);
+            if (idxNav >= 0) {
+              const prevIndex = (idxNav - 1 + pair.imgs.length) % pair.imgs.length;
+              setSingleLightboxSrc(pair.imgs[prevIndex]);
+              setSingleLightboxAlt(pair.alts[prevIndex]);
+              return;
+            }
+          }
         }
       }
     };
@@ -533,7 +607,7 @@ const ToolSwap = () => {
                   <div className="overflow-hidden rounded-lg">
                     <img src={img} alt={overviewAlts[idx]}
                       className="w-full h-auto object-contain cursor-pointer"
-                      onClick={() => { setSingleLightboxSrc(img); setSingleLightboxAlt(overviewAlts[idx]); setSingleLightboxOpen(true); }}
+                      onClick={() => { setSingleLightboxSrc(img); setSingleLightboxAlt(overviewAlts[idx]); setSingleLightboxOrigin('overview'); setSingleLightboxOpen(true); }}
                     />
                   </div>
                 </div>
@@ -669,11 +743,11 @@ const ToolSwap = () => {
                   className="w-full h-full object-cover cursor-pointer"
                   role="button"
                   tabIndex={0}
-                  onClick={() => { setSingleLightboxSrc(benchmark01); setSingleLightboxAlt('Benchmark - comparative analysis 1'); setSingleLightboxOpen(true); }}
+                  onClick={() => { setSingleLightboxSrc(benchmark01); setSingleLightboxAlt('Benchmark - comparative analysis 1'); setSingleLightboxOrigin('benchmark'); setSingleLightboxOpen(true); }}
                 />
                 <button
                   aria-label="Open benchmark 1"
-                  onClick={() => { setSingleLightboxSrc(benchmark01); setSingleLightboxAlt('Benchmark - comparative analysis 1'); setSingleLightboxOpen(true); }}
+                  onClick={() => { setSingleLightboxSrc(benchmark01); setSingleLightboxAlt('Benchmark - comparative analysis 1'); setSingleLightboxOrigin('benchmark'); setSingleLightboxOpen(true); }}
                   className="absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center bg-black bg-opacity-60 text-white rounded-full hover:bg-opacity-80 transition"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -697,11 +771,11 @@ const ToolSwap = () => {
                   className="w-full h-full object-cover cursor-pointer"
                   role="button"
                   tabIndex={0}
-                  onClick={() => { setSingleLightboxSrc(benchmark02); setSingleLightboxAlt('Benchmark - comparative analysis 2'); setSingleLightboxOpen(true); }}
+                  onClick={() => { setSingleLightboxSrc(benchmark02); setSingleLightboxAlt('Benchmark - comparative analysis 2'); setSingleLightboxOrigin('benchmark'); setSingleLightboxOpen(true); }}
                 />
                 <button
                   aria-label="Open benchmark 2"
-                  onClick={() => { setSingleLightboxSrc(benchmark02); setSingleLightboxAlt('Benchmark - comparative analysis 2'); setSingleLightboxOpen(true); }}
+                  onClick={() => { setSingleLightboxSrc(benchmark02); setSingleLightboxAlt('Benchmark - comparative analysis 2'); setSingleLightboxOrigin('benchmark'); setSingleLightboxOpen(true); }}
                   className="absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center bg-black bg-opacity-60 text-white rounded-full hover:bg-opacity-80 transition"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -818,6 +892,7 @@ const ToolSwap = () => {
                                 onClick={() => {
                                   setSingleLightboxSrc(tsDesign01_a);
                                   setSingleLightboxAlt("Navigation & Search - option A");
+                                  setSingleLightboxOrigin('design-1');
                                   setSingleLightboxOpen(true);
                                 }}
                               />
@@ -833,6 +908,7 @@ const ToolSwap = () => {
                                 onClick={() => {
                                   setSingleLightboxSrc(tsDesign01_b);
                                   setSingleLightboxAlt("Navigation & Search - option B");
+                                  setSingleLightboxOrigin('design-1');
                                   setSingleLightboxOpen(true);
                                 }}
                               />
@@ -887,6 +963,7 @@ const ToolSwap = () => {
                             onClick={() => {
                               setSingleLightboxSrc(tsDesign02_a);
                               setSingleLightboxAlt("Map design - option A");
+                              setSingleLightboxOrigin('design-2');
                               setSingleLightboxOpen(true);
                             }}
                           />
@@ -902,6 +979,7 @@ const ToolSwap = () => {
                             onClick={() => {
                               setSingleLightboxSrc(tsDesign02_b);
                               setSingleLightboxAlt("Map design - option B");
+                              setSingleLightboxOrigin('design-2');
                               setSingleLightboxOpen(true);
                             }}
                           />
@@ -957,6 +1035,7 @@ const ToolSwap = () => {
                                 onClick={() => {
                                   setSingleLightboxSrc(tsDesign03a);
                                   setSingleLightboxAlt("Terminology / Menu choices - option A");
+                                  setSingleLightboxOrigin('design-3');
                                   setSingleLightboxOpen(true);
                                 }}
                               />
@@ -972,6 +1051,7 @@ const ToolSwap = () => {
                                 onClick={() => {
                                   setSingleLightboxSrc(tsDesign03b);
                                   setSingleLightboxAlt("Terminology / Menu choices - option B");
+                                  setSingleLightboxOrigin('design-3');
                                   setSingleLightboxOpen(true);
                                 }}
                               />
@@ -1026,6 +1106,7 @@ const ToolSwap = () => {
                         onClick={() => {
                           setSingleLightboxSrc(tsDesign04);
                           setSingleLightboxAlt("List item design - option B - full");
+                          setSingleLightboxOrigin('design-4');
                           setSingleLightboxOpen(true);
                         }}
                       />
@@ -1424,16 +1505,69 @@ const ToolSwap = () => {
           <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-6"
             onClick={(e) => {
-              if (e.target === e.currentTarget) setSingleLightboxOpen(false);
+              if (e.target === e.currentTarget) { setSingleLightboxOpen(false); setSingleLightboxOrigin(null); }
             }}
           >
             <button
-              onClick={() => setSingleLightboxOpen(false)}
+              onClick={() => { setSingleLightboxOpen(false); setSingleLightboxOrigin(null); }}
               className="absolute top-6 right-6 text-white text-3xl leading-none"
               aria-label="Close"
             >
               ×
             </button>
+
+            {/* Left/Right controls for the design pairs (Blocks 1/2/3) */}
+            {singleLightboxOrigin?.startsWith('design') && [tsDesign01_a, tsDesign01_b, tsDesign02_a, tsDesign02_b, tsDesign03a, tsDesign03b].includes(singleLightboxSrc) && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const pairs = [
+                      { imgs: [tsDesign01_a, tsDesign01_b], alts: ["Navigation & Search - option A", "Navigation & Search - option B"] },
+                      { imgs: [tsDesign02_a, tsDesign02_b], alts: ["Map design - option A", "Map design - option B"] },
+                      { imgs: [tsDesign03a, tsDesign03b], alts: ["Terminology / Menu choices - option A", "Terminology / Menu choices - option B"] },
+                    ];
+                    for (const pair of pairs) {
+                      const idx = pair.imgs.findIndex((s) => s === singleLightboxSrc);
+                      if (idx >= 0) {
+                        const prevIndex = (idx - 1 + pair.imgs.length) % pair.imgs.length;
+                        setSingleLightboxSrc(pair.imgs[prevIndex]);
+                        setSingleLightboxAlt(pair.alts[prevIndex]);
+                        break;
+                      }
+                    }
+                  }}
+                  className="absolute left-6 text-white text-4xl"
+                  aria-label="Previous design"
+                >
+                  ‹
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const pairs = [
+                      { imgs: [tsDesign01_a, tsDesign01_b], alts: ["Navigation & Search - option A", "Navigation & Search - option B"] },
+                      { imgs: [tsDesign02_a, tsDesign02_b], alts: ["Map design - option A", "Map design - option B"] },
+                      { imgs: [tsDesign03a, tsDesign03b], alts: ["Terminology / Menu choices - option A", "Terminology / Menu choices - option B"] },
+                    ];
+                    for (const pair of pairs) {
+                      const idx = pair.imgs.findIndex((s) => s === singleLightboxSrc);
+                      if (idx >= 0) {
+                        const nextIndex = (idx + 1) % pair.imgs.length;
+                        setSingleLightboxSrc(pair.imgs[nextIndex]);
+                        setSingleLightboxAlt(pair.alts[nextIndex]);
+                        break;
+                      }
+                    }
+                  }}
+                  className="absolute right-6 text-white text-4xl"
+                  aria-label="Next design"
+                >
+                  ›
+                </button>
+              </>
+            )}
 
             <img
               src={singleLightboxSrc}
