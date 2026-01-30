@@ -27,26 +27,7 @@ const UXUIDesign = () => {
         <section className="w-full">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {/* ToolSwap teaser */}
-            <Link to="/projects/toolswap" className="group flex flex-col h-full">
-              <div className="w-full overflow-hidden bg-transparent h-56 md:h-72">
-                <img
-                  src={toolswapcover}
-                  alt="ToolSwap — Community-driven platform for sharing tools"
-                  className="h-full w-auto mx-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                />
-              </div>
-              <div className="bg-background">
-                <div className="px-6 py-6 md:py-8">
-                  <h4 className="text-2xl md:text-3xl font-medium tracking-tight">A mobile marketplace built to reduce spendings and boost eco responsibility</h4>
-                  <p className="text-muted-foreground mt-2">
-                    2025 | Mobile | UX/UI Design
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Danao Topo teaser */}
+            {/* Danao Topo teaser (moved to first) */}
             <Link to="/projects/danao-topo" className="group flex flex-col h-full">
               <div className="w-full overflow-hidden bg-transparent h-56 md:h-72">
                 <img
@@ -58,6 +39,25 @@ const UXUIDesign = () => {
               <div className="bg-background">
                 <div className="px-6 py-6 md:py-8">
                   <h4 className="text-2xl md:text-3xl font-medium tracking-tight">Turning complex route data into a simple, interactive topographical visualisation</h4>
+                  <p className="text-muted-foreground mt-2">
+                    2025 | Mobile | UX/UI Design
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            {/* ToolSwap teaser (moved to second) */}
+            <Link to="/projects/toolswap" className="group flex flex-col h-full">
+              <div className="w-full overflow-hidden bg-transparent h-56 md:h-72">
+                <img
+                  src={toolswapcover}
+                  alt="ToolSwap — Community-driven platform for sharing tools"
+                  className="h-full w-auto mx-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </div>
+              <div className="bg-background">
+                <div className="px-6 py-6 md:py-8">
+                  <h4 className="text-2xl md:text-3xl font-medium tracking-tight">A mobile marketplace built to reduce spendings and boost eco responsibility</h4>
                   <p className="text-muted-foreground mt-2">
                     2025 | Mobile | UX/UI Design
                   </p>
