@@ -7,12 +7,14 @@ import tsDesign01_a from "@/assets/alexandramarley-uxdesign-toolswap-design01a.w
 import tsDesign01_b from "@/assets/alexandramarley-uxdesign-toolswap-design01b.webp";
 import tsDesign02_a from "@/assets/alexandramarley-uxdesign-toolswap-home.webp";
 import tsDesign02_b from "@/assets/alexandramarley-uxdesign-toolswap-listingcreated.webp";
-import tsDesign03 from "@/assets/alexandramarley-ux-toolswap-design-03.png";
-import tsDesign04b from "@/assets/alexandramarley-uxdesign-toolswap-design04.webp";
+import tsDesign04 from "@/assets/alexandramarley-uxdesign-toolswap-design04.webp";
+import tsDesign03a from "@/assets/alexandramarley-uxdesign-toolswap-design03a.webp";
+import tsDesign03b from "@/assets/alexandramarley-uxdesign-toolswap-design03b.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
 import deliverables1 from "@/assets/alexandramarley-ToolSwap-Home.png";
 import filterVideo from "@/assets/ScreenRecording_01-28-2026 16-35-42_1.mov";
+import toolswapTitle from "@/assets/alexandramarley-uxdesign-toolswap-title.webp";
 import benchmark01 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark01.webp";
 import benchmark02 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark02.webp";
 import tsAccount from "@/assets/alexandramarley-uxdesign-toolswap-account.webp";
@@ -110,6 +112,25 @@ const ToolSwap = () => {
 
   const scrollBlock2Prev = () => {
     const el = block2Ref.current;
+    if (!el) return;
+    const firstImg = el.querySelector<HTMLElement>('img');
+    const step = firstImg ? firstImg.offsetWidth + parseInt(getComputedStyle(firstImg).marginRight || '0') : el.clientWidth;
+    el.scrollBy({ left: -step, behavior: 'smooth' });
+  };
+
+  // small carousel for Block 3 (Terminology / Menu)
+  const block3Ref = useRef<HTMLDivElement | null>(null);
+
+  const scrollBlock3Next = () => {
+    const el = block3Ref.current;
+    if (!el) return;
+    const firstImg = el.querySelector<HTMLElement>('img');
+    const step = firstImg ? firstImg.offsetWidth + parseInt(getComputedStyle(firstImg).marginRight || '0') : el.clientWidth;
+    el.scrollBy({ left: step, behavior: 'smooth' });
+  };
+
+  const scrollBlock3Prev = () => {
+    const el = block3Ref.current;
     if (!el) return;
     const firstImg = el.querySelector<HTMLElement>('img');
     const step = firstImg ? firstImg.offsetWidth + parseInt(getComputedStyle(firstImg).marginRight || '0') : el.clientWidth;
@@ -364,12 +385,17 @@ const ToolSwap = () => {
       <Navigation />
       
       <main className="pt-20 md:pt-24 pb-20 md:pb-8">
-        {/* Hero Section: three-line title with right-side 9:16 image (matches Danao layout) */}
-        <section className="py-12 md:py-20">
-          <div className="container mx-auto px-6">
+        {/* Hero Section: three-line title with background image (matches Danao layout) */}
+        <section
+          className="py-8 md:py-12 relative bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${toolswapTitle})` }}
+        >
+          {/* background overlay to improve text contrast */}
+          <div className="absolute inset-0 bg-black/10" aria-hidden />
+          <div className="container mx-auto px-6 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
               {/* Left: three-line heading + intro (spans 2/3 on md+) */}
-              <div className="md:col-span-2">
+              <div className="md:col-span-2 pr-20 md:pr-0">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight leading-tight md:leading-snug w-full">
                   <span className="text-green-700 font-semibold">ToolSwap:</span> A local tool-sharing marketplace that reduces waste and builds trust
                 </h1>
@@ -383,14 +409,11 @@ const ToolSwap = () => {
                 </div>
               </div>
 
-              {/* Right: tall image (9:16) shown on md+ (occupies 1/3) */}
-              <div className="hidden md:flex justify-center">
-                <div className="w-full max-w-[160px] sm:max-w-[200px] md:max-w-[216px] lg:max-w-[280px] overflow-hidden rounded-lg mx-auto">
-                  <img
-                    src={deliverables1}
-                    alt="ToolSwap preview"
-                    className="w-full h-auto object-contain"
-                  />
+              {/* Right: tall image (9:16). Visible on all sizes; absolute on small screens so it can be cut off but not overlap text. */}
+              <div className="flex justify-center absolute right-6 top-1/2 -translate-y-1/2 md:relative md:right-0 md:top-auto md:translate-y-0">
+                <div className="aspect-[9/16] w-[140px] sm:w-[180px] md:w-full md:max-w-[216px] lg:max-w-[280px] overflow-hidden rounded-lg mx-auto">
+                  {/* keep the preview image container for layout; content is provided by background image */}
+                  <div className="w-full h-full bg-transparent" />
                 </div>
               </div>
             </div>
@@ -439,7 +462,7 @@ const ToolSwap = () => {
           </div>
         </div>
 
-        <section id="overview" className="pt-6 pb-12">
+        <section id="overview" className="py-16">
           <div className="container mx-auto px-6">
             <div className="overflow-hidden rounded-lg bg-background">
                 <div className="w-full flex items-stretch md:h-full">
@@ -534,7 +557,7 @@ const ToolSwap = () => {
   </section>
 
   {/* Process Section (mirrored from DanaoTopo structure) */}
-  <section id="research" className="py-16 md:py-20">
+  <section id="research" className="py-16">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl text-left">
           <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
@@ -700,7 +723,7 @@ const ToolSwap = () => {
     </section>
 
   {/* Process Step Two Section */}
-  <section id="design" className="py-12 bg-muted/30">
+  <section id="design" className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
@@ -765,8 +788,8 @@ const ToolSwap = () => {
               <div>
                 <div className="px-0 sm:px-12 mt-6">
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                      <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                      <div className="max-w-3xl">
                         <h4 className="text-lg font-semibold mb-2">Navigation & Search</h4>
                         <p className="text-muted-foreground mb-4">
                           Search is the main entry point into ToolSwap, so it needed to stay visible without getting in the way. I placed the search bar at the bottom of the screen to support one-handed use, especially while exploring the map.
@@ -779,7 +802,7 @@ const ToolSwap = () => {
                         </p>
                       </div>
 
-                      <div className="flex items-center justify-center">
+                      <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
                         <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
                           {/* Small swipeable carousel for design options */}
                           {/* Carousel arrows moved to top-right */}
@@ -851,7 +874,7 @@ const ToolSwap = () => {
                       For that reason, ToolSwap is designed as a map-first experience, with a list view available when users want to compare options more directly. Keeping the map visible throughout the app helps maintain spatial context during decision-making.
                     </p>
                   </div>
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
                     <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
                       <div ref={block2Ref} className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar">
                         <div className="flex-none w-full">
@@ -922,16 +945,56 @@ const ToolSwap = () => {
                       </div>
 
                       <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
-                        <img
-                          src={tsDesign03}
-                          alt="Terminology / Menu choices - full"
-                          className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
-                          onClick={() => {
-                            setSingleLightboxSrc(tsDesign03);
-                            setSingleLightboxAlt("Terminology / Menu choices - full");
-                            setSingleLightboxOpen(true);
-                          }}
-                        />
+                        <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
+                          <div ref={block3Ref} className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar">
+                            <div className="flex-none w-full">
+                              <img
+                                src={tsDesign03a}
+                                alt="Terminology / Menu choices - option A"
+                                className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => {
+                                  setSingleLightboxSrc(tsDesign03a);
+                                  setSingleLightboxAlt("Terminology / Menu choices - option A");
+                                  setSingleLightboxOpen(true);
+                                }}
+                              />
+                            </div>
+
+                            <div className="flex-none w-full">
+                              <img
+                                src={tsDesign03b}
+                                alt="Terminology / Menu choices - option B"
+                                className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => {
+                                  setSingleLightboxSrc(tsDesign03b);
+                                  setSingleLightboxAlt("Terminology / Menu choices - option B");
+                                  setSingleLightboxOpen(true);
+                                }}
+                              />
+                            </div>
+                          </div>
+
+                          <div className="absolute top-3 right-3 z-20 flex items-center gap-2">
+                            <button
+                              aria-label="Previous menu design"
+                              onClick={scrollBlock3Prev}
+                              className="text-2xl text-foreground hover:text-green-600 px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                            >
+                              ‹
+                            </button>
+                            <button
+                              aria-label="Next menu design"
+                              onClick={scrollBlock3Next}
+                              className="text-2xl text-foreground hover:text-green-600 px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-offset-1"
+                            >
+                              ›
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -940,7 +1003,7 @@ const ToolSwap = () => {
 
               {/* Block 4 - List Item */}
               <div>
-                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
                     <h4 className="text-lg font-semibold mb-2">List Item</h4>
                     <p className="text-muted-foreground mb-4">
@@ -954,17 +1017,19 @@ const ToolSwap = () => {
                     </p>
                   </div>
 
-                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
-                    <img
-                      src={tsDesign04b}
-                      alt="List item design - option B - full"
-                      className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
-                      onClick={() => {
-                        setSingleLightboxSrc(tsDesign04b);
-                        setSingleLightboxAlt("List item design - option B - full");
-                        setSingleLightboxOpen(true);
-                      }}
-                    />
+                  <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
+                    <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
+                      <img
+                        src={tsDesign04}
+                        alt="List item design - option B - full"
+                        className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
+                        onClick={() => {
+                          setSingleLightboxSrc(tsDesign04);
+                          setSingleLightboxAlt("List item design - option B - full");
+                          setSingleLightboxOpen(true);
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -973,7 +1038,7 @@ const ToolSwap = () => {
               <div>
                 <div className="px-0 sm:px-12 mt-6">
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="max-w-3xl">
                         <h4 className="text-lg font-semibold mb-2">Filter / Sort by</h4>
                         <p className="text-muted-foreground mb-4">
@@ -984,15 +1049,17 @@ const ToolSwap = () => {
                         </p>
                       </div>
 
-                      <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[260px] lg:max-w-[310px] mx-auto">
-                        <video
-                          src={filterVideo}
-                          muted
-                          controls
-                          playsInline
-                          className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px]"
-                          aria-label="ToolSwap Filter demo"
-                        />
+                      <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
+                        <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
+                          <video
+                            src={filterVideo}
+                            muted
+                            controls
+                            playsInline
+                            className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px]"
+                            aria-label="ToolSwap Filter demo"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1003,7 +1070,7 @@ const ToolSwap = () => {
         </section>
 
         {/* Process Step Three Section - Prototype & Testing */}
-  <section id="prototype" className="py-12">
+  <section id="prototype" className="py-16">
           <div className="container mx-auto px-6">
             <div>
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
@@ -1155,7 +1222,7 @@ const ToolSwap = () => {
         
 
   {/* Process Step Four Section - Deliverables */}
-  <section id="deliverables" className="py-12">
+  <section id="deliverables" className="py-16">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Four</h3>
@@ -1209,7 +1276,7 @@ const ToolSwap = () => {
         </section>
 
   {/* Process Step Five Section */}
-  <section id="conclusion" className="py-12 bg-muted/30">
+  <section id="conclusion" className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
