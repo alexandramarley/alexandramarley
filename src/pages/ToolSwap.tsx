@@ -634,8 +634,8 @@ const ToolSwap = () => {
   <section id="research" className="py-16">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl text-left">
-          <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS</h2>
+          <h3 className="text-base text-muted-foreground mb-2">RESEARCH &amp; ANALYSIS</h3>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">Understanding the problem before solving it</h2>
         </div>
 
         <div className="w-full">
@@ -727,7 +727,7 @@ const ToolSwap = () => {
 
         <div className="w-full mt-12">
           <div className="w-full">
-            <h3 className="text-xl md:text-2xl font-semibold mb-4">Competitor Analysis</h3>
+            <h3 className="text-lg md:text-xl font-semibold mb-4">Competitor Analysis</h3>
             <p className="text-muted-foreground mb-6 max-w-none">At the same time I benchmarked existing sharing and marketplace apps to compare similar products and their designs to identify best practices and areas for improvement. The findings informed which design approaches to build upon and where opportunities existed to improve clarity and usability on mobile.</p>
             <p className="text-muted-foreground mb-6 max-w-none">Key takeaway: Existing marketplaces either overwhelm users with information or hide critical decision-making details. ToolSwap intentionally prioritises clarity and speed over feature density, particularly in map-based discovery and booking flows.</p>
           </div>
@@ -800,8 +800,8 @@ const ToolSwap = () => {
   <section id="design" className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
+              <h3 className="text-base text-muted-foreground mb-2">DESIGN</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-8">From ideas to usable solutions</h2>
             </div>
 
             <div className="w-full">
@@ -1154,8 +1154,8 @@ const ToolSwap = () => {
   <section id="prototype" className="py-16">
           <div className="container mx-auto px-6">
             <div>
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">PROTOTYPE &amp; TESTING</h2>
+              <h3 className="text-base text-muted-foreground mb-2">PROTOTYPE &amp; TESTING</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Learning through testing and iteration</h2>
 
               {/* Full-width paragraph */}
               <div className="w-full">
@@ -1308,8 +1308,8 @@ const ToolSwap = () => {
   <section id="deliverables" className="py-16">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Four</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">DELIVERABLES</h2>
+              <h3 className="text-base text-muted-foreground mb-2">DELIVERABLES</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-8">What this turned into</h2>
             </div>
 
             <div className="w-full mt-6">
@@ -1362,8 +1362,8 @@ const ToolSwap = () => {
   <section id="conclusion" className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">CONCLUSIONS</h2>
+              <h3 className="text-base text-muted-foreground mb-2">CONCLUSIONS</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Key takeaways from this project</h2>
             </div>
 
             {/* Conclusions card (same style as User Test Tasks) */}

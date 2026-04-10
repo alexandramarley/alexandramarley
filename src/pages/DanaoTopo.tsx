@@ -474,8 +474,8 @@ const DanaoTopo = () => {
   <section id="research" className="py-16 md:py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl text-left">
-          <h3 className="text-base text-muted-foreground mb-2">The Process - Step One</h3>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">RESEARCH &amp; ANALYSIS</h2>
+          <h3 className="text-base text-muted-foreground mb-2">RESEARCH &amp; ANALYSIS</h3>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">Understanding the problem before solving it</h2>
         </div>
 
         <div className="w-full">
@@ -527,7 +527,7 @@ const DanaoTopo = () => {
         
         <div className="w-full mt-12">
           <div className="w-full">
-            <h3 className="text-xl md:text-2xl font-semibold mb-4">Competitor Analysis</h3>
+            <h3 className="text-lg md:text-xl font-semibold mb-4">Competitor Analysis</h3>
             <p className="text-muted-foreground mb-6 max-w-none">At the same time I benchmarked existing climbing apps to understand common patterns and trade-offs in route discovery, filtering, and map interaction.</p>
             <p className="text-muted-foreground mb-6 max-w-none">The findings informed which design approaches to build upon and where opportunities existed to improve clarity and usability on mobile.</p>
           </div>
@@ -642,8 +642,8 @@ const DanaoTopo = () => {
           <div className="container mx-auto px-6">
             {/* Process Step Two - adopt ToolSwap structure: titles, paragraphs, and user journey image to the right */}
             <div className="max-w-3xl">
-                <h3 className="text-base text-muted-foreground mb-2">The Process - Step Two</h3>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-8">DESIGN</h2>
+                <h3 className="text-base text-muted-foreground mb-2">DESIGN</h3>
+                <h2 className="text-2xl md:text-3xl font-semibold mb-8">Turning insights into clear design decisions</h2>
               </div>
               <div className="w-full">
                 <p className="text-muted-foreground mb-4 max-w-none">
@@ -683,7 +683,7 @@ const DanaoTopo = () => {
               </div>
             </div>
           <div className="max-w-3xl mt-8">
-            <h3 className="text-xl md:text-2xl font-semibold mb-4">Design Choices</h3>
+            <h3 className="text-lg md:text-xl font-semibold mb-4">Design Choices</h3>
           </div>
           <div className="w-full">
             <p className="text-muted-foreground mb-6 max-w-none">After coming up with some sketches to get a rough idea of what I want to do, I created wireframes on Figma. As a next step, I continued with the design. Some details and highlights:</p>
@@ -836,8 +836,8 @@ const DanaoTopo = () => {
   <section id="prototype" className="py-12">
           <div className="container mx-auto px-6">
             <div>
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Three</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">PROTOTYPE &amp; TESTING</h2>
+              <h3 className="text-base text-muted-foreground mb-2">PROTOTYPE &amp; TESTING</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Testing what works (and what doesn’t)</h2>
 
               {/* Full-width paragraph */}
               <div className="w-full">
@@ -989,8 +989,8 @@ const DanaoTopo = () => {
   <section id="deliverables" className="py-12">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-              <h3 className="text-base text-muted-foreground mb-2">The Process - Step Four</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">DELIVERABLES</h2>
+              <h3 className="text-base text-muted-foreground mb-2">DELIVERABLES</h3>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-8">The final outcome</h2>
             </div>
           </div>
 
@@ -1039,8 +1039,8 @@ const DanaoTopo = () => {
   <section id="conclusion" className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
-                <h3 className="text-base text-muted-foreground mb-2">The Process - Step Five</h3>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-4">CONCLUSIONS</h2>
+                <h3 className="text-base text-muted-foreground mb-2">CONCLUSIONS</h3>
+                <h2 className="text-2xl md:text-3xl font-semibold mb-4">What worked, what didn’t, what’s next</h2>
             </div>
 
             {/* Conclusions card (same style as User Test Tasks) */}
