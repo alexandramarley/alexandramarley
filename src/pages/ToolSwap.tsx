@@ -1206,8 +1206,10 @@ const ToolSwap = () => {
                   <div className="w-full h-full overflow-hidden rounded-lg">
                     <iframe
                       title="ToolSwap Prototype Embed"
-                      src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?page-id=5173%3A5102&node-id=5508-7349&viewport=1279%2C352%2C0.08&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5508%3A7349&embed-host=share"
+                      src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?page-id=5173%3A5102&node-id=6141-12082&viewport=2441%2C-118%2C0.09&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5508%3A7349&embed-host=share"
                       style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+                      width={800}
+                      height={450}
                       className="w-full h-full min-h-[420px] md:min-h-[480px]"
                       allowFullScreen
                     />
