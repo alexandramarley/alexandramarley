@@ -3,17 +3,17 @@ import Footer from "@/components/Footer";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import danaoteaser from "@/assets/alexandramarley-uxdesign-danao-coverv1.webp";
-import tsDesign01_a from "@/assets/alexandramarley-uxdesign-toolswap-design01a.webp";
-import tsDesign01_b from "@/assets/alexandramarley-uxdesign-toolswap-design01b.webp";
+import tsDesign01_a from "@/assets/alexandramarley-ux-TS-Design01_a.webp";
+import tsDesign01_b from "@/assets/alexandramarley-ux-TS-Design01_b.webp";
 import tsDesign02_a from "@/assets/alexandramarley-ux-ts-results.webp";
 import tsDesign02_b from "@/assets/alexandramarley-ux-ts-listing-created.webp";
-import tsDesign04 from "@/assets/alexandramarley-uxdesign-toolswap-design04.webp";
-import tsDesign03a from "@/assets/alexandramarley-uxdesign-toolswap-design03a.webp";
-import tsDesign03b from "@/assets/alexandramarley-uxdesign-toolswap-design03b.webp";
+import listingPlay from "@/assets/alexandramarley-ux-listing-play.mov";
+import tsDesign03a from "@/assets/alexandramarley-ux-ts-tsDesign03_a.webp";
+import tsDesign03b from "@/assets/alexandramarley-ux-ts-tsDesign03_b.webp";
 import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
 import deliverables1 from "@/assets/alexandramarley-ToolSwap-Home.png";
-import filterVideo from "@/assets/ScreenRecording_01-28-2026 16-35-42_1.mov";
+import filterVideo from "@/assets/alexandramarley-ux-sortby-play.mov";
 import toolswapTitle from "@/assets/alexandramarley-uxdesign-toolswap-title1.webp";
 import benchmark01 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark01.webp";
 import benchmark02 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark02.webp";
@@ -1119,13 +1119,16 @@ const ToolSwap = () => {
 
                   <div className="w-full overflow-hidden rounded-lg flex items-center justify-center md:max-w-[440px] lg:max-w-[560px] mx-auto">
                     <div className="w-full max-w-[440px] lg:max-w-[560px] overflow-hidden rounded-lg relative">
-                      <img
-                        src={tsDesign04}
-                        alt="List item design - option B - full"
+                      <video
+                        src={listingPlay}
+                        muted
+                        autoPlay
+                        controls
+                        playsInline
                         className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
                         onClick={() => {
-                          setSingleLightboxSrc(tsDesign04);
-                          setSingleLightboxAlt("List item design - option B - full");
+                          setSingleLightboxSrc(listingPlay);
+                          setSingleLightboxAlt("List item video");
                           setSingleLightboxOrigin('design-4');
                           setSingleLightboxOpen(true);
                         }}
@@ -1155,6 +1158,7 @@ const ToolSwap = () => {
                           <video
                             src={filterVideo}
                             muted
+                            autoPlay
                             controls
                             playsInline
                             className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px]"
@@ -1604,11 +1608,20 @@ const ToolSwap = () => {
               </>
             )}
 
-            <img
-              src={singleLightboxSrc}
-              alt={singleLightboxAlt || "Design - full"}
-              className="max-w-[90%] max-h-[90%] object-contain rounded"
-            />
+            {/\.(mp4|mov|webm)$/i.test(singleLightboxSrc || '') ? (
+              <video
+                src={singleLightboxSrc || undefined}
+                controls
+                autoPlay
+                className="max-w-[90%] max-h-[90%] object-contain rounded"
+              />
+            ) : (
+              <img
+                src={singleLightboxSrc}
+                alt={singleLightboxAlt || "Design - full"}
+                className="max-w-[90%] max-h-[90%] object-contain rounded"
+              />
+            )}
           </div>
         )}
 
