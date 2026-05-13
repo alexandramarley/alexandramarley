@@ -14,7 +14,7 @@ import tsResearch01 from "@/assets/alexandramarley-ux-toolswap-research-01.png";
 import tsUserJourney from "@/assets/alexandramarley-ux-ToolSwap-userjourney.webp";
 import deliverables1 from "@/assets/alexandramarley-ToolSwap-Home.png";
 import filterVideo from "@/assets/ScreenRecording_01-28-2026 16-35-42_1.mov";
-import toolswapTitle from "@/assets/alexandramarley-uxdesign-toolswap-title.webp";
+import toolswapTitle from "@/assets/alexandramarley-uxdesign-toolswap-title1.webp";
 import benchmark01 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark01.webp";
 import benchmark02 from "@/assets/alexandramarley-uxdesign-toolswap-benchmark02.webp";
 import tsAccount from "@/assets/alexandramarley-uxdesign-toolswap-account.webp";

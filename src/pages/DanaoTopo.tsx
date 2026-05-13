@@ -24,7 +24,7 @@ import danaoMapOverview from "@/assets/alexandramarley-uxdesign-danao-map-overvi
 import danaoSearch from "@/assets/alexandramarley-uxdesign-danao-search-new.webp";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import toolswapteaser from "@/assets/alexandramarley-uxdesign-toolswap-coverv1.webp";
+import toolswapcover from "@/assets/alexandramarley-uxdesign-toolswap-coverv2.webp";
 import danaoTitle from "@/assets/alexandramarley-uxdesign-danao-title.webp";
 
 const DanaoTopo = () => {
@@ -1074,7 +1074,7 @@ const DanaoTopo = () => {
               >
                 <div className="w-full overflow-hidden">
                   <img
-                    src={toolswapteaser}
+                    src={toolswapcover}
                     alt="ToolSwap Project - Community-driven platform for sharing tools"
                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                   />
