@@ -33,6 +33,23 @@ import tsListview2 from "@/assets/alexandramarley-uxdesign-toolswap-listview.web
 import tsRateLender from "@/assets/alexandramarley-uxdesign-toolswap-rate-lender.webp";
 import tsRating2 from "@/assets/alexandramarley-uxdesign-toolswap-rating.webp";
 import tsSearch2 from "@/assets/alexandramarley-uxdesign-toolswap-search.webp";
+import tsNewHome from "@/assets/alexandramarley-ux-TS-Home.webp";
+import tsNewSearch01 from "@/assets/alexandramarley-ux-TS-Search-01.webp";
+import tsNewSearch02 from "@/assets/alexandramarley-ux-TS-Search-02.webp";
+import tsNewDetailView from "@/assets/alexandramarley-ux-TS-Detail-view.webp";
+import tsNewListItem from "@/assets/alexandramarley-ux-TS-List-item.webp";
+import tsNewSortBy from "@/assets/alexandramarley-ux-TS-Sortby.webp";
+import tsNewMenu from "@/assets/alexandramarley-ux-TS-Menu.webp";
+import tsNewMyBookingsDetail from "@/assets/alexandramarley-ux-TS-MyBookings-Detail.webp";
+import tsNewMyBookings from "@/assets/alexandramarley-ux-TS-MyBookings.webp";
+import tsNewCreateListing from "@/assets/alexandramarley-ux-TS-Create-Listing.webp";
+import tsNewReviewListing from "@/assets/alexandramarley-ux-TS-Review-Listing.webp";
+import tsNewListings from "@/assets/alexandramarley-ux-TS-Listings.webp";
+import tsNewBookings from "@/assets/alexandramarley-ux-TS-Bookings.webp";
+import tsNewBookingDetails from "@/assets/alexandramarley-ux-TS-Booking-Details.webp";
+import tsNewChatMessage from "@/assets/alexandramarley-ux-TS-Chat-Message.webp";
+import tsNewReviews from "@/assets/alexandramarley-ux-TS-Reviews.webp";
+import tsNewResults from "@/assets/alexandramarley-ux-TS-results.webp";
 
 const ToolSwap = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -140,32 +157,31 @@ const ToolSwap = () => {
   };
 
   const overviewImages = [
-    tsCreateListing2,
-    tsConfirmListing,
-    tsHome2,
-    tsSearch2,
-    tsCalendar,
-    tsDetailedView2,
-    tsListview2,
-    tsBookingState,
-    tsAccount,
-    tsBookingRequests2,
-    tsChat,
-    tsRating2,
+    tsNewCreateListing,
+    tsNewReviewListing,
+    tsNewResults,
+    tsNewDetailView,
+    tsNewListItem,
+    tsNewMenu,
+    tsNewMyBookings,
+    tsNewMyBookingsDetail,
+    tsNewReviews,
+    tsNewBookings,
+    tsNewBookingDetails,
   ];
 
   const overviewAlts = [
-    'Home',
-    'Search',
-    'Calendar',
-    'Detailed View',
-    'List View',
-    'Booking State',
     'Create Listing',
-    'Confirm Listing',
-    'Account',
-    'Booking Requests',
-    'Chat',
+    'Review Listing',
+    'Results',
+    'Detail View',
+    'List Item',
+    'Menu',
+    'My Bookings',
+    'My Bookings Detail',
+    'Reviews',
+    'Bookings',
+    'Booking Details',
   ];
 
   const scrollNext = () => {
@@ -280,18 +296,22 @@ const ToolSwap = () => {
     }
   }, [location]);
   const deliverablesImages = [
-    tsHome2,
-    tsSearch2,
-    tsDetailedView2,
-    tsListview2,
-    tsFilter2,
-    tsBookingState,
-    tsAccount,
-    tsCreateListing2,
-    tsBookingRequests2,
-    tsChats,
-    tsChat,
-    tsRating2,
+    tsNewHome,
+    tsNewSearch01,
+    tsNewSearch02,
+    tsNewDetailView,
+    tsNewListItem,
+    tsNewSortBy,
+    tsNewMenu,
+    tsNewMyBookingsDetail,
+    tsNewMyBookings,
+    tsNewCreateListing,
+    tsNewReviewListing,
+    tsNewListings,
+    tsNewBookings,
+    tsNewBookingDetails,
+    tsNewChatMessage,
+    tsNewReviews,
   ];
 
   const openLightbox = (i: number) => {
@@ -568,7 +588,7 @@ const ToolSwap = () => {
 
                         <div>
                           <h4 className="text-base font-semibold mb-1">Timeline</h4>
-                          <p className="text-sm text-muted-foreground">September - October 2025</p>
+                          <p className="text-sm text-muted-foreground">September - October 2025 (further iteration in 2026)</p>
                         </div>
                       </div>
                     </div>
@@ -1316,41 +1336,54 @@ const ToolSwap = () => {
               <div className="px-6">
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(0)} src={tsHome2} alt="Home" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(0)} src={tsNewHome} alt="Home" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(1)} src={tsSearch2} alt="Search" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(1)} src={tsNewSearch01} alt="Search 01" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(2)} src={tsDetailedView2} alt="Detailed View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(2)} src={tsNewSearch02} alt="Search 02" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(3)} src={tsListview2} alt="List View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(3)} src={tsNewDetailView} alt="Detail View" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(4)} src={tsFilter2} alt="Filter" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(4)} src={tsNewListItem} alt="List Item" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(5)} src={tsBookingState} alt="Booking State" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(5)} src={tsNewSortBy} alt="Sort By" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
 
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(6)} src={tsAccount} alt="Account" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(6)} src={tsNewMenu} alt="Menu" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(7)} src={tsCreateListing2} alt="Create Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(7)} src={tsNewMyBookingsDetail} alt="My Bookings Detail" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(8)} src={tsBookingRequests2} alt="Booking Requests" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(8)} src={tsNewMyBookings} alt="My Bookings" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(9)} src={tsChats} alt="Chats" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(9)} src={tsNewCreateListing} alt="Create Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(10)} src={tsChat} alt="Chat" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(10)} src={tsNewReviewListing} alt="Review Listing" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                     <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
-                      <img onClick={() => openLightbox(11)} src={tsRating2} alt="Rating" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                      <img onClick={() => openLightbox(11)} src={tsNewListings} alt="Listings" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(12)} src={tsNewBookings} alt="Bookings" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(13)} src={tsNewBookingDetails} alt="Booking Details" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(14)} src={tsNewChatMessage} alt="Chat Message" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
+                    </div>
+                    <div className="overflow-hidden rounded-lg flex items-center justify-center p-1">
+                      <img onClick={() => openLightbox(15)} src={tsNewReviews} alt="Reviews" className="max-w-full max-h-[160px] md:max-h-[240px] lg:max-h-[320px] object-contain cursor-pointer" />
                     </div>
                 </div>
               </div>
