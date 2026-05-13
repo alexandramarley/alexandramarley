@@ -1123,6 +1123,7 @@ const ToolSwap = () => {
                         src={listingPlay}
                         muted
                         autoPlay
+                        loop
                         controls
                         playsInline
                         className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px] cursor-pointer"
@@ -1159,6 +1160,7 @@ const ToolSwap = () => {
                             src={filterVideo}
                             muted
                             autoPlay
+                            loop
                             controls
                             playsInline
                             className="w-full h-auto object-contain max-h-[240px] md:max-h-[320px] lg:max-h-[380px]"
@@ -1230,13 +1232,26 @@ const ToolSwap = () => {
                   <div className="w-full h-full overflow-hidden rounded-lg">
                     <iframe
                       title="ToolSwap Prototype Embed"
-                      src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?page-id=5173%3A5102&node-id=6141-12082&viewport=2441%2C-118%2C0.09&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5508%3A7349&embed-host=share"
+                      src="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?node-id=9368-21562&p=f&viewport=7453%2C-624%2C0.37&scaling=scale-down&content-scaling=fixed&starting-point-node-id=9368%3A21562&page-id=9368%3A17986&embed-host=share"
                       style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
                       width={800}
                       height={450}
                       className="w-full h-full min-h-[420px] md:min-h-[480px]"
                       allowFullScreen
                     />
+                    <div className="mt-3 text-sm text-muted-foreground">
+                      If the prototype embed fails to load (HTTP 500), open it directly in a new tab:
+                      <div>
+                        <a
+                          href="https://embed.figma.com/proto/fjdwiyvqq5G6MqKcFuVD1L/Tool-Swap?node-id=9368-21562&p=f&viewport=7453%2C-624%2C0.37&scaling=scale-down&content-scaling=fixed&starting-point-node-id=9368%3A21562&page-id=9368%3A17986&embed-host=share"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-green-600 hover:underline"
+                        >
+                          Open prototype in a new tab
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
