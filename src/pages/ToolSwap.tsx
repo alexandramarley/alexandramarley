@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import danaoteaser from "@/assets/alexandramarley-uxdesign-danao-coverv1.webp";
 import tsDesign01_a from "@/assets/alexandramarley-ux-TS-Design01_a.webp";
 import tsDesign01_b from "@/assets/alexandramarley-ux-TS-Design01_b.webp";
-import tsDesign02_a from "@/assets/alexandramarley-ux-ts-results.webp";
+import tsDesign02_a from "@/assets/alexandramarley-ux-TS-results.webp";
 import tsDesign02_b from "@/assets/alexandramarley-ux-ts-listing-created.webp";
 import listingPlay from "@/assets/alexandramarley-ux-listing-play.mov";
 import tsDesign03a from "@/assets/alexandramarley-ux-ts-tsDesign03_a.webp";
