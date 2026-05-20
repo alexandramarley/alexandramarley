@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import toolswapteaser from "@/assets/alexandramarley-ux-toolswap-teaser.webp";
 import portfolio2 from "@/assets/alexandramarley-photography-business.webp";
-import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
 import portfolio4 from "@/assets/alexandramarley-photography-portrait.webp";
 import portfolio5 from "@/assets/portfolio-5.jpg";
 import portfolio6 from "@/assets/alexandramarley-photography-dance.webp";
@@ -22,28 +20,12 @@ interface PortfolioGridProps {
 
 const portfolioItems: PortfolioItem[] = [
   {
-    id: 1,
-    image: toolswapteaser,
-    category: "uxui",
-    title: "ToolSwap",
-    description: "A community marketplace app for borrowing and lending tools (Mobile UX- and UI)",
-    link: "/projects/toolswap"
-  },
-  {
     id: 4,
     image: portfolio4,
     category: "photography",
     title: "PORTRAITS",
     description: "Capturing serene moments",
     link: "/photography/portrait",
-  },
-  {
-    id: 3,
-    image: danaoteaser,
-    category: "uxui",
-    title: "Danao Topo",
-    description: "A graphical representation of the climbing routes in Danao, Philippines (Mobile UX- and UI)",
-    link: "/projects/danao-topo"
   },
   {
     id: 2,
