@@ -2,8 +2,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import { Link } from "react-router-dom";
-import toolswapteaser from "@/assets/alexandramarley-ux-toolswap-teaser.webp";
-import danaoteaser from "@/assets/alexandramarley-ux-danao-teaser.webp";
 import danaocover from "@/assets/alexandramarley-uxdesign-danao-coverv1.webp"
 import toolswapcover from "@/assets/alexandramarley-uxdesign-toolswap-coverv2.webp"
 

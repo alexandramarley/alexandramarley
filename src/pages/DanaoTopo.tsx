@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 // Image imports for Danao design choices and placeholders
-import danaoHero from "@/assets/alexandramarley-ux-danao-research-01.webp";
 import design01b from "@/assets/alexandramarley-uxdesign-danao-design-01d.webp";
 import design02b from "@/assets/alexandramarley-uxdesign-danao-design-02b.webp";
 import design03 from "@/assets/alexandramarley-uxdesign-danao-design-03b.webp";
@@ -11,7 +10,6 @@ import danaoBenchmark1 from "@/assets/alexandramarley-uxdesign-danao-benchmark1.
 import danaoBenchmark2 from "@/assets/alexandramarley-uxdesign-danao-benchmark2.webp";
 import danaoBenchmark3 from "@/assets/alexandramarley-uxdesign-danao-benchmark3.webp";
 import danaoBenchmark4 from "@/assets/alexandramarley-uxdesign-danao-benchmark4.webp";
-import sketcheswireframes from "@/assets/alexandramarley-ux-danao-topo-sketcheswireframes.webp";
 import contact from "@/assets/alexandramarley-uxdesign-contact-new.webp";
 import danaoAccount from "@/assets/alexandramarley-uxdesign-danao-account-new.webp";
 import danaoCragAscent from "@/assets/alexandramarley-uxdesign-danao-crag-ascent-new.webp";
