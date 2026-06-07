@@ -552,7 +552,7 @@ const ToolSwap = () => {
                         In dense cities like London, people often need tools only occasionally. Buying them is expensive, space-inefficient, and often unnecessary - yet borrowing informally lacks trust and reliability.
                       </p>
                       <p className="text-muted-foreground mb-6">
-                        ToolSwap is a mobile-first community marketplace that enables people to list, find, and borrow tools nearby — with trust built through verification, ratings, and simple booking flows.
+                        ToolSwap is a mobile-first community marketplace that enables people to list, find, and borrow tools nearby - with trust built through verification, ratings, and simple booking flows.
                       </p>
                     </div>
 

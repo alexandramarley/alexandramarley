@@ -258,38 +258,18 @@ const DanaoTopo = () => {
     }
   }, [location]);
 
-  // user test stories (for swipeable card)
-  const [userTestIndex, setUserTestIndex] = useState(0);
-  const userTestStories: React.ReactNode[] = [
-    (
-      <div>
-        <h5 className="text-sm font-semibold mb-2 text-muted-foreground">User Test 1 — Route discovery & filtering</h5>
-        <div className="text-muted-foreground mb-4">
-          <ul className="list-inside space-y-2 pl-4">
-            <li>• Quickly found the climbing area and selected a route without assistance</li>
-            <li>• Expected clearer visual highlighting of the selected route and attempted to interact directly with the topo image</li>
-            <li>• Accessed the information section without issues</li>
-            <li>• Found filter interactions difficult due to small tap targets and a high number of required taps</li>
-            <li>• Noted smaller font size, but appreciated the overall simplicity and low number of steps</li>
-          </ul>
-        </div>
-      </div>
-    ),
-    (
-      <div>
-        <h5 className="text-sm font-semibold mb-2 text-muted-foreground">User Test 2 — Navigation & information access</h5>
-        <div className="text-muted-foreground mb-4">
-          <ul className="list-inside space-y-2 pl-4">
-            <li>• Initially attempted to interact with the map before accessing the information section</li>
-            <li>• Successfully completed all core tasks once oriented</li>
-            <li>• Found wall and route details easily and accessed all required information</li>
-            <li>• Did not discover the “All routes” entry point and instead used the filter directly from the crag view</li>
-            <li>• Expected clearer navigation feedback, including a visible back button</li>
-          </ul>
-        </div>
-      </div>
-    ),
-  ];
+  // user test story (single static card)
+  const userTestStory: React.ReactNode = (
+    <div>
+      <p className="text-sm italic text-muted-foreground mb-3">Testing was conducted on an earlier version of the design. The insights below directly informed the subsequent redesign.</p>
+      <p className="text-muted-foreground mb-8">
+       Climbers moved quickly through core tasks - finding routes, filtering, accessing details. But friction points became obvious. Tap targets were too small to hit reliably. The "All Routes" button was too hidden. Navigation lacked clear feedback; users didn't always know where they were or how to go back.
+       </p>
+       <p className="text-muted-foreground mb-8">
+       These insights directly informed the next iteration: larger tap targets, improved filter interactions, clearer navigation hierarchy, better visual feedback.
+       </p>
+    </div>
+  );
 
   return (
     <div className="min-h-screen">
@@ -309,8 +289,7 @@ const DanaoTopo = () => {
               {/* Left: three-line heading + intro (spans 2/3 on md+) */}
               <div className="md:col-span-2 pr-20 md:pr-0">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight leading-tight md:leading-snug w-full">
-                  <span className="text-green-700 font-semibold">Danao Topo:</span> Turning complex route data into a simple, interactive visualisation
-                </h1>
+                  <span className="text-green-700 font-semibold">Danao Topo:</span> From spreadsheet data to visual route discovery</h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mb-6">
                   A mobile application design improving traditional climbing guidebooks
                 </p>
@@ -378,24 +357,25 @@ const DanaoTopo = () => {
             <div className="overflow-hidden rounded-lg bg-background">
               <div className="w-full flex items-stretch md:h-full">
                 <div className="w-full">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
-                    {/* Left: Title + longer text */}
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Identifying the core user problem</h3>
+                  {/* Use a 5-column grid on md+ and allocate 3/5 (60%) to the left and 2/5 (40%) to the right */}
+                  <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-16 md:h-full items-start">
+                    {/* Left: Title + longer text (takes ~60%) */}
+                    <div className="md:col-span-3">
+                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Why a spreadsheet is worse than no design at all</h3>
                       <p className="text-muted-foreground max-w-2xl mb-8">
-                        Climbers in Danao, Philippines relied solely on a shared spreadsheet to access route information - a format that’s hard to use outdoors and difficult to navigate quickly.
+                        How do you turn a wall of text into a decision tool? Especially when that decision happens outdoors with no reception, and the wrong choice means not having a rope long enough - which can be life threatening. In Danao, Philippines, climbers navigated dozens of routes using only a spreadsheet with no images. Standing at a physical wall, they had to match what they were seeing to route names in text. Comparing routes was nearly impossible. Most of the time, they just guessed and hoped they were climbing the right one.
                       </p>
                       <p className="text-muted-foreground mb-8">
                         This app design transforms text-heavy route data into a mobile-first climbing guide designed to support real-world use. The solution focuses on clear map interaction, fast route discovery, and offline-friendly access, reducing cognitive load while preserving the depth climbers need when choosing routes.
                       </p>
                     </div>
 
-                    {/* Right: Role / Team / Timeline stacked vertically; smaller visual weight so Overview remains priority */}
-                    <div className="mt-6 md:mt-0">
+                    {/* Right: Role / Team / Timeline stacked vertically; smaller visual weight so Overview remains priority (takes ~40%) */}
+                    <div className="mt-6 md:mt-0 md:col-span-2">
                       <div className="space-y-6">
                         <div>
                           <h4 className="text-base font-semibold mb-1">Role</h4>
-                          <p className="text-sm text-muted-foreground">Product Designer (End-to-End)</p>
+                          <p className="text-sm text-muted-foreground">UX Designer (end-to-end)</p>
                         </div>
 
                         <div>
@@ -470,43 +450,43 @@ const DanaoTopo = () => {
 {/* Research & Analysis */}
   {/* Research summary: new titles + paragraph + six cards */}
   <section id="research" className="py-16 md:py-20">
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl text-left">
+        <div className="container mx-auto px-6">
+          <div className="w-full text-left">
           <h3 className="text-base text-muted-foreground mb-2">RESEARCH &amp; ANALYSIS</h3>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">Understanding the problem before solving it</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">What climbers said they wanted vs. what they actually used</h2>
         </div>
 
         <div className="w-full">
           <p className="text-muted-foreground mb-6 max-w-none">
-            I used a mix of qualitative and quantitative methods to understand users’ behaviours and priorities when using climbing guide resources. Alongside observing and speaking with climbers, I ran a survey to gather broader market insights.
+            I started with assumptions based on my own climbing experience. I needed to validate whether those assumptions matched reality.
           </p>
           <p className="text-muted-foreground mb-12 max-w-none">
-            The research revealed a clear need for fast, glanceable route information that works offline and supports decision-making at the crag. These insights shaped feature priorities and the overall information architecture. My Findings:
+            I surveyed climbers, observed at the climbing wall (crag), and conducted interviews. The research revealed clear priorities: route length (for rope selection), grade, access info, and offline access are non-negotiable. But when I later tested the design with users, I discovered friction points I hadn't anticipated - small tap targets, unclear navigation, and confusing filters. That gap between what looked good on paper and what actually worked shaped the second iteration.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Primary Use Case</h4>
-              <p className="text-muted-foreground">90% of users prioritise access details, route grade, and route length. These form the essential content of the app.</p>
+              <p className="text-muted-foreground">90% of users prioritise access details, route grade, and route length. These form the essential content of the app</p>
             </div>
           </div>
           <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Overview and key route details</h4>
-              <p className="text-muted-foreground">Users need to know where a route starts/ends, its length, difficulty, required gear, approach, and best climbing conditions.</p>
+              <p className="text-muted-foreground">Users need to know where a route starts/ends, its length, difficulty, required gear, approach, and best climbing conditions</p>
             </div>
           </div>
           <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Offline access is essential</h4>
-              <p className="text-muted-foreground">Poor reception in climbing areas makes downloadable offline content a key requirement.</p>
+              <p className="text-muted-foreground">Poor reception in climbing areas makes downloadable offline content a key requirement</p>
             </div>
           </div>
           <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
             <div className="flex-1 w-full">
               <h4 className="text-lg font-semibold mb-2">Grading System</h4>
-              <p className="text-muted-foreground">95% prefer the French Sport Grading system; other grading conversions can be added later.</p>
+              <p className="text-muted-foreground">95% prefer the French Sport Grading system</p>
             </div>
           </div>
           <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
@@ -527,7 +507,7 @@ const DanaoTopo = () => {
           <div className="w-full">
             <h3 className="text-lg md:text-xl font-semibold mb-4">Competitor Analysis</h3>
             <p className="text-muted-foreground mb-6 max-w-none">At the same time I benchmarked existing climbing apps to understand common patterns and trade-offs in route discovery, filtering, and map interaction.</p>
-            <p className="text-muted-foreground mb-6 max-w-none">The findings informed which design approaches to build upon and where opportunities existed to improve clarity and usability on mobile.</p>
+            <p className="text-muted-foreground mb-6 max-w-none">I noticed recurring issues: visual clutter, limited filter options, layouts built for desktop first. This informed where opportunities existed to improve clarity and usability on mobile.</p>
           </div>
         </div>
         
@@ -641,11 +621,11 @@ const DanaoTopo = () => {
             {/* Process Step Two - adopt ToolSwap structure: titles, paragraphs, and user journey image to the right */}
             <div className="max-w-3xl">
                 <h3 className="text-base text-muted-foreground mb-2">DESIGN</h3>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-8">Turning insights into clear design decisions</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold mb-8">From assumptions to evidence: four design shifts</h2>
               </div>
               <div className="w-full">
                 <p className="text-muted-foreground mb-4 max-w-none">
-                  I started to work on the app structure and document the user journeys. My key considerations were the user goals and how to organise route information so it’s easy to access in the field.
+                  The research showed what climbers needed. Translating that into a design that works at a wall, offline, and in the moment shaped every decision.
                 </p>
               </div>
 
@@ -654,18 +634,15 @@ const DanaoTopo = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="max-w-3xl">
                   <p className="text-muted-foreground mb-6">
-                    I documented four main journeys:
+                    I mapped out four user journeys - each representing a different moment when someone needed the app:
                   </p>
 
                   <ul className="list-inside space-y-2 text-muted-foreground mb-6">
-                    <li>• User is researching climbing areas and wants general information about Danao</li>
-                    <li>• User has decided to climb at Danao and wants access to detailed route information</li>
-                    <li>• User is looking for a specific route or climbing wall</li>
-                    <li>• User wants to view their projects, contact support or wants to change something in their account</li>
+                    <li>• Researching climbing areas (before arrival)</li>
+                    <li>• Planning detailed climbs (at the area)</li>
+                    <li>• Finding a specific route or wall (at the wall, in the moment)</li>
+                    <li>• Managing projects, support, account changes (secondary)</li>
                   </ul>
-                  <p className="text-muted-foreground mb-6">
-                    To help me visualise and plan these user journeys, I created a flow chart. This allows me to rationalise the steps within the journey, and plan the navigation within the app.
-                  </p>
                 </div>
 
                 <div className="flex justify-center">
@@ -684,7 +661,10 @@ const DanaoTopo = () => {
             <h3 className="text-lg md:text-xl font-semibold mb-4">Design Choices</h3>
           </div>
           <div className="w-full">
-            <p className="text-muted-foreground mb-6 max-w-none">After coming up with some sketches to get a rough idea of what I want to do, I created wireframes on Figma. As a next step, I continued with the design. Some details and highlights:</p>
+            <p className="text-muted-foreground mb-6 max-w-none">Each journey had different information needs and cognitive load. I sketched rough ideas based on these journeys, then created wireframes in Figma to stress-test the navigation.</p>
+          </div>
+           <div className="w-full">
+            <p className="text-muted-foreground mb-6 max-w-none">Then I tested with users - and that's where the assumptions broke down. Tap targets were too small. Navigation paths weren't obvious. Filters required too many taps. The second iteration addressed these directly. Four specific decisions came out of this cycle:</p>
           </div>
             </div>
         </section>
@@ -699,24 +679,13 @@ const DanaoTopo = () => {
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                       <div>
-                        <h4 className="text-lg font-semibold mb-2">Route Information</h4>
+                        <h4 className="text-lg font-semibold mb-2">Progressive disclosure: scanning vs. depth</h4>
                         <p className="text-muted-foreground mb-4">
-                          Climbing routes contain a mix of short, critical data (grade, length) and long-form content (route descriptions). Displaying all information at once would increase cognitive load and make scanning difficult on mobile.
-                        </p>
+                          Routes contain two types of information: quick decisions (grade, length, quick drawer count) and context (full description, setting info). Showing everything at once would overwhelm and make scanning difficult on mobile.</p>
                         <p className="text-muted-foreground mb-4">
-                          To address this, I used expandable route list items that surface essential information by default and reveal detailed descriptions on demand. This allows users to quickly compare routes while still accessing depth when needed.
-                        </p>
+                          To address this, I used expandable route list items to surface essential information by default and reveal detailed descriptions on demand. When you select a route - either from the list or by tapping the topo image - the route expands to show the full description. The corresponding line on the topo highlights to confirm what you're looking at. The image itself is zoomable, so climbers can inspect the wall and route further.</p>
                         <p className="text-muted-foreground mb-4">
-                          Selecting a route - either from the topo image or the route list - triggers a clear, consistent response:
-                        </p>
-                        <ul className="list-inside space-y-2 text-muted-foreground mb-4">
-                          <li>• The route expands to show the full description </li>
-                          <li>• The corresponding line in the topo is highlighted</li>
-                          <li>• The route title is visually emphasised to confirm selection</li>
-                        </ul>
-                        <p className="text-muted-foreground mb-4">
-                          To support faster decision-making, additional contextual cues were introduced, including icons indicating climbing style, first ascent information, and the ability to mark routes as projects or log ascents
-                        </p>
+                          I also added contextual cues to speed up decision-making: icons for climbing style, first ascent information, and buttons to mark routes as projects or log ascents.</p>
                       </div>
 
                       <div className="flex items-center justify-center">
@@ -743,14 +712,15 @@ const DanaoTopo = () => {
               <div>
                 <div className="px-0 sm:px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Difficulty Distribution Chart</h4>
+                    <h4 className="text-lg font-semibold mb-2">Why I ditched the precise grading system</h4>
                     <p className="text-muted-foreground mb-4">
-                      Climbers need to quickly understand whether a climbing area matches their ability. Rather than focusing on precise grade breakdowns, user feedback highlighted the importance of seeing how many easy or hard routes are available.
+                      In the survey, climbers said they wanted precise grade breakdowns. But when I tested the design, something else emerged: what they actually needed was a quick gut-check. <i>Does this area have routes I can climb?</i> Not exact numbers, but the overall distribution.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      The area overview therefore combines a simplified grade distribution with key contextual information such as approach time and typical climbing conditions, allowing users to assess suitability at a glance. The final solution prioritises readability through clear visual hierarchy, scannable icons, and a prominent call to action.
-                    </p>
-                    </div>
+                      So I ditched the precise breakdown for a simplified chart that shows the grades clearly. Some areas might be mostly easy routes, others mostly hard, or have a broad selection. Combined with approach time and climbing conditions (sun exposure, best time to visit), climbers can assess suitability at a glance.</p>
+                    <p className="text-muted-foreground mb-4">
+                      The final solution prioritises readability: clear visual hierarchy, icons for context, and a prominent "View Routes" button to move forward.</p>
+                  </div>
 
                   <div className="w-full max-w-[240px] overflow-hidden rounded-lg flex items-center justify-center md:max-w-[320px] lg:max-w-[380px] mx-auto mt-6">
                     <img
@@ -773,12 +743,15 @@ const DanaoTopo = () => {
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div>
-                        <h4 className="text-lg font-semibold mb-2">Filter Option</h4>
+                        <h4 className="text-lg font-semibold mb-2">From checkboxes to sliders: reducing friction outdoors</h4>
                         <p className="text-muted-foreground mb-4">
-                          Benchmarking revealed that most climbing apps offer limited filtering, typically focusing on climbing style or grade, while overlooking key criteria such as route length and rating. These dimensions are essential for planning climbs in real outdoor conditions, so I introduced additional filters to better support route selection.
+                         Most climbing apps focus on filtering by style or grade. But in the research, climbers consistently mentioned two things: route length (to match their rope) and user ratings (to know if a route is worth the effort). These are essential for planning in real conditions.
                         </p>
                         <p className="text-muted-foreground mb-4">
-                          User testing showed that the initial checkbox-based solution required too many taps and increased interaction friction. In response, the redesigned filter replaces checkboxes with range sliders, reducing effort, improving accuracy, and enabling faster adjustments - particularly important when using the app outdoors.
+                          When I tested the initial design, checkboxes became an immediate problem. Standing at a wall with limited time, each tap added friction. Five different filter options with two states each (checked/unchecked) meant climbers were tapping endlessly just to narrow down routes.
+                        </p>
+                         <p className="text-muted-foreground mb-4">
+                          So I switched to range sliders. Instead of multiple taps across checkboxes, climbers adjust a start and end point with two intuitive drags. Faster, more precise, and easier to refine your search.
                         </p>
                       </div>
 
@@ -803,12 +776,12 @@ const DanaoTopo = () => {
               <div>
                 <div className="px-0 sm:px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Search Function</h4>
+                    <h4 className="text-lg font-semibold mb-2">Elevating search from hidden feature to core navigation</h4>
                     <p className="text-muted-foreground mb-4">
-                     Early iterations explored combining the search field with the page title, but testing showed this introduced unnecessary visual noise and uncertainty around hierarchy. To maintain clarity and consistency, search was elevated to the main navigation, making it permanently accessible across the app.
+                     Early iterations buried search inside the page title as a small icon. But testing revealed the problem: climbers couldn't find it, and it created visual clutter without clarity. If climbers can't discover search, it doesn't matter how good it is.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                     The redesigned search removes non-essential imagery and prioritises scannability. Results are visually differentiated using icons, allowing users to quickly distinguish between routes and walls, while surfacing the most relevant information at a glance - grade, rating, and location for routes, and route count for walls.
+                     So I moved the search to the main navigation to make it permanently visible and accessible. The redesigned search removes non-essential imagery distraction and prioritises scannability. Icons visually differentiate between routes and walls: a climbing icon for routes, a location pin for walls. Each result surfaces the most relevant details at a glance - grade, rating, and area for routes; route count for walls.
                     </p>
                   </div>
 
@@ -835,51 +808,36 @@ const DanaoTopo = () => {
           <div className="container mx-auto px-6">
             <div>
               <h3 className="text-base text-muted-foreground mb-2">PROTOTYPE &amp; TESTING</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Testing what works (and what doesn’t)</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Small sample, big learnings: what testing revealed</h2>
 
               {/* Full-width paragraph */}
               <div className="w-full">
-                <p className="text-muted-foreground mb-6 max-w-none">After finishing my design screens, I connected all the different frames &amp; created a prototype. When it came to the user testing, I gave the candidates the following tasks:</p>
+                <p className="text-muted-foreground mb-6 max-w-none">After finishing my design screens, I created a prototype and tested it with climbers. The goal: validate whether the design solved the core problem or if I'd missed something fundamental.</p>
               </div>
 
               {/* User Test Tasks card (full width) */}
               <div className="w-full">
                 <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg mb-6">
-                  <h4 className="text-lg font-semibold mb-3">User Test Tasks</h4>
+                  <h4 className="text-lg font-semibold mb-3">The tasks I gave them</h4>
                   <ul className="list-inside space-y-2 text-muted-foreground pl-4">
-                    <li>• Find out how to get there from Cebu using any means of transport</li>
+                    <li>• Navigate to Danao from Cebu using any means of transport</li>
                     <li>• Find the overview of the different crags (climbing areas)</li>
                     <li>• Find the “Pocket Wall” and a route called Dong Ba Dong. You want to find out how long is the route, and how many quick drawers (QD) are needed</li>
-                    <li>• Find the overview of all routes, and filter all routes more than 30 meters with a rating of 4 Stars or more</li>
-                    <li>• Find a way how to contact the route setters</li>
+                    <li>• Filter routes by length and rating</li>
+                    <li>• Find contact info for route setters</li>
                   </ul>
                 </div>
               </div>
 
-              {/* Two cards side-by-side: left = user test story (swipeable), right = prototype iframe */}
+              {/* Two cards side-by-side: left = Findings, right = prototype iframe */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                 <div className="relative p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full pt-12 md:pt-14">
                   {/* top-right swipe buttons (larger) */}
-                  <div className="absolute top-4 right-4 flex items-center gap-3">
-                    <button
-                      aria-label="Previous user test"
-                      onClick={() => setUserTestIndex((userTestIndex - 1 + userTestStories.length) % userTestStories.length)}
-                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
-                    >
-                      ‹
-                    </button>
-                    <button
-                      aria-label="Next user test"
-                      onClick={() => setUserTestIndex((userTestIndex + 1) % userTestStories.length)}
-                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
-                    >
-                      ›
-                    </button>
-                  </div>
+                  {/* Static user test card (no carousel) */}
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-3">Testing Insights</h4>
-                    <div>{userTestStories[userTestIndex]}</div>
+                    <h4 className="text-lg font-semibold mb-3">What emerged:</h4>
+                    <div>{userTestStory}</div>
                   </div>
 
                 </div>
@@ -897,84 +855,48 @@ const DanaoTopo = () => {
                 </div>
               </div>
 
-              {/* Findings & Next Steps cards under Prototype (same card design) */}
+              {/* Next Steps - full width */}
               <div className="w-full mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
-                    <h4 className="text-lg font-semibold mb-3">Findings</h4>
-                      <p className="text-sm italic text-muted-foreground mb-3">Testing was conducted on an earlier version of the design. The insights below directly informed the subsequent redesign.</p>
-                      <ul className="list-inside space-y-2 text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Some elements lack clarity or visibility (filter fields, all routes button)</span>
-                      </li>
+                <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg mb-6">
+                  <h4 className="text-lg font-semibold mb-3">Next Steps</h4>
+                  <ul className="list-inside space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span><b>Improve visibility of “all routes” button</b> - Make it prominent in the crag view so climbers don't have to hunt for it</span>
+                    </li>
 
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Tap targets can feel too small for some users</span>
-                      </li>
+                    <li className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span><b>Larger touch targets</b> - Increase tap areas across filters and navigation to accommodate outdoor use</span>
+                    </li>
 
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Navigation could be improved with clearer pathways and a back button for easier movement</span>
-                      </li>
+                    <li className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span><b>Improve the filter screen</b> - Transition from checkboxes to range sliders, reducing taps and friction</span>
+                    </li>
 
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Users appreciate the simplicity of the design and can complete key tasks</span>
-                      </li>
-                    </ul>
-                  </div>
+                    <li className="flex items-start gap-2">
+                      <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span><b>Refine navigation flow</b> - Add clearer feedback and a visible back button so climbers always know where they are</span>
+                    </li>
 
-                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
-                    <h4 className="text-lg font-semibold mb-3">Next Steps</h4>
-                    <ul className="list-inside space-y-2 text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Improve visibility of “all routes” button</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Larger touch targets</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Improve the filter screen</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Refine navigation flow</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        {/* Pending icon: clock (neutral grey) */}
-                        <svg className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <circle cx="12" cy="12" r="9" />
-                          <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Validate changes through further user testing</span>
-                      </li>
-                    </ul>
-                  </div>
+                    <li className="flex items-start gap-2">
+                      {/* Pending icon: clock (neutral grey) */}
+                      <svg className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span><b>Validate changes through further user testing</b> - Confirm the refinements addressed the friction points</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -988,7 +910,7 @@ const DanaoTopo = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">DELIVERABLES</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-8">The final outcome</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-8">What this turned into</h2>
             </div>
           </div>
 
@@ -1036,19 +958,19 @@ const DanaoTopo = () => {
   {/* Process Step Five Section */}
   <section id="conclusion" className="py-12 bg-muted/30">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
+            <div className="w-full">
                 <h3 className="text-base text-muted-foreground mb-2">CONCLUSIONS</h3>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-4">What worked, what didn’t, what’s next</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold mb-4">Knowing when your design solved the problem (even if you don't ship it)</h2>
             </div>
 
             {/* Conclusions card (same style as User Test Tasks) */}
             <div className="w-full mt-6">
               <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg">
                 <p className="text-muted-foreground mb-6">
-                  Danao Topo was an end-to-end exploration of designing for information-dense content in challenging outdoor conditions, with a particular focus on map interaction, route discoverability, and reducing cognitive load without losing useful detail.
+                  This was my first case study, and I learned the hard way that research needs to come before design. I started with sketches based on my climbing experience, then validated through user testing - which revealed assumptions I'd gotten wrong. Usability testing exposed friction points: small tap targets, unclear navigation, elements that lacked clarity. I iterated based on these findings, tested again, and the second round validated the changes. The real insight wasn't climbing-specific: when users have no WiFi, are outdoors, and need to decide quickly, clarity beats precision. Progressive disclosure, simplified grading, range sliders - all forced by constraints that clarified the design.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  While the project remains conceptual, it was grounded in real user input and realistic constraints. The process reinforced the importance of clear information hierarchy and thoughtful interaction design - lessons that translate directly to complex, data-rich products beyond the climbing domain.
+                  Around the same time, 27 Crag released a redesign solving the same problem. Rather than ship something similar, I studied their approach - their execution at scale taught me more than shipping would have. Looking back, I'd strengthen contrast on the star ratings (yellow on photos needs WCAG AA refinement), but the core insight - that constraints force clarity - applies far beyond climbing.
                 </p>
               </div>
             </div>
