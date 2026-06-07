@@ -366,7 +366,7 @@ const DanaoTopo = () => {
                         How do you turn a wall of text into a decision tool? Especially when that decision happens outdoors with no reception, and the wrong choice means not having a rope long enough - which can be life threatening. In Danao, Philippines, climbers navigated dozens of routes using only a spreadsheet with no images. Standing at a physical wall, they had to match what they were seeing to route names in text. Comparing routes was nearly impossible. Most of the time, they just guessed and hoped they were climbing the right one.
                       </p>
                       <p className="text-muted-foreground mb-8">
-                        This app design transforms text-heavy route data into a mobile-first climbing guide designed to support real-world use. The solution focuses on clear map interaction, fast route discovery, and offline-friendly access, reducing cognitive load while preserving the depth climbers need when choosing routes.
+                        This app design transforms text-heavy route data into a mobile-first climbing guide designed to support real-world use. My background in photography taught me that information hierarchy is crucial - if climbers can't visually parse the information in seconds, the design fails. The solution prioritises clear map interaction, fast route discovery, and offline-friendly access, reducing cognitive load while preserving the depth climbers need when choosing routes.
                       </p>
                     </div>
 
@@ -661,10 +661,10 @@ const DanaoTopo = () => {
             <h3 className="text-lg md:text-xl font-semibold mb-4">Design Choices</h3>
           </div>
           <div className="w-full">
-            <p className="text-muted-foreground mb-6 max-w-none">Each journey had different information needs and cognitive load. I sketched rough ideas based on these journeys, then created wireframes in Figma to stress-test the navigation.</p>
+            <p className="text-muted-foreground mb-6 max-w-none">Each journey had different information needs. A climber researching areas offline needs different information than one standing at a wall with 30 seconds to decide. I sketched rough ideas to map these, then created wireframes to stress-test whether the navigation actually solved the right problem at the right moment.</p>
           </div>
            <div className="w-full">
-            <p className="text-muted-foreground mb-6 max-w-none">Then I tested with users - and that's where the assumptions broke down. Tap targets were too small. Navigation paths weren't obvious. Filters required too many taps. The second iteration addressed these directly. Four specific decisions came out of this cycle:</p>
+            <p className="text-muted-foreground mb-6 max-w-none">Then I tested with users - and that's where the assumptions broke down. Tap targets were too small. Navigation paths weren't obvious. Filters required too many taps. Every friction point was a lost decision. Working in retail and eCommerce taught me that clarity under pressure is everything. The second iteration addressed this directly. Four specific decisions came out of this cycle:</p>
           </div>
             </div>
         </section>
