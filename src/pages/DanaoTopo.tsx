@@ -991,6 +991,35 @@ const DanaoTopo = () => {
           </div>
         </section>
 
+        {/* Contact CTA (card style) */}
+        <section className="py-12">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-gradient-to-b from-white/60 to-muted/5 border border-muted/30 rounded-xl p-8 md:p-10 flex flex-col items-center gap-6 text-center">
+                <div>
+                  <h3 className="text-sm uppercase tracking-wide text-muted-foreground mb-2">Get in touch</h3>
+                  <h2 className="text-xl md:text-2xl font-semibold mb-2">Want to discuss this work or collaborate? Let's talk!</h2>
+                  <p className="text-muted-foreground mb-4"> I geek out over design process - reach out if you want to talk through it (or if you just want climbing recommendations)</p>
+                </div>
+
+                <div>
+                  <a
+                    href="https://www.linkedin.com/in/alexandra-marley-252ba7172"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 bg-white border border-green-600 text-green-700 hover:bg-green-600 hover:text-white px-5 py-3 rounded-full font-semibold shadow-sm"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden>
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.268c-.966 0-1.75-.795-1.75-1.774 0-.979.784-1.774 1.75-1.774s1.75.795 1.75 1.774c0 .979-.784 1.774-1.75 1.774zm13.5 10.268h-3v-4.604c0-1.099-.021-2.513-1.531-2.513-1.533 0-1.768 1.199-1.768 2.438v4.679h-3v-9h2.879v1.233h.041c.401-.761 1.379-1.563 2.84-1.563 3.04 0 3.603 2.001 3.603 4.6v4.73z" />
+                    </svg>
+                    <span>Connect on LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Next Case Study */}
         <section className="py-16">
           <div className="container mx-auto px-6">
@@ -1023,6 +1052,8 @@ const DanaoTopo = () => {
             </div>
           </div>
         </section>
+
+      
 
       </main>
 
