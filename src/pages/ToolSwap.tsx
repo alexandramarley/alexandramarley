@@ -45,39 +45,17 @@ const ToolSwap = () => {
   const [singleLightboxAlt, setSingleLightboxAlt] = useState<string | null>(null);
   // Track where the single-image lightbox was opened from ('overview' | 'design-1' | 'design-2' | ... | 'benchmark')
   const [singleLightboxOrigin, setSingleLightboxOrigin] = useState<string | null>(null);
-  // User test stories (swipeable card in Prototype section)
-  const [userTestIndex, setUserTestIndex] = useState(0);
-  const userTestStories: React.ReactNode[] = [
-    (
-      <div>
-        <h5 className="text-sm font-semibold mb-2 text-muted-foreground">User Test 1 — Reserve & discovery</h5>
-        <div className="text-muted-foreground mb-4">
-          <ul className="list-inside space-y-2 pl-4">
-            <li>• Struggled to identify CTA buttons on booking screens</li>
-            <li>• Underlined CTAs were not recognised as primary actions</li>
-            <li>• Booking flow itself was clear once the CTA was found</li>
-            <li>• Attempted to use the keyboard during search (not fully interactive)</li>
-            <li>• Looked for a FAQ and a way to report an issue or user</li>
-          </ul>
-        </div>
+  // User test story (single static card)
+  const userTestStory: React.ReactNode = (
+    <div>
+      <div className="text-muted-foreground mb-4">
+        <p>Three clarity gaps emerged. First, underlined CTAs weren't recognised as actionable buttons - users struggled to find them on booking screens, even though the booking flow itself was intuitive once they located the action. Second, the price screen advanced automatically without confirmation, leaving users uncertain whether they'd submitted their price. They also expected to see their newly created listing reflected in the listings immediately. Third, users looked for FAQ and issue reporting options - they needed visible reassurance that support was available.</p>
       </div>
-    ),
-    (
-      <div>
-        <h5 className="text-sm font-semibold mb-2 text-muted-foreground">User Test 2 — Listing & bookings</h5>
-        <div className="text-muted-foreground mb-4">
-          <ul className="list-inside space-y-2 pl-4">
-            <li>• Completed the search and booking task without issues</li>
-            <li>• Did not mind category suggestions above the search bar</li>
-            <li>• Got confused when setting a price during listing creation</li>
-            <li>• Price screen advanced automatically without confirmation</li>
-            <li>• Expected to see a newly created listing reflected in the listings</li>
-            <li>• Initially explored booking states (upcoming / completed / requests) out of curiosity rather than intent</li>
-          </ul>
-        </div>
+      <div className="text-muted-foreground mb-4">
+        <p>These weren't fundamental flow problems. They were clarity issues that eroded confidence in the experience.</p>
       </div>
-    ),
-  ];
+    </div>
+  );
   // Carousel refs/state for the overview carousel (copied from DanaoTopo pattern)
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const autoplayRef = useRef<number | null>(null);
@@ -474,7 +452,7 @@ const ToolSwap = () => {
               {/* Left: three-line heading + intro (spans 2/3 on md+) */}
               <div className="md:col-span-2 pr-20 md:pr-0">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 tracking-tight leading-tight md:leading-snug w-full">
-                  <span className="text-green-700 font-semibold">ToolSwap:</span> A local tool-sharing marketplace that reduces waste and builds trust
+                  <span className="text-green-700 font-semibold">ToolSwap:</span> Borrow tools, build a community
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mb-6">
                   A mobile-first platform to find, list and borrow tools in your neighbourhood
@@ -547,12 +525,12 @@ const ToolSwap = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 md:h-full items-start">
                     {/* Left: Title + longer text */}
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Problem vs Solution</h3>
+                      <h3 className="text-2xl md:text-3xl font-semibold mb-4">Why you should navigate before you browse</h3>
                       <p className="text-muted-foreground max-w-2xl mb-6">
-                        In dense cities like London, people often need tools only occasionally. Buying them is expensive, space-inefficient, and often unnecessary - yet borrowing informally lacks trust and reliability.
+                        In dense cities, where you are matters more than what's available. People want tools close to home - not just for convenience, but because borrowing from someone nearby feels inherently safer than from a stranger across town. Yet most tool-sharing marketplaces treat location as a secondary filter: you browse the full catalog first, then narrow by distance.
                       </p>
                       <p className="text-muted-foreground mb-6">
-                        ToolSwap is a mobile-first community marketplace that enables people to list, find, and borrow tools nearby - with trust built through verification, ratings, and simple booking flows.
+                        ToolSwap inverts this. Research revealed that what matters most isn't which tools are available - it's where they are. The map-first design prioritises location as the primary lens. It enables people to list, find, and borrow tools from their neighbourhood - with trust built through verification, ratings, and transparent booking flows. In doing so, it recreates something that's hard to find in fast-moving cities: a sense of community based on mutual need and reliability.
                       </p>
                     </div>
 
@@ -561,7 +539,7 @@ const ToolSwap = () => {
                       <div className="space-y-6">
                         <div>
                           <h4 className="text-base font-semibold mb-1">Role</h4>
-                          <p className="text-sm text-muted-foreground">Product Designer (End-to-End)</p>
+                          <p className="text-sm text-muted-foreground">UX Designer (end-to-end)</p>
                         </div>
 
                         <div>
@@ -636,92 +614,95 @@ const ToolSwap = () => {
   {/* Process Section (mirrored from DanaoTopo structure) */}
   <section id="research" className="py-16">
       <div className="container mx-auto px-6">
-        <div className="max-w-3xl text-left">
+        <div className="w-full text-left">
           <h3 className="text-base text-muted-foreground mb-2">RESEARCH &amp; ANALYSIS</h3>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-4">Understanding the problem before solving it</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">Research revealed the barrier wasn't demand - it was trust and convenience</h2>
         </div>
 
         <div className="w-full">
           <p className="text-muted-foreground mb-6 max-w-none">
-           To understand whether there was a real need for a tool-sharing app, I used a mix of qualitative and quantitative research methods. I spoke with potential users, observed how people currently access tools, and ran a survey to explore borrowing habits and trust concerns.
+           Before designing, I needed to understand what actually stops people from borrowing tools. Is demand the problem? Logistics? Trust? Availability? To find out, I spoke with potential users, observed how they currently access tools, and ran a survey exploring borrowing habits and concerns.
           </p>
           <p className="text-muted-foreground mb-6 max-w-none">
-          Key insight: Tool borrowing is already a frequent need - the main barrier isn’t demand, but confidence and convenience. These insights directly informed feature prioritisation, information architecture, and the decision to design ToolSwap as a map-first experience.
-        </p></div>
+          <b>Key Insight:</b> Tool borrowing isn't a niche behaviour - 46% of people borrow tools monthly or weekly, and 60% were interested in using an app. Demand isn't the barrier. What emerged clearly from testing: <b>people fear damage, unreliable lenders, and uncertainty about accountability.</b> Trust, not interest, is what stops borrowing.
+        </p>
+        <p className="text-muted-foreground mb-6 max-w-none">
+           The secondary finding: when people do decide to borrow, location matters. They want tools close to home - not just for convenience, but because it's easier to pick up and return, and because borrowing from someone nearby feels more manageable than coordinating across the city.
+          </p></div>
 
         <div className="w-full mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
               <div className="flex-1 w-full">
-                <h4 className="text-lg font-semibold mb-2">User Demand</h4>
+                <h4 className="text-lg font-semibold mb-2">User demand & behaviour</h4>
                 <div className="text-muted-foreground">
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>60% interested in borrowing tools via an app</li>
                     <li>46% use tools monthly or weekly</li>
-                    <li>Most used categories: Hand tools / DIY tools / Kitchen or garden tools</li>
+                    <li>60% interested in borrowing via app</li>
+                    <li>Most used: hand tools, DIY tools, garden tools</li>
                   </ul>
 
-                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Tool use is frequent - access matters more than ownership</p>
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Tool borrowing is frequent; access solves a real problem</p>
                 </div>
               </div>
             </div>
 
             <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
               <div className="flex-1 w-full">
-                <h4 className="text-lg font-semibold mb-2">Motivations</h4>
+                <h4 className="text-lg font-semibold mb-2">What drives adoption</h4>
                 <div className="text-muted-foreground">
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>Quick and convenient access</li>
-                    <li>Trust through user verification</li>
-                    <li>Reducing waste by sharing rarely used items</li>
+                    <li>Access to tools without buying or storing them</li>
+                    <li>Cost savings (borrowing is cheaper than owning)</li>
+                    <li>Environmental impact (reducing consumption)</li>
                   </ul>
 
-                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Convenience drives adoption; sustainability reinforces engagement</p>
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Convenience and sustainability reinforce each other; trust removes the friction</p>
                 </div>
               </div>
             </div>
 
             <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
               <div className="flex-1 w-full">
-                <h4 className="text-lg font-semibold mb-2">Barriers and Trust Concerns</h4>
+                <h4 className="text-lg font-semibold mb-2">Trust barriers (the core issue)</h4>
                 <div className="text-muted-foreground">
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>Fear of damage to borrowed tools</li>
+                    <li>Fear of damaged tools</li>
                     <li>Concerns around reliability and accountability</li>
                     <li>Uncertainty about who to trust</li>
                   </ul>
 
-                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Trust is the primary barrier to participation</p>
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Trust, not demand, is the primary blocker</p>
                 </div>
               </div>
             </div>
 
             <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
               <div className="flex-1 w-full">
-                <h4 className="text-lg font-semibold mb-2">Essential Trust-Building Features</h4>
+                <h4 className="text-lg font-semibold mb-2">What builds trust</h4>
                 <div className="text-muted-foreground">
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                     <li>Verified user profiles</li>
-                    <li>Ratings & reviews</li>
+                    <li>Ratings and reviews</li>
                     <li>Insurance or damage guarantees</li>
                   </ul>
 
-                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Trust features are core functionality, not add-ons</p>
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Trust features aren't nice-to-haves; they're core functionalities</p>
                 </div>
               </div>
             </div>
 
             <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full">
               <div className="flex-1 w-full">
-                <h4 className="text-lg font-semibold mb-2">Priority Features & Core Use Cases</h4>
+                <h4 className="text-lg font-semibold mb-2">What users actually prioritise</h4>
                 <div className="text-muted-foreground">
                   <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                    <li>Search by tool type</li>
-                    <li>Availability calendar</li>
-                    <li>Map view of nearby tools</li>
+                    <li>Tools close to home (proximity first)</li>
+                    <li>Clear availability and pricing</li>
+                    <li>Quick booking without friction</li>
                   </ul>
 
-                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Visibility and proximity are prioritised over social features</p>
+                  <p className="mt-3 text-muted-foreground mb-6"><span className="font-semibold">Insight:</span> Location matters before selection. Where the tool is comes before which tool is available</p>
                 </div>
               </div>
             </div>
@@ -730,9 +711,9 @@ const ToolSwap = () => {
 
         <div className="w-full mt-12">
           <div className="w-full">
-            <h3 className="text-lg md:text-xl font-semibold mb-4">Competitor Analysis</h3>
-            <p className="text-muted-foreground mb-6 max-w-none">At the same time I benchmarked existing sharing and marketplace apps to compare similar products and their designs to identify best practices and areas for improvement. The findings informed which design approaches to build upon and where opportunities existed to improve clarity and usability on mobile.</p>
-            <p className="text-muted-foreground mb-6 max-w-none">Key takeaway: Existing marketplaces either overwhelm users with information or hide critical decision-making details. ToolSwap intentionally prioritises clarity and speed over feature density, particularly in map-based discovery and booking flows.</p>
+            <h3 className="text-lg md:text-xl font-semibold mb-4">Why most marketplaces get this wrong</h3>
+            <p className="text-muted-foreground mb-6 max-w-none">At the same time, I benchmarked existing sharing and marketplace apps. What I found: most treat location as a filter, <i>not a primary consideration</i>. They show you a long list of available items (sorted by rating or price), then let you narrow by distance. You browse everything first, then filter by geography.</p>
+            <p className="text-muted-foreground mb-6 max-w-none">But research showed people actually prioritise differently. When deciding whether to borrow, <b>location comes early in their thinking</b> - not as a final filter, but as part of whether borrowing feels manageable at all. They want tools close to home because it's practical: easier to pick up, easier to return, easier to coordinate. Most existing solutions - whether they're cluttered or minimal - ignore this. They structure discovery the same way: list first, location second.</p>
           </div>
         </div>
 
@@ -796,6 +777,11 @@ const ToolSwap = () => {
             </div>
           </div>
         </div>
+                <div className="w-full mt-12">
+          <div className="w-full">
+            <p className="text-muted-foreground mb-6 max-w-none">This meant map-first wasn't a design trend, but a practical choice. If people care about where tools are before browsing which tools are available, the map should be the primary interface. Users navigate to their neighbourhood first, then discover what's available nearby. Everything flows from that: the search bar, the filters, the layout of tool cards - all organised around location and spatial context, not just features or ratings.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -804,12 +790,15 @@ const ToolSwap = () => {
           <div className="container mx-auto px-6">
             <div className="max-w-3xl">
               <h3 className="text-base text-muted-foreground mb-2">DESIGN</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-8">From ideas to usable solutions</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-8">Map-first design to solve the proximity problem</h2>
             </div>
 
             <div className="w-full">
               <p className="text-muted-foreground mb-6 max-w-none">
-                Based on research insights, key priorities were identified: ease of discovery, quick listing flows, and trust-building features such as user ratings and verification. Secondary use cases included account management and booking history, supporting both borrowers and lenders while reinforcing a sense of community.
+                Research revealed that location comes early in the borrowing decision. When people consider borrowing a tool, they're thinking: "Is there one close to me?" not "What tools exist?" This meant the design couldn't treat location as a secondary filter - it had to be the primary lens.
+              </p>
+              <p className="text-muted-foreground mb-6 max-w-none">
+                So I structured ToolSwap around the map. Instead of showing a list first and letting people narrow by distance, the map is the search interface. Users navigate to their neighbourhood, discover what's available nearby, and decide from there. Every design choice flows from this core structure.
               </p>
             </div>
 
@@ -817,20 +806,17 @@ const ToolSwap = () => {
             <div className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="max-w-3xl">
-                  <p className="text-muted-foreground mb-8">
-                It was clear that I had to come up with a design that has minimal clicks, and features the two main things the app should do: Reserve and list tools.
-              </p>
               <p className="text-muted-foreground mb-6">
-                    To structure the experience, I mapped out the user journeys around three primary goals:
+                    To support map-first discovery, three user journeys had to work seamlessly:
                   </p>
 
                   <ul className="list-inside space-y-2 text-muted-foreground mb-6">
-                    <li>• Finding and borrowing a nearby tool</li>
-                    <li>• Listing a tool for others to borrow</li>
-                    <li>• Managing bookings and account information</li>
+                    <li>• <b>Finding and borrowing a nearby tool</b> - the primary flow</li>
+                    <li>• <b>Listing a tool for others to borrow</b> - equally important, but different mental model</li>
+                    <li>• <b>Managing bookings and account information</b> - the support layer</li>
                   </ul>
                   <p className="text-muted-foreground mb-6">
-                    These journeys informed the overall information architecture and ensured the interface remained focused on real user needs.
+                    Keeping the map visible and accessible throughout the app - even when searching, filtering, or viewing details - meant maintaining spatial context at every step. Users always knew where they were and where the tools were.
                   </p>
                 </div>
 
@@ -852,7 +838,7 @@ const ToolSwap = () => {
             </div>
 
             <div className="w-full">
-              <p className="text-muted-foreground mb-6 max-w-none">After defining the user journey I drew some sketches and created medium fidelity wireframe which helped me clarify the structure and flow. Next step was converting the wireframes into actual designs. Some of my challenges and reasonings are highlighted below.</p>
+              <p className="text-muted-foreground mb-6 max-w-none">After defining the user journey I drew some sketches and created medium fidelity wireframes in Figma which helped me clarify the structure and flow. Next step was converting the wireframes into actual designs. Map-first simplifies the core problem, but it creates specific design constraints. The sections below show how I navigated each one.</p>
             </div>
           </div>
         </section>
@@ -867,15 +853,12 @@ const ToolSwap = () => {
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="max-w-3xl">
-                        <h4 className="text-lg font-semibold mb-2">Navigation & Search</h4>
+                        <h4 className="text-lg font-semibold mb-2">Why the search bar lives at the bottom</h4>
                         <p className="text-muted-foreground mb-4">
-                          Search is the main entry point into ToolSwap, so it needed to stay visible without getting in the way. I placed the search bar at the bottom of the screen to support one-handed use, especially while exploring the map.
+                          Search is the main entry point into ToolSwap. Users need to find tools quickly. But on mobile, especially while exploring the map with one hand, reaching the top of the screen is awkward. So the search bar lives at the bottom - instantly reachable, always visible, never blocking the map.
                         </p>
                         <p className="text-muted-foreground mb-4">
-                          Category suggestions appear above the search field. Although this breaks a common pattern, early testing showed it helped users move faster without causing confusion.
-                        </p>
-                        <p className="text-muted-foreground mb-4">
-                         The main menu remains accessible but is intentionally hidden during critical flows to avoid distraction.
+                          Category suggestions appear above the search field. This breaks the typical pattern of hiding suggestions inside a dropdown, but early testing showed users moved faster with immediate, visible options. The pattern break worked because it served the user's actual behaviour.
                         </p>
                       </div>
 
@@ -945,9 +928,9 @@ const ToolSwap = () => {
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">Map-first exploration</h4>
+                    <h4 className="text-lg font-semibold mb-2">Why the map never closes</h4>
                     <p className="text-muted-foreground mb-4">
-                      Looking at similar marketplaces, most rely heavily on list views, with maps playing a secondary role. Research showed the opposite here - users cared most about what was close by.
+                      Looking at similar marketplaces, most rely heavily on list views, with maps playing a secondary role - hidden in the background. Research showed the opposite here - users cared most about what was close by.
                     </p>
                     <p className="text-muted-foreground mb-4">
                       For that reason, ToolSwap is designed as a map-first experience, with a list view available when users want to compare options more directly. Keeping the map visible throughout the app helps maintain spatial context during decision-making.
@@ -1016,12 +999,15 @@ const ToolSwap = () => {
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="max-w-3xl">
-                        <h4 className="text-lg font-semibold mb-2">Terminology Main Menu</h4>
+                        <h4 className="text-lg font-semibold mb-2">When users' mental models guide the menu</h4>
                         <p className="text-muted-foreground mb-4">
-                          Getting the main menu right took a few iterations. Early versions grouped actions by feature, which made it hard to tell whether certain items related to borrowing or lending.
+                          Getting the main menu right took a few iterations. Early versions grouped actions by feature - search here, my bookings there, create listing elsewhere. But testing quickly revealed the problem: users couldn't intuitively tell whether an action related to borrowing or lending.
                         </p>
                         <p className="text-muted-foreground mb-4">
-                          I tested two menu structures with users. The final version separates actions into Borrow and Lend, which aligned better with how users described their own mental model and reduced confusion around bookings.
+                          I tested two menu structures: one organised by feature (the original approach) and one organized by Borrow and Lend. The results were clear. Users moved faster and with less confusion when actions were grouped by their mental model, not by feature categories.
+                        </p>
+                        <p className="text-muted-foreground mb-4">
+                          The final version separates actions into Borrow and Lend, which reduced confusion around managing different types of bookings.
                         </p>
                       </div>
 
@@ -1088,15 +1074,15 @@ const ToolSwap = () => {
               <div>
                 <div className="px-12 mt-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="max-w-3xl">
-                    <h4 className="text-lg font-semibold mb-2">List Item</h4>
+                    <h4 className="text-lg font-semibold mb-2">Details without cluttering the map</h4>
                     <p className="text-muted-foreground mb-4">
-                      The tool detail screen went through several rounds of refinement. The main challenge was fitting all relevant information onto one screen without overwhelming the user.
+                      The tool detail screen needed to answer a user's core question: Can I trust this person and this situation? But showing lender info, reviews, pricing, availability, and descriptions all at once would overwhelm - a cluttered screen reads as unclear, and unclear feels risky.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      The final design uses a bottom sheet layout, keeping the map visible in the background to maintain location context. Key details appear first, followed by a scrollable description and reviews.
+                      From my background in photography and visual design, I know that clarity comes from hierarchy - showing what matters first, letting the eye and mind settle before adding complexity. So I used a bottom sheet layout that keeps the map visible in the background. Users always know where the tool is. Key details appear first - lender info, price, distance, availability - followed by scrollable description and reviews. The booking CTA and total price stay fixed at the bottom, always reachable.
                     </p>
                     <p className="text-muted-foreground mb-4">
-                      The booking CTA and total price are fixed at the bottom so they’re always easy to reach.
+                     This structure answers their question progressively: Who is this? How much? How far? Before asking them to commit."
                     </p>
                   </div>
 
@@ -1128,12 +1114,12 @@ const ToolSwap = () => {
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div className="max-w-3xl">
-                        <h4 className="text-lg font-semibold mb-2">Filter / Sort by</h4>
+                        <h4 className="text-lg font-semibold mb-2">Why filters live in a bottom sheet</h4>
                         <p className="text-muted-foreground mb-4">
                           To support decision-making in list view, a filter and sort option was introduced. Early concepts embedded filters directly into the map view, but testing showed this reduced clarity and reachability.
                         </p>
                         <p className="text-muted-foreground mb-4">
-                          The final solution uses a bottom sheet pattern instead. This keeps controls reachable and the map clear, while prioritising the most common filters such as distance, price, and availability.
+                          The final solution uses a bottom sheet pattern instead. This keeps controls reachable and the map clear, while prioritising the most common filters: distance, price, and availability.
                         </p>
                       </div>
 
@@ -1164,20 +1150,20 @@ const ToolSwap = () => {
           <div className="container mx-auto px-6">
             <div>
               <h3 className="text-base text-muted-foreground mb-2">PROTOTYPE &amp; TESTING</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Learning through testing and iteration</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Testing exposed gaps in clarity - particularly around CTAs</h2>
 
               {/* Full-width paragraph */}
               <div className="w-full">
-                <p className="text-muted-foreground mb-6 max-w-none">After finishing my design screens, I connected all the different frames &amp; created a prototype. The user testing validated the core discovery and booking flows, while revealing clarity issues around CTAs and pricing confirmation.</p>
+                <p className="text-muted-foreground mb-6 max-w-none">After creating a prototype, I ran usability tests with the three core tasks: reserving a tool, creating a listing, and finding booking requests. The core flows worked - users completed tasks and understood the logic. But testing revealed specific clarity gaps that needed addressing.</p>
               </div>
 
               {/* User Test Tasks card (full width) */}
               <div className="w-full">
                 <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg mb-6">
-                  <h4 className="text-lg font-semibold mb-3">User Test Tasks</h4>
+                  <h4 className="text-lg font-semibold mb-3">Usability Testing Tasks</h4>
                   <ul className="list-inside space-y-2 text-muted-foreground pl-4">
-                    <li>• You live in Canary Wharf &amp; look for a power drill from September 13th 2025 - September 20th, 2025. Try to reserve the item closest to you, assuming you already have an account (steven.smith@gmail.com / password), and continue with the checkout flow.</li>
-                    <li>• You live in Canary Wharf (15 Chichester Way, E14 3EG) and want to lend your jigsaw to other people. Try to create your own listing, the price is £4 per day and no description is needed (can be skipped).</li>
+                    <li>• You live in Canary Wharf & look for a power drill from September 13th 2025 - September 20th, 2025. Try to reserve the item closest to you, assuming you already have an account, and continue with the checkout flow</li>
+                    <li>• You live in Canary Wharf and want to lend your jigsaw to other people. Try to create your own listing, the price is £2 per day and no description is needed</li>
                     <li>• Try to find the booking requests for your bookings (the tools that you are lending to others)</li>
                   </ul>
                 </div>
@@ -1187,26 +1173,9 @@ const ToolSwap = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                 <div className="relative p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0 flex flex-col justify-start h-full pt-12 md:pt-14">
                   {/* top-right swipe buttons (larger) */}
-                  <div className="absolute top-4 right-4 flex items-center gap-3">
-                    <button
-                      aria-label="Previous user test"
-                      onClick={() => setUserTestIndex((userTestIndex - 1 + userTestStories.length) % userTestStories.length)}
-                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
-                    >
-                      ‹
-                    </button>
-                    <button
-                      aria-label="Next user test"
-                      onClick={() => setUserTestIndex((userTestIndex + 1) % userTestStories.length)}
-                      className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-xl md:text-2xl bg-muted hover:bg-muted/80 rounded-full"
-                    >
-                      ›
-                    </button>
-                  </div>
-
                   <div>
-                    <h4 className="text-lg font-semibold mb-3">Testing Insights</h4>
-                    <div>{userTestStories[userTestIndex]}</div>
+                    <h4 className="text-lg font-semibold mb-3">Insights & Findings</h4>
+                    <div>{userTestStory}</div>
                   </div>
 
                 </div>
@@ -1240,49 +1209,7 @@ const ToolSwap = () => {
               </div>
 
               {/* Findings & Next Steps cards under Prototype (same card design) */}
-              <div className="w-full mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
-                    <h4 className="text-lg font-semibold mb-3">Findings</h4>
-                      <ul className="list-inside space-y-2 text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>CTA buttons styled only as underlined text were not recognized as actionable, causing confusion</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Users expect access to supporting resources such as FAQs and issue reporting</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>User confusion occurred when entering the price for a new listing (value auto-submitted without user confirmation)
-</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>The search and reserve flow is generally intuitive and easy to follow</span>
-                      </li>
-
-                      <li className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
-                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Category suggestions above the search bar were not perceived as intrusive</span>
-                      </li>
-                    </ul>
-                  </div>
-
+                <div className="w-full mt-6">
                   <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg min-w-0">
                     <h4 className="text-lg font-semibold mb-3">Next Steps</h4>
                     <ul className="list-inside space-y-2 text-muted-foreground">
@@ -1297,14 +1224,21 @@ const ToolSwap = () => {
                         <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
                           <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span>Added FAQ / report an issue section to the menu</span>
+                        <span>Add explicit confirmation to the create-listing flow (confirm price step)</span>
                       </li>
 
                       <li className="flex items-start gap-2">
                         <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
                           <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span>Add clearer feedback in the create-listing flow (confirm price step)</span>
+                        <span>Display newly created listings immediately in the user's listings</span>
+                      </li>
+
+                      <li className="flex items-start gap-2">
+                        <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>
+                          <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>Added FAQ / report an issue section to the menu</span>
                       </li>
 
                       <li className="flex items-start gap-2">
@@ -1317,7 +1251,6 @@ const ToolSwap = () => {
                     </ul>
                   </div>
                 </div>
-              </div>
 
             </div>
           </div>
@@ -1396,21 +1329,30 @@ const ToolSwap = () => {
   {/* Process Step Five Section */}
   <section id="conclusion" className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
+            <div className="w-full">
               <h3 className="text-base text-muted-foreground mb-2">CONCLUSIONS</h3>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-4">Key takeaways from this project</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold mb-4">How research-first design changed my approach to trust-sensitive marketplaces</h2>
             </div>
 
             {/* Conclusions card (same style as User Test Tasks) */}
             <div className="w-full mt-6">
               <div className="p-8 bg-muted/100 border border-muted/30 rounded-lg">
                 <p className="text-muted-foreground mb-6">
-                 This project reinforced the importance of clear information hierarchy, especially when designing for time-pressured, real-world use cases. User testing validated several unconventional design decisions, such as category suggestions above the search bar, while also highlighting areas where clearer affordances were needed.
+                 My first case study taught me that research comes before design. With ToolSwap, I reversed the order and started by listening.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                 The research revealed something clear: the barrier wasn't demand - it was confidence and convenience. People feared damaged tools and uncertain accountability. They wanted items close to home, verified lenders, and clear pricing.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                 Starting with research meant every design choice had a foundation. But the real learning came from testing: underlined CTAs weren't recognised as actionable. Price screens that auto-advanced confused users. Missing support options made people hesitant. Each of these was a clarity gap that eroded confidence.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  While ToolSwap remains a conceptual project, it demonstrates my approach to designing data-rich, trust-sensitive marketplaces - balancing usability, clarity, and real-world constraints in mobile-first environments.
+                This project reinforced something I learned in retail and eCommerce: people trust what they understand. <b>And trust-sensitive marketplaces live or die on clarity.</b> Every design choice - from information architecture to button weight - either reinforces or undermines whether users feel safe. That applies far beyond tool-sharing: to insurance products, peer-to-peer lending, community platforms.
+                 </p>
+              <p className="text-muted-foreground mb-4">
+                  If this shipped, I'd first validate the reserve flow with users who've never borrowed before. I'd also validate the green colour meets WCAG AA contrast standards across all contexts, and test whether the insurance/damage guarantee copy is prominent enough in the product detail screen.
                 </p>
-              </div>
+                </div>
             </div>
           </div>
         </section>
