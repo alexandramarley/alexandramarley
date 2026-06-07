@@ -150,7 +150,12 @@ const ToolSwap = () => {
     if (!el) return;
     const firstChild = el.querySelector<HTMLElement>(".carousel-item");
     const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
-    el.scrollBy({ left: step, behavior: "smooth" });
+    const maxScrollLeft = el.scrollWidth - el.clientWidth;
+    if (el.scrollLeft + step >= maxScrollLeft - 2) {
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: step, behavior: "smooth" });
+    }
   };
 
   const scrollPrev = () => {
@@ -158,15 +163,20 @@ const ToolSwap = () => {
     if (!el) return;
     const firstChild = el.querySelector<HTMLElement>(".carousel-item");
     const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
-    el.scrollBy({ left: -step, behavior: "smooth" });
+    if (el.scrollLeft - step <= 2) {
+      const maxScrollLeft = el.scrollWidth - el.clientWidth;
+      el.scrollTo({ left: maxScrollLeft, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: -step, behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
     if (isCarouselPaused) return;
-    // autoplay every 3s
+    // autoplay every 2.5s (quicker)
     autoplayRef.current = window.setInterval(() => {
       scrollNext();
-    }, 3000);
+    }, 2500);
     return () => { if (autoplayRef.current) window.clearInterval(autoplayRef.current); };
   }, [isCarouselPaused]);
 
@@ -577,7 +587,8 @@ const ToolSwap = () => {
           ref={carouselRef}
           onMouseEnter={() => setIsCarouselPaused(true)}
           onMouseLeave={() => setIsCarouselPaused(false)}
-          className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar"
+          className="flex gap-4 overflow-x-auto scroll-smooth py-4 md:py-6 no-scrollbar items-center"
+          style={{ alignItems: 'center' }}
         >
           {/* left fade (hidden on mobile) */}
           <div className="pointer-events-none hidden md:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent opacity-90 z-10" />
@@ -585,7 +596,7 @@ const ToolSwap = () => {
             overviewImages.map((img, idx) => {
               return (
                 <div key={idx} className="carousel-item flex-none w-3/4 sm:w-1/2 md:w-[200px] lg:w-[260px] transform transition-transform duration-300 scale-90">
-                  <div className="overflow-hidden rounded-lg">
+                  <div className="overflow-hidden rounded-lg flex items-center justify-center" style={{ minHeight: '160px' }}>
                     <img src={img} alt={overviewAlts[idx]}
                       className="w-full h-auto object-contain cursor-pointer"
                       onClick={() => { setSingleLightboxSrc(img); setSingleLightboxAlt(overviewAlts[idx]); setSingleLightboxOrigin('overview'); setSingleLightboxOpen(true); }}

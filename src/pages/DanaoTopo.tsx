@@ -142,7 +142,14 @@ const DanaoTopo = () => {
     if (!el) return;
     const firstChild = el.querySelector<HTMLElement>(".carousel-item");
     const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
-    el.scrollBy({ left: step, behavior: "smooth" });
+    // If we're near the end, wrap to the start
+    const maxScrollLeft = el.scrollWidth - el.clientWidth;
+    if (el.scrollLeft + step >= maxScrollLeft - 2) {
+      // smooth scroll to start
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: step, behavior: "smooth" });
+    }
   };
 
   const scrollPrev = () => {
@@ -150,15 +157,21 @@ const DanaoTopo = () => {
     if (!el) return;
     const firstChild = el.querySelector<HTMLElement>(".carousel-item");
     const step = firstChild ? firstChild.offsetWidth + parseInt(getComputedStyle(firstChild).marginRight || "0") : el.clientWidth;
-    el.scrollBy({ left: -step, behavior: "smooth" });
+    // If we're near the start, wrap to the end
+    if (el.scrollLeft - step <= 2) {
+      const maxScrollLeft = el.scrollWidth - el.clientWidth;
+      el.scrollTo({ left: maxScrollLeft, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: -step, behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
     if (isCarouselPaused) return;
-    // autoplay every 3s
+    // autoplay every 2.5s
     autoplayRef.current = window.setInterval(() => {
       scrollNext();
-    }, 3000);
+    }, 2500);
     return () => { if (autoplayRef.current) window.clearInterval(autoplayRef.current); };
   }, [isCarouselPaused]);
 
@@ -414,17 +427,18 @@ const DanaoTopo = () => {
           ref={carouselRef}
           onMouseEnter={() => setIsCarouselPaused(true)}
           onMouseLeave={() => setIsCarouselPaused(false)}
-          className="flex gap-4 overflow-x-auto scroll-smooth py-3 no-scrollbar"
+          className="flex gap-4 overflow-x-auto scroll-smooth py-4 md:py-6 no-scrollbar items-center"
+          style={{ alignItems: 'center' }}
         >
           {/* left fade (hidden on mobile) */}
-          <div className="pointer-events-none hidden md:block absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent opacity-90 z-10" />
+          <div className="pointer-events-none hidden md:block absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent opacity-90 z-10" />
           {
             // single copy of images; we'll add side padding so the first/last items
             // can be scrolled to the centre of the view even without duplicates
             overviewImages.map((img, idx) => {
               return (
-                <div key={idx} className="carousel-item flex-none w-3/4 sm:w-1/2 md:w-[200px] lg:w-[260px] transform transition-transform duration-300 scale-90">
-                  <div className="overflow-hidden rounded-lg">
+                <div key={idx} className="carousel-item flex-none w-3/4 sm:w-1/2 md:w-[180px] lg:w-[234px] transform transition-transform duration-300 scale-90">
+                  <div className="overflow-hidden rounded-lg flex items-center justify-center" style={{ minHeight: '160px' }}>
                     <img src={img} alt={overviewAlts[idx]} className="w-full h-auto object-contain cursor-pointer" onClick={() => openSingle(img, overviewAlts[idx])} />
                   </div>
                 </div>
@@ -442,7 +456,7 @@ const DanaoTopo = () => {
         </button>
 
   {/* right fade (hidden on mobile) */}
-  <div className="pointer-events-none hidden md:block absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent opacity-90 z-10" />
+  <div className="pointer-events-none hidden md:block absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent opacity-90 z-10" />
       </div>
     </div>
   </section>
